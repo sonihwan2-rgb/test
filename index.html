@@ -202,6 +202,10 @@
       gap: 6px;
     }
 
+    .sidebar-footer .full-span {
+      grid-column: span 2;
+    }
+
     /* 메인 영역 */
     .main-container {
       flex: 1;
@@ -241,15 +245,31 @@
       background: var(--bg-main);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
       cursor: pointer;
     }
 
     .btn-secondary:hover {
       background: var(--bg-hover);
+    }
+
+    .btn-accent-outline {
+      background: var(--bg-active);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-accent-outline:hover {
+      background: var(--accent);
+      color: #ffffff;
     }
 
     .btn-danger {
@@ -551,8 +571,10 @@
     <div class="doc-list" id="docList"></div>
 
     <div class="sidebar-footer">
-      <button class="btn-secondary" id="exportBtn" title="JSON 파일로 백업">💾 백업 저장</button>
-      <button class="btn-secondary" id="importBtn" title="백업 파일 불러오기">📂 불러오기</button>
+      <button class="btn-accent-outline" id="mergeBtn" title="기존 문서를 유지하고 새 JSON 문서를 이어 붙입니다">➕ 문서 추가(병합)</button>
+      <button class="btn-secondary" id="importBtn" title="기존 문서를 지우고 백업 파일로 덮어씁니다">📂 전체 복원</button>
+      <button class="btn-secondary full-span" id="exportBtn" title="현재 위키 전체를 JSON 파일로 백업">💾 전체 백업 저장 (.json)</button>
+      <input type="file" id="mergeFileInput" accept=".json" style="display:none" />
       <input type="file" id="importFileInput" accept=".json" style="display:none" />
     </div>
   </aside>
@@ -641,7 +663,6 @@
   <script>
     const STORAGE_KEY = "math_imyong_wiki_docs_v1";
 
-    // 초기 샘플 데이터
     const defaultDocs = [
       {
         id: "doc-1",
@@ -657,43 +678,7 @@ $$
 $$
 
 ## 2. 핵심 정리 (연속성의 보존)
-> [정리] 함수열 $\\{f_n\\}$이 $E$ 위에서 $f$로 평등수렴하고, 각 $f_n$이 $x_0 \\in E$에서 연속이면 극한함수 $f$도 $x_0$에서 연속이다.
-
-### 증명 아이디어 ($3\\varepsilon$-논법)
-- 평등수렴성을 이용해 $|f_n(x) - f(x)| < \\frac{\\varepsilon}{3}$ 이 되는 $N$을 고정한다.
-- $f_N$의 $x_0$에서의 연속성을 이용해 $|x - x_0| < \\delta \\implies |f_N(x) - f_N(x_0)| < \\frac{\\varepsilon}{3}$ 인 $\\delta > 0$을 잡는다.
-- 삼각부등식 $|f(x)-f(x_0)| \\le |f(x)-f_N(x)| + |f_N(x)-f_N(x_0)| + |f_N(x_0)-f(x_0)| < \\varepsilon$ 으로 마무리한다.`
-      },
-      {
-        id: "doc-2",
-        title: "라그랑주 정리(Lagrange's Theorem)와 따름정리",
-        category: "현대대수학",
-        tags: ["군론", "부분군", "위수"],
-        updatedAt: "2026-11-12 15:30",
-        images: [],
-        content: `## 1. 라그랑주 정리
-> [정리] 유한군 $G$의 부분군 $H$에 대하여, $H$의 위수 $|H|$는 $G$의 위수 $|G|$를 나눈다. 즉, $|G| = [G : H] |H|$ 이다.
-
-## 2. 주요 따름정리
-- 유한군 $G$의 임의의 원소 $a \\in G$의 위수 $|a|$는 $|G|$의 약수이다.
-- 위수가 소수 $p$인 군 $G$는 순환군이며, $\\mathbb{Z}_p$와 동형이다.
-- **주의사항:** 라그랑주 정리의 역은 성립하지 않는다. (반례: 교대군 $A_4$는 위수가 $12$이지만 위수가 $6$인 부분군을 갖지 않는다.)`
-      },
-      {
-        id: "doc-3",
-        title: "프로이덴탈(Freudenthal)의 수학화 교수-학습론",
-        category: "수학교육론",
-        tags: ["수학화", "안내된재발명", "현실적수학교육"],
-        updatedAt: "2026-11-12 14:20",
-        images: [],
-        content: `## 1. 핵심 개념: 수학화 (Mathematization)
-수학을 완성된 결과물(기성 수학)이 아닌 **인간의 활동**으로 보며, 현상을 수학적 수단으로 조직하는 과정을 의미한다.
-
-- **수평적 수학화:** 현실 세계의 문제 상황을 수학적 세계로 옮겨 수학화하는 과정 (예: 실생활 문제의 방정식 모델링)
-- **수직적 수학화:** 수학적 세계 내부에서 기호화, 일반화, 추상화, 형식화를 통해 더 높은 수준의 수학으로 발전시키는 과정
-
-## 2. 교수 원리
-> [핵심] 안내된 재발명(Guided Reinvention): 학생 스스로 수학적 개념과 원리를 재발명할 수 있도록 교사가 적절한 현상과 반성적 사고의 기회를 제공해야 한다.`
+> [정리] 함수열 $\\{f_n\\}$이 $E$ 위에서 $f$로 평등수렴하고, 각 $f_n$이 $x_0 \\in E$에서 연속이면 극한함수 $f$도 $x_0$에서 연속이다.`
       }
     ];
 
@@ -702,7 +687,6 @@ $$
     let editingDocId = null;
     let tempImages = [];
 
-    // DOM 요소
     const docListEl = document.getElementById("docList");
     const searchInputEl = document.getElementById("searchInput");
     const categoryFilterEl = document.getElementById("categoryFilter");
@@ -711,7 +695,6 @@ $$
     const viewActionsEl = document.getElementById("viewActions");
     const breadcrumbEl = document.getElementById("breadcrumb");
 
-    // 초기화
     function init() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -744,7 +727,6 @@ $$
       }
     }
 
-    // HTML 이스케이프
     function escapeHtml(str) {
       return str
         .replace(/&/g, "&amp;")
@@ -754,27 +736,22 @@ $$
         .replace(/'/g, "&#039;");
     }
 
-    // 수식 보호 + 간단한 마크다운 파싱
     function formatContent(rawText) {
       if (!rawText) return "";
       const mathBlocks = [];
 
-      // 1. $$ ... $$ 보호
       let text = rawText.replace(/\$\$([\s\S]*?)\$\$/g, (match) => {
         mathBlocks.push(match);
         return `@@MATH_${mathBlocks.length - 1}@@`;
       });
 
-      // 2. $ ... $ 보호
       text = text.replace(/\$([^\$\n]+?)\$/g, (match) => {
         mathBlocks.push(match);
         return `@@MATH_${mathBlocks.length - 1}@@`;
       });
 
-      // 3. HTML 이스케이프
       text = escapeHtml(text);
 
-      // 4. 줄 단위 문법 변환
       const lines = text.split("\n");
       let html = "";
       let inList = false;
@@ -809,7 +786,6 @@ $$
 
       if (inList) html += "</ul>";
 
-      // 5. 수식 복원
       html = html.replace(/@@MATH_(\d+)@@/g, (_, idx) => mathBlocks[Number(idx)]);
       return html;
     }
@@ -818,7 +794,6 @@ $$
       return str.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
     }
 
-    // KaTeX 수식 렌더링 실행
     function renderMath(element) {
       if (window.renderMathInElement) {
         renderMathInElement(element, {
@@ -831,7 +806,6 @@ $$
       }
     }
 
-    // 사이드바 목록 렌더링
     function renderSidebar() {
       const keyword = searchInputEl.value.trim().toLowerCase();
       const cat = categoryFilterEl.value;
@@ -871,7 +845,6 @@ $$
       });
     }
 
-    // 문서 보기 렌더링
     function renderView() {
       const doc = docs.find((d) => d.id === currentDocId);
       if (!doc) {
@@ -983,14 +956,12 @@ $$
       this.style.display = "none";
     };
 
-    // 현재 시각 포맷
     function getNowString() {
       const now = new Date();
       const pad = (n) => String(n).padStart(2, "0");
       return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
     }
 
-    // 이벤트 연결
     document.getElementById("newDocBtn").onclick = () => {
       switchToEdit(null);
       document.getElementById("sidebar").classList.remove("open");
@@ -1068,7 +1039,6 @@ $$
       renderView();
     };
 
-    // 툴바 버튼 삽입
     document.querySelectorAll(".tool-btn[data-insert]").forEach((btn) => {
       btn.onclick = () => {
         const textarea = document.getElementById("editBody");
@@ -1081,7 +1051,6 @@ $$
       };
     });
 
-    // 실시간 미리보기 토글
     document.getElementById("togglePreviewBtn").onclick = () => {
       const preview = document.getElementById("livePreview");
       if (preview.style.display === "block") {
@@ -1093,7 +1062,6 @@ $$
       }
     };
 
-    // 이미지 업로드 및 리사이징 압축 (용량 최적화)
     document.getElementById("uploadImgBtn").onclick = () => {
       document.getElementById("imgInput").click();
     };
@@ -1128,33 +1096,75 @@ $$
       e.target.value = "";
     };
 
-    // 검색 및 필터
     searchInputEl.oninput = renderSidebar;
     categoryFilterEl.onchange = renderSidebar;
 
-    // 다크모드
     document.getElementById("themeToggle").onclick = () => {
       document.body.classList.toggle("dark");
       localStorage.setItem("wiki_theme", document.body.classList.contains("dark") ? "dark" : "light");
     };
 
-    // 모바일 메뉴 토글
     document.getElementById("mobileMenuBtn").onclick = () => {
       document.getElementById("sidebar").classList.toggle("open");
     };
 
-    // JSON 백업 및 복원
+    // JSON 전체 백업 저장
     document.getElementById("exportBtn").onclick = () => {
       const dataStr = JSON.stringify(docs, null, 2);
       const blob = new Blob([dataStr], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `수학임용위키_백업_${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `수학임용위키_통합백업_${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
     };
 
+    // [신규] 기존 문서 유지하며 JSON 문서 추가(병합)
+    document.getElementById("mergeBtn").onclick = () => {
+      document.getElementById("mergeFileInput").click();
+    };
+
+    document.getElementById("mergeFileInput").onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const imported = JSON.parse(ev.target.result);
+          if (!Array.isArray(imported)) throw new Error("형식 오류");
+
+          let addedCount = 0;
+          let updatedCount = 0;
+          imported.forEach((newDoc) => {
+            if (!newDoc.id) newDoc.id = "doc-" + Date.now() + "-" + Math.random().toString(36).slice(2, 6);
+            const existingIdx = docs.findIndex((d) => d.id === newDoc.id);
+            if (existingIdx !== -1) {
+              docs[existingIdx] = newDoc;
+              updatedCount++;
+            } else {
+              docs.push(newDoc);
+              addedCount++;
+            }
+          });
+
+          saveToStorage();
+          if (imported.length > 0) {
+            currentDocId = imported[0].id;
+          }
+          switchToView();
+          renderSidebar();
+          renderView();
+          alert(`기존 문서를 유지한 채 반영 완료! (신규 추가: ${addedCount}개, 기존 갱신: ${updatedCount}개)`);
+        } catch (err) {
+          alert("올바른 위키 JSON 파일이 아닙니다.");
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    };
+
+    // JSON 전체 복원 (덮어쓰기)
     document.getElementById("importBtn").onclick = () => {
       document.getElementById("importFileInput").click();
     };
@@ -1167,7 +1177,7 @@ $$
         try {
           const imported = JSON.parse(ev.target.result);
           if (!Array.isArray(imported)) throw new Error("형식 오류");
-          if (confirm(`총 ${imported.length}개의 문서를 불러옵니다. 현재 위키 데이터를 덮어쓰시겠습니까?`)) {
+          if (confirm(`총 ${imported.length}개의 문서로 전체 덮어씁니다. 기존 데이터는 사라집니다. 계속하시겠습니까?`)) {
             docs = imported;
             saveToStorage();
             currentDocId = docs.length > 0 ? docs[0].id : null;
@@ -1183,7 +1193,6 @@ $$
       e.target.value = "";
     };
 
-    // 외부 스크립트 로드 후 초기 수식 렌더링 보장
     window.addEventListener("DOMContentLoaded", init);
     window.addEventListener("load", () => {
       const bodyEl = document.getElementById("renderedBody");
