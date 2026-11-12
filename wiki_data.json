@@ -145,5 +145,112 @@
     "updatedAt": "2026-11-12 17:00",
     "images": [],
     "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2026 B10에서 집합의 상한($\\sup S$)과 하한($\\inf S$)을 직접 물었으며, 나머지 모든 해석학 증명의 기초 도구로 사용됩니다.\n\n## 1. 실수계의 완비성과 상한·하한 (Chapter 1)\n- **정리 1.3 (완비성 공리):** 공집합이 아니고 위로 유계인 $\\mathbb{R}$의 부분집합은 $\\mathbb{R}$에서 상한($\\sup S$)을 갖는다. (아래로 유계이면 하한 $\\inf S$를 갖는다.)\n> [정리 1.5 & 1.6 (상한·하한의 근사정리)]\n- 상계 $u = \\sup S \\iff \\forall \\varepsilon > 0, \\; \\exists s \\in S \\text{ s.t. } u - \\varepsilon < s \\le u$.\n- 하계 $w = \\inf S \\iff \\forall \\varepsilon > 0, \\; \\exists s \\in S \\text{ s.t. } w \\le s < w + \\varepsilon$.\n- **필수예제 1 & 유제 1-2 (집합 연산 성질):**\n- $a > 0 \\implies \\sup(aS) = a\\sup S, \\; \\inf(aS) = a\\inf S$\n- $b < 0 \\implies \\sup(bS) = b\\inf S, \\; \\inf(bS) = b\\sup S$\n- $\\sup(A+B) = \\sup A + \\sup B, \\; \\inf(A+B) = \\inf A + \\inf B$\n- **정리 1.7 & 2.7:** Archimedes 성질($\\forall x \\in \\mathbb{R}, \\; \\exists n_x \\in \\mathbb{N} \\text{ s.t. } x < n_x$) 및 유리수·무리수의 조밀성.\n\n## 2. 실수열의 핵심 수렴 정리 (Chapter 2)\n- **정리 2.9 (조임정리, Squeeze Theorem):** $x_n \\le y_n \\le z_n$이고 $\\lim x_n = \\lim z_n = a \\implies \\lim y_n = a$.\n- **정리 2.15 (단조수렴정리):** 단조실수열이 수렴할 필요충분조건은 유계인 것이다. (유계 증가수열 $\\to \\sup\\{x_n\\}$, 유계 감소수열 $\\to \\inf\\{x_n\\}$)\n- **정리 2.18 (Bolzano-Weierstrass 정리):** 유계인 실수열은 반드시 수렴하는 부분수열을 갖는다.\n- **정리 2.22 (Cauchy 수렴판정법):** $\\mathbb{R}$에서 실수열 $\\{x_n\\}$이 수렴 $\\iff \\{x_n\\}$이 Cauchy 수열이다.\n- **정리 2.24 (축약수열):** 상수 $C \\in (0, 1)$에 대해 $|x_{n+2} - x_{n+1}| \\le C|x_{n+1} - x_n|$이면 축약수열이며 모든 축약수열은 Cauchy 수열이므로 수렴한다.\n> [정의 2.28 & 정리 2.29~2.30 (상극한과 하극한)]\n- $s_n = \\sup\\{x_m \\mid m \\ge n\\}$, $t_n = \\inf\\{x_m \\mid m \\ge n\\}$일 때 $\\limsup x_n = \\lim_{n\\to\\infty} s_n$, $\\liminf x_n = \\lim_{n\\to\\infty} t_n$.\n- 유계수열 $\\{x_n\\}$의 부분수열 극한 집합을 $A$라 하면 $\\limsup x_n = \\sup A$, $\\liminf x_n = \\inf A$이며, $\\{x_n\\}$이 $x$로 수렴 $\\iff \\limsup x_n = \\liminf x_n = x$.\n\n## 3. 함수의 극한 (Chapter 3)\n- **정리 3.3 (함수의 극한 수열판정법):** $c$가 $A$의 집적점일 때, $\\lim_{x\\to c} f(x) = L \\iff$ $x_n \\neq c$이고 $x_n \\to c$인 $A$의 모든 수열 $\\{x_n\\}$에 대하여 $\\lim_{n\\to\\infty} f(x_n) = L$.\n- **정리 3.8:** $\\lim_{x\\to c} f(x) = L \\iff \\lim_{x\\to c^+} f(x) = L = \\lim_{x\\to c^-} f(x)$."
+  },
+  {
+    "id": "algebra-07",
+    "title": "[1순위 ★최빈출] 제3장(§3.8~3.9) 갈루아 군과 갈루아 이론의 기본정리",
+    "category": "현대대수학",
+    "tags": [
+      "1순위",
+      "갈루아군",
+      "갈루아정리",
+      "고정체",
+      "중간체",
+      "정규확대체",
+      "매년출제"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★ (5개년 매년 출제)] 2022 A12, 2023 A12, 2024 A12, 2025 B8, 2026 B9 등 최근 5년간 매년 빠짐없이 출제된 현대대수학 1순위 핵심 영역입니다.\n\n## 1. 갈루아 군(Galois Group)과 고정체 (§3.8)\n- **정의 (자기동형군과 갈루아 군):** 확대체 $E/F$에 대하여 $F$의 모든 원소를 고정하는 $E$의 자기동형사상 전체의 군을 $F$ 위에서의 $E$의 **갈루아 군**이라 하고 $G(E/F)$ 또는 $\\operatorname{Gal}(E/F)$로 나타낸다:\n$$ G(E/F) = \\{\\sigma \\in \\operatorname{Aut}(E) \\mid \\forall a \\in F, \\; \\sigma(a) = a\\} $$\n- **근의 치환 성질:** $f(x) \\in F[x]$이고 $\\alpha \\in E$가 $f(x)$의 근이면, 임의의 $\\sigma \\in G(E/F)$에 대하여 $\\sigma(\\alpha)$ 역시 $f(x)$의 근이다. 특히 $E = F(\\alpha_1, \\dots, \\alpha_n)$이면 $\\sigma \\in G(E/F)$는 각 생성원 $\\alpha_i$의 상(conjugate root)에 의해 유일하게 결정된다.\n- **고정체(Fixed Field):** 부분군 $H \\le G(E/F)$에 대하여 $H$의 모든 원소에 의해 고정되는 $E$의 원소 집합을 $H$의 **고정체**라 하며 $E_H$ (또는 $E^H$)로 표기한다:\n$$ E_H = \\{x \\in E \\mid \\forall \\sigma \\in H, \\; \\sigma(x) = x\\} $$\n> [정리 (갈루아 확대체의 동치조건)] 유한확대체 $E/F$에 대하여 다음은 모두 동치이다:\n- (1) $E$는 $F$ 위의 **갈루아 확대체(Galois extension)**이다 (즉, $E_{G(E/F)} = F$).\n- (2) $E$는 $F$ 위의 **정규확대체(normal extension)**인 동시에 **분리확대체(separable extension)**이다.\n- (3) $E$는 $F[x]$의 어떤 분리다항식의 $F$ 위에서의 **분해체(splitting field)**이다.\n- (4) 갈루아 군의 위수와 확대차수가 일치한다: **$|G(E/F)| = [E : F]$**.\n\n## 2. 갈루아 이론의 기본정리 (Fundamental Theorem of Galois Theory, §3.9)\n> [정리 (갈루아 대응, Galois Correspondence)] $E/F$가 유한 갈루아 확대체이고 $G = G(E/F)$일 때, $G$의 부분군들의 집합 $\\mathcal{G}$와 중간체($F \\subseteq K \\subseteq E$)들의 집합 $\\mathcal{F}$ 사이에 포함관계를 역전시키는 일대일 대응 $\\Phi: \\mathcal{G} \\to \\mathcal{F}$, $\\Phi(H) = E_H$ (역사상 $\\Psi(K) = G(E/K)$)가 존재하며 다음 성질을 만족한다:\n- **(1) 포함관계 역전:** $H_1 \\le H_2 \\iff E_{H_2} \\subseteq E_{H_1}$, $\\quad E_{H_1 \\cap H_2} = E_{H_1} E_{H_2}$, $\\quad E_{\\langle H_1 \\cup H_2 \\rangle} = E_{H_1} \\cap E_{H_2}$.\n- **(2) 차수와 위수 관계:** 임의의 중간체 $K = E_H$에 대하여\n$$ [E : E_H] = |H|, \\qquad [E_H : F] = |G : H| = \\frac{|G|}{|H|} $$\n- **(3) 정규부분군과 정규확대체의 대응 (최빈출):** $H \\triangleleft G$ ($H$가 $G$의 정규부분군) $\\iff$ $E_H$가 $F$ 위의 정규(갈루아)확대체이다. 이때 다음 군 동형이 성립한다:\n$$ G(E_H / F) \\cong G(E/F) / H = G / G(E/E_H) $$\n\n## 3. 최근 기출 실전 적용 포인트 (2022~2026)\n- **2022 A12 & 2025 B8 (정규부분군과 갈루아 중간체 개수):** $G(K/\\mathbb{Q}) \\cong \\mathbb{Z}_3 \\times S_4$일 때 $[E:\\mathbb{Q}] = 6$인 중간체 $E$의 개수는 지수 $|G : H| = 6$, 즉 위수 $|H| = 72 / 6 = 12$인 부분군 $H$의 개수와 같다 ($\\mathbb{Z}_3 \\times V_4$ 1개와 $\\{0\\} \\times A_4$ 1개로 총 2개). 또한 $N = \\mathbb{Z}_3 \\times \\{1\\} \\triangleleft G$를 잡으면 고정체 $F = K_N$은 $\\mathbb{Q}$ 위의 갈루아 확대체이고 $G(F/\\mathbb{Q}) \\cong G/N \\cong S_4$이다.\n- **2023 A12 ($K_{\\langle \\sigma \\rangle} = \\mathbb{Q}$ 조건):** 순환 갈루아 군 $G(K/\\mathbb{Q})$에서 $K_{\\langle \\sigma \\rangle} = \\mathbb{Q} \\iff \\langle \\sigma \\rangle = G(K/\\mathbb{Q})$, 즉 $\\sigma$가 $G(K/\\mathbb{Q})$의 **생성원**인 경우이다.\n- **2024 A12 ($[K:E][E:\\mathbb{Q}]$ 조건):** 탑 정리에 의해 $[K:E][E:\\mathbb{Q}] = [K:\\mathbb{Q}]$이므로, 중간체 $E$의 개수는 갈루아 군 $G(K/\\mathbb{Q})$의 전체 부분군 개수와 같다.\n- **2026 B9 (유한체 고정체 위수):** $|H| = 4$이면 $[\\mathbb{Z}_7(\\alpha) : E] = 4$이고 $[\\mathbb{Z}_7(\\alpha) : \\mathbb{Z}_7] = 4$이므로 $[E : \\mathbb{Z}_7] = 1$, 따라서 $|E| = 7^1 = 7$이다."
+  },
+  {
+    "id": "algebra-08",
+    "title": "[1순위 ★최빈출] 제3장(§3.6~3.7, §3.10, §3.12) 분해체, 원분확대체 및 거듭제곱근 확대체",
+    "category": "현대대수학",
+    "tags": [
+      "1순위",
+      "분해체",
+      "정규확대체",
+      "분리확대체",
+      "원분확대체",
+      "원분다항식",
+      "거듭제곱근확대체"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 2022 A12($(x^2-2)(x^5-1)$의 분해체), 2023 A12($x^{13}-1$의 분해체와 원분확대체), 2024 A12($x^5-88$의 분해체) 등 분해체 차수와 갈루아 군 구조 결정이 핵심 출제 유형입니다.\n\n## 1. 분해체(Splitting Field)와 정규확대체 (§3.6)\n- **정의 3.6.1 (분해체):** 다항식 $f(x) \\in F[x]$의 모든 근 $\\alpha_1, \\dots, \\alpha_n$을 포함하는 확대체 $E$에서 $f(x) = c(x - \\alpha_1)\\cdots(x - \\alpha_n)$으로 일차식의 곱으로 분해되고 $E = F(\\alpha_1, \\dots, \\alpha_n)$일 때, $E$를 $F$ 위에서 $f(x)$의 **분해체**라 한다.\n- **정리 (분해체의 유일성과 차수 상한):** 분해체는 동형을 제외하고 유일하게 존재하며, $\\deg f(x) = n$일 때 $[E : F] \\mid n!$ 이므로 항상 $[E : F] \\le n!$ 이다.\n- **정규확대체(Normal Extension):** 대수적 확대체 $E/F$에 대하여 $F[x]$의 임의의 기약다항식이 $E$에 한 근을 가지면 모든 근을 $E$에 가질 때 $E/F$를 정규확대체라 한다. 유한확대체 $E/F$가 정규확대체 $\\iff E$는 $F[x]$의 어떤 다항식의 분해체이다.\n\n## 2. 분리확대체와 완전체 (§3.7)\n- **분리다항식과 중근 판정법:** 기약다항식 $f(x) \\in F[x]$가 중근을 갖지 않을 때 분리다항식이라 한다. 미분다항식 $f'(x)$에 대하여 **$f(x)$가 중근을 갖지 않음 $\\iff \\gcd(f(x), f'(x)) = 1$**이다.\n- **중요 성질:** 표수가 $0$인 체($\\mathbb{Q}, \\mathbb{R}, \\mathbb{C}$)와 모든 유한체($\\mathbb{F}_{p^n}$)는 **완전체(perfect field)**이므로, 이들 체 위의 모든 기약다항식은 분리다항식이며 모든 대수적 확대체는 분리확대체이다. (표수 $p > 0$인 체 위에서 기약다항식 $f(x)$가 비분리일 필요충분조건은 $f'(x) = 0$, 즉 $f(x) = g(x^p)$ 꼴인 경우뿐이다.)\n\n## 3. 원분확대체(Cyclotomic Extension)와 원분다항식 (§3.10)\n> [정의 및 핵심 정리 (원분확대체 $\\mathbb{Q}(\\zeta_n)$)] 원시 $n$제곱근 $\\zeta_n = e^{2\\pi i / n}$에 대하여 $x^n - 1$의 $\\mathbb{Q}$ 위에서의 분해체는 $\\mathbb{Q}(\\zeta_n)$이며 다음이 성립한다:\n- **(1) $n$차 원분다항식 $\\Phi_n(x)$:** 원시 $n$제곱근 전체를 근으로 갖는 모닉 다항식\n$$ \\Phi_n(x) = \\prod_{\\substack{1 \\le k \\le n \\\\ \\gcd(k, n)=1}} (x - \\zeta_n^k) \\in \\mathbb{Z}[x], \\qquad x^n - 1 = \\prod_{d \\mid n} \\Phi_d(x) $$\n- **(2) 기약성과 확대차수:** $\\Phi_n(x)$는 $\\mathbb{Q}[x]$에서 항상 기약이므로 $\\operatorname{irr}(\\zeta_n, \\mathbb{Q}) = \\Phi_n(x)$이고, 확대차수는 **$[\\mathbb{Q}(\\zeta_n) : \\mathbb{Q}] = \\varphi(n)$**이다. (소수 $p$일 때 $\\Phi_p(x) = x^{p-1} + x^{p-2} + \\dots + x + 1$)\n- **(3) 갈루아 군의 구조:** $G(\\mathbb{Q}(\\zeta_n) / \\mathbb{Q}) \\cong \\mathbb{Z}_n^*$ (아벨군, 위수 $\\varphi(n)$).\n\n## 4. 거듭제곱근에 의한 확대체 (§3.12)\n> [핵심 유형 ($x^p - a$의 분해체, 2024 A12)] 소수 $p$에 대하여 $f(x) = x^p - a \\in \\mathbb{Q}[x]$가 기약다항식일 때($a \\notin \\mathbb{Q}^p$), $f(x)$의 모든 근은 $\\sqrt[p]{a}, \\; \\sqrt[p]{a}\\zeta_p, \\; \\dots, \\; \\sqrt[p]{a}\\zeta_p^{p-1}$ ($\\zeta_p = e^{2\\pi i / p}$)이므로 분해체는 $K = \\mathbb{Q}(\\sqrt[p]{a}, \\zeta_p)$이다.\n- **차수 계산:** $[\\mathbb{Q}(\\sqrt[p]{a}) : \\mathbb{Q}] = p$와 $[\\mathbb{Q}(\\zeta_p) : \\mathbb{Q}] = p - 1$이 서로소이므로 $[K : \\mathbb{Q}] = p(p - 1)$이다. (예: 2024 A12 $x^5 - 88$의 분해체 차수는 $5 \\times 4 = 20$)\n- **갈루아 군 구조:** $G(K/\\mathbb{Q}) \\cong \\mathbb{Z}_p \\rtimes \\mathbb{Z}_{p-1}$ (비교환 반직접곱; 정규부분군 $G(K/\\mathbb{Q}(\\zeta_p)) \\cong \\mathbb{Z}_p$와 부분군 $G(K/\\mathbb{Q}(\\sqrt[p]{a})) \\cong \\mathbb{Z}_{p-1}$의 곱).\n- **가해성:** 거듭제곱근으로 풀 수 있는 방정식 $\\iff$ 그 분해체의 갈루아 군이 **가해군(solvable group)**이다. ($n \\ge 5$일 때 $S_n$은 가해군이 아니므로 일반 5차 이상 방정식은 근의 공식이 존재하지 않는다.)"
+  },
+  {
+    "id": "algebra-09",
+    "title": "[1순위 ★최빈출] 제3장(§3.11) 유한체(Finite Field)의 구조, 부분체 및 갈루아 군",
+    "category": "현대대수학",
+    "tags": [
+      "1순위",
+      "유한체",
+      "갈루아체",
+      "프로베니우스자기동형사상",
+      "부분체조건",
+      "2024기출",
+      "2025기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2024 B6(위수 40 이하 유한체/정역), 2025 A3(유한체 곱셈군 $F^*$), 2026 B9($\\mathbb{Z}_7$ 위의 확대체와 고정체 위수) 등 최근 3년 연속 출제된 핵심 주제입니다.\n\n## 1. 유한체의 존재성과 유일성 (§3.11)\n> [정리 (유한체의 분류 정리, Galois Field $\\mathbb{F}_{p^n}$)]\n- (1) 모든 유한체 $F$의 위수는 반드시 소수의 거듭제곱 **$|F| = p^n$** ($p = \\operatorname{char}(F)$, $n = [F : \\mathbb{Z}_p]$) 형태이다.\n- (2) 임의의 소수 $p$와 자연수 $n$에 대하여, 위수가 $p^n$인 유한체는 동형을 제외하고 **유일하게 존재**하며, 이는 $\\mathbb{Z}_p$ 위에서 다항식 $x^{p^n} - x$의 **분해체**이다. (기호로 $\\operatorname{GF}(p^n)$ 또는 $\\mathbb{F}_{p^n}$)\n- (3) 차수가 $n$인 기약다항식 $p(x) \\in \\mathbb{Z}_p[x]$를 이용하면 유한체를 다음과 같이 구성한다:\n$$ \\mathbb{F}_{p^n} \\cong \\mathbb{Z}_p[x] / \\langle p(x) \\rangle $$\n\n## 2. 유한체의 곱셈군 구조와 부분체 판정법\n- **곱셈군 구조:** 유한체 $\\mathbb{F}_{p^n}$의 $0$이 아닌 원소들의 곱셈군 $\\mathbb{F}_{p^n}^*$은 항상 **위수가 $p^n - 1$인 순환군**이다:\n$$ \\mathbb{F}_{p^n}^* \\cong \\mathbb{Z}_{p^n - 1} $$\n- **기출 적용 (2025 A3):** 표수 $p$인 유한체 $F$ ($|F| = p^n$)에 대해 $G = \\mathbb{Z}_p \\times F^* \\cong \\mathbb{Z}_p \\times \\mathbb{Z}_{p^n - 1}$은 $\\gcd(p, p^n - 1) = 1$이므로 **항상 위수 $p(p^n - 1)$인 순환군**이다.\n> [정리 (유한체의 부분체 판정법)] 위수 $p^n$인 유한체 $\\mathbb{F}_{p^n}$에 대하여:\n- (1) 부분체의 위수는 반드시 $p^d$ 형태이며, **$p^d$를 위수로 갖는 부분체가 존재할 필요충분조건은 $d \\mid n$**이다.\n- (2) $d \\mid n$일 때 위수가 $p^d$인 부분체는 **유일하게 존재**하며, 그 원소 집합은 $\\{x \\in \\mathbb{F}_{p^n} \\mid x^{p^d} = x\\}$이다.\n\n## 3. 유한체의 갈루아 군과 다항식 인수분해\n- **유한체의 갈루아 군:** 확장 $\\mathbb{F}_{p^n} / \\mathbb{F}_{p^d}$ ($d \\mid n$)는 항상 갈루아 확대체이며, 갈루아 군은 프로베니우스 자기동형사상 $\\sigma_p(x) = x^p$에 의해 생성되는 **순환군**이다:\n$$ G(\\mathbb{F}_{p^n} / \\mathbb{F}_p) = \\langle \\sigma_p \\rangle \\cong \\mathbb{Z}_n, \\qquad G(\\mathbb{F}_{p^n} / \\mathbb{F}_{p^d}) = \\langle \\sigma_p^d \\rangle \\cong \\mathbb{Z}_{n/d} $$\n- **다항식 $x^{p^n} - x$의 인수분해 공식:** $\\mathbb{Z}_p[x]$에서 $x^{p^n} - x$는 **$n$의 모든 양의 약수 $d$에 대한 차수 $d$인 모든 모닉 기약다항식들의 곱**과 같다:\n$$ x^{p^n} - x = \\prod_{d \\mid n} \\prod_{\\substack{f \\text{ monic irred.} \\\\ \\deg f = d}} f(x) $$\n- **활용 팁:** $\\mathbb{Z}_p[x]$에서 $2$차 또는 $3$차 기약다항식이 필요한 경우, 근이 없는 다항식(예: $\\mathbb{Z}_2[x]$에서 $x^2+x+1$, $x^3+x+1$, $x^3+x^2+1$)을 선택해 $\\mathbb{Z}_p[x]/\\langle f(x) \\rangle$를 만들면 곧바로 $\\mathbb{F}_{p^2}$ 또는 $\\mathbb{F}_{p^3}$이 된다."
+  },
+  {
+    "id": "algebra-10",
+    "title": "[2순위 ★고빈출] 제2장(§2.11~2.12, §2.16) 체 위의 다항식환과 기약다항식 판정법",
+    "category": "현대대수학",
+    "tags": [
+      "2순위",
+      "체위의다항식환",
+      "기약다항식",
+      "Eisenstein판정법",
+      "법p환원",
+      "가우스보조정리",
+      "2024기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2024 B6($\\mathbb{Z}_n[x]/\\langle x^2+ax+1 \\rangle$가 정역이 될 기약 조건), 2026 B9($\\mathbb{Z}_7[x]$에서 $x^4+3x^2-1$의 기약성 증명) 등 기약다항식 판정은 매년 체론·환론 문제의 출발점입니다.\n\n## 1. 체 위의 다항식환 $F[x]$의 대수적 구조 (§2.11)\n- **정리 (나눗셈 알고리즘):** 체 $F$ 위의 다항식 $f(x), g(x) \\in F[x]$ ($g(x) \\neq 0$)에 대하여 $f(x) = q(x)g(x) + r(x)$ ($r(x) = 0$ 또는 $\\deg r(x) < \\deg g(x)$)를 만족하는 $q(x), r(x) \\in F[x]$가 유일하게 존재한다.\n- **핵심 성질:** 체 $F$에 대하여 $F[x]$는 **유클리드 정역(ED)**이며 따라서 **PID**이고 **UFD**이다.\n> [정리 (기약다항식과 체 생성)] 체 $F$ 위의 상수가 아닌 다항식 $p(x) \\in F[x]$에 대하여 다음은 모두 동치이다:\n- (1) $p(x)$는 $F[x]$에서 **기약다항식(irreducible polynomial)**이다.\n- (2) 주아이디얼 $\\langle p(x) \\rangle$는 $F[x]$의 **극대아이디얼**이다.\n- (3) 잉여환 **$F[x] / \\langle p(x) \\rangle$는 체(field)**이다. (이때 $[F[x]/\\langle p(x) \\rangle : F] = \\deg p(x)$)\n\n## 2. 다항식의 인수분해와 가우스 보조정리 (§2.12)\n- **원시다항식(Primitive Polynomial):** $f(x) = a_n x^n + \\dots + a_0 \\in \\mathbb{Z}[x]$의 모든 계수의 최대공약수(용량, content)가 $1$일 때 원시다항식이라 한다.\n- **가우스 보조정리(Gauss's Lemma):** 두 원시다항식의 곱은 원시다항식이다.\n- **정리 ($\\mathbb{Z}[x]$와 $\\mathbb{Q}[x]$의 기약성 관계):** $f(x) \\in \\mathbb{Z}[x]$ ($\\deg f \\ge 1$)가 $\\mathbb{Z}[x]$에서 두 비상수 다항식의 곱으로 분해되면 $\\mathbb{Q}[x]$에서도 같은 차수의 두 다항식의 곱으로 분해된다. (따라서 원시다항식 $f(x) \\in \\mathbb{Z}[x]$에 대해 **$\\mathbb{Z}[x]$에서 기약 $\\iff \\mathbb{Q}[x]$에서 기약**이다.)\n\n## 3. 기약다항식 판정법 5대 필수 도구 (§2.16)\n> [기약다항식 판정 체크리스트]\n- **(1) 2차·3차 다항식의 근 판정법:** 체 $F$ 위에서 $\\deg f(x) = 2$ 또는 $3$일 때, **$f(x)$가 $F$ 위에서 기약 $\\iff f(x)$가 $F$ 안에 근을 갖지 않는다.** (주의: 4차 이상에서는 근이 없어도 두 2차식의 곱으로 인수분해될 수 있으므로 거짓!)\n- **(2) 유리근 정리:** $f(x) = a_n x^n + \\dots + a_0 \\in \\mathbb{Z}[x]$의 유리근 $r/s$ ($\\gcd(r,s)=1$)는 반드시 $r \\mid a_0$ 이고 $s \\mid a_n$ 을 만족한다.\n- **(3) Eisenstein 기약 판정법:** $f(x) = a_n x^n + \\dots + a_1 x + a_0 \\in \\mathbb{Z}[x]$에 대하여 소수 $p$가 존재하여 ① $p \\nmid a_n$, ② $p \\mid a_i$ ($0 \\le i \\le n-1$), ③ $p^2 \\nmid a_0$ 이면 $f(x)$는 $\\mathbb{Q}[x]$에서 기약이다. (활용: $f(x+c)$ 평행이동 후 Eisenstein 적용, 예: $\\Phi_p(x+1)$)\n- **(4) 법 $p$ 환원 판정법:** $f(x) \\in \\mathbb{Z}[x]$ ($\\deg f \\ge 1$)에 대하여 최고차항 계수 $a_n$을 나누지 않는 소수 $p$가 존재하여, 계수를 $\\pmod p$로 환원한 다항식 $\\overline{f}(x) \\in \\mathbb{Z}_p[x]$가 기약이면 $f(x)$는 $\\mathbb{Q}[x]$에서 기약이다.\n- **(5) 4차 다항식의 직접 판정법 (2026 B9 적용):** $f(x) = x^4 + 3x^2 - 1 \\in \\mathbb{Z}_7[x]$에서 ① $0, \\pm 1, \\pm 2, \\pm 3$을 대입해 일차인수가 없음을 보이고, ② $x^4 + 3x^2 - 1 = (x^2 + ax + b)(x^2 + cx + d)$로 놓고 계수 비교를 통해 해가 존재하지 않음을 보이면 기약성이 완벽히 증명된다."
+  },
+  {
+    "id": "algebra-11",
+    "title": "[2순위 ★고빈출] 제2장(§2.13~2.15) 유클리드 정역(ED), 주아이디얼 정역(PID), 유일인수분해 정역(UFD)",
+    "category": "현대대수학",
+    "tags": [
+      "2순위",
+      "유클리드정역",
+      "ED",
+      "주아이디얼정역",
+      "PID",
+      "유일인수분해정역",
+      "UFD",
+      "가우스정수환",
+      "2023기출"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2023 B6(가우스 정수환 $\\mathbb{Z}[i]$에서 유클리드 노름을 이용한 아이디얼 생성원과 잉여환 표수 계산)에서 직접 출제되었으며, 정역의 계층 구조와 반례는 진위형 단골 주제입니다.\n\n## 1. 정역의 포함 계층 구조와 대표 반례\n> [정역의 포함 관계]\n$$ \\text{체(Field)} \\subsetneq \\text{유클리드 정역(ED)} \\subsetneq \\text{주아이디얼 정역(PID)} \\subsetneq \\text{유일인수분해 정역(UFD)} \\subsetneq \\text{정역(ID)} $$\n\n- **포함 관계별 결정적 반례 (암기 필수):**\n- **ED이지만 체가 아닌 예:** $\\mathbb{Z}$, $F[x]$ ($F$는 체), $\\mathbb{Z}[i]$ (가우스 정수환).\n- **PID이지만 ED가 아닌 예:** $\\mathbb{Z}\\left[\\frac{1 + \\sqrt{-19}}{2}\\right]$.\n- **UFD이지만 PID가 아닌 예:** $\\mathbb{Z}[x]$ (아이디얼 $\\langle 2, x \\rangle$가 주아이디얼이 아님), $F[x, y]$ (아이디얼 $\\langle x, y \\rangle$가 주아이디얼이 아님).\n- **정역이지만 UFD가 아닌 예:** $\\mathbb{Z}[\\sqrt{-5}]$ ($6 = 2 \\cdot 3 = (1 + \\sqrt{-5})(1 - \\sqrt{-5})$로 인수분해가 유일하지 않음).\n\n## 2. 주아이디얼 정역(PID)과 유일인수분해 정역(UFD) (§2.13, §2.15)\n- **기약원(Irreducible)과 소원(Prime):** 정역 $D$의 영이 아니고 단원도 아닌 원소 $p$에 대하여:\n- $p = ab \\implies a \\in U(D)$ 또는 $b \\in U(D)$일 때 $p$를 **기약원**이라 한다.\n- $p \\mid ab \\implies p \\mid a$ 또는 $p \\mid b$ (즉 $\\langle p \\rangle$가 소아이디얼)일 때 $p$를 **소원**이라 한다.\n- **정리 (소원과 기약원의 관계):** 임의의 정역에서 **소원 $\\implies$ 기약원**이며, **UFD에서는 기약원 $\\iff$ 소원**이다.\n> [정리 (PID의 핵심 성질)] PID $D$에 대하여 다음이 성립한다:\n- (1) $D$의 모든 $0$이 아닌 소아이디얼은 극대아이디얼이다. (따라서 $p$가 기약원 $\\iff \\langle p \\rangle$가 극대아이디얼 $\\iff D / \\langle p \\rangle$가 체이다.)\n- (2) 임의의 두 원소 $a, b$ (모두 $0$은 아님)의 최대공약수 $d = \\gcd(a, b)$가 존재하며, **$\\langle a, b \\rangle = \\langle d \\rangle$** 이고 $d = ax + by$ ($x, y \\in D$)로 표현된다.\n\n## 3. 유클리드 정역(ED)과 가우스 정수환 $\\mathbb{Z}[i]$ (§2.14)\n- **정의 (유클리드 정역):** 정역 $D$에 대하여 노름 함수 $\\nu: D - \\{0\\} \\to \\mathbb{Z}_{\\ge 0}$가 존재하여:\n- ① $\\forall a, b \\in D - \\{0\\}, \\; \\nu(a) \\le \\nu(ab)$\n- ② $\\forall a \\in D, \\; \\forall b \\in D - \\{0\\}, \\; \\exists q, r \\in D \\text{ s.t. } a = bq + r$ ($r = 0$ 또는 $\\nu(r) < \\nu(b)$)를 만족할 때 $D$를 ED라 한다.\n- **정리:** 모든 ED는 PID이다. (증명: $0$이 아닌 아이디얼 $I$에서 $\\nu(b)$가 최소인 원소 $b \\in I - \\{0\\}$를 택하면 $I = \\langle b \\rangle$가 된다.)\n> [실전 계산법: 가우스 정수환 $\\mathbb{Z}[i]$에서의 나눗셈과 $\\gcd$ (2023 B6)]\n- 노름 $\\nu(a + bi) = a^2 + b^2$에 대하여 $\\alpha$를 $\\beta$로 나눌 때는 복소수 나눗셈 $\\frac{\\alpha}{\\beta} = x + yi \\in \\mathbb{Q}(i)$을 계산한 뒤, $x, y$에 **가장 가까운 정수** $m, n$을 택하여 $q = m + ni$로 두면 $r = \\alpha - \\beta q$가 $\\nu(r) \\le \\frac{1}{2}\\nu(\\beta) < \\nu(\\beta)$를 만족한다.\n- 유클리드 호제법으로 $d = \\gcd(\\alpha, \\beta)$를 구하면 $\\langle \\alpha, \\beta \\rangle = \\langle d \\rangle$이므로, $I - \\{0\\}$에서 노름의 최솟값은 $\\nu(d)$이고, 잉여환 $\\mathbb{Z}[i]/\\langle d \\rangle$의 위수는 $\\nu(d)$이다!"
+  },
+  {
+    "id": "algebra-12",
+    "title": "[3순위 ★중빈출] 제3장(§3.1~3.5) 확대체의 차수, 최소다항식, 단순확대체 및 작도 가능성",
+    "category": "현대대수학",
+    "tags": [
+      "3순위",
+      "확대체",
+      "확대차수",
+      "탑정리",
+      "최소다항식",
+      "단순확대체",
+      "대수적폐포",
+      "작도가능성"
+    ],
+    "updatedAt": "2026-11-12 17:25",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2023 A12(최소다항식 $\\operatorname{irr}(\\beta, \\mathbb{Q})$ 구하기), 2024 A12(탑 정리를 이용한 확대차수 계산), 2026 B9(단순확대체의 차수와 기저) 등 체론 계산의 기본 언어가 되는 단원입니다.\n\n## 1. 벡터공간으로서의 확대체와 차수의 곱셈 공식 (§3.1)\n- **확대체(Extension Field):** 체 $F$를 부분체로 포함하는 체 $E$를 $F$의 확대체라 하며 $E/F$로 표기한다. 이때 $E$는 $F$ 위의 벡터공간이며, 그 차원 $\\dim_F E$를 $F$ 위에서의 $E$의 **확대차수(degree)**라 하고 $[E : F]$로 나타낸다.\n> [정리 (차수의 곱셈 공식 / 탑 정리, Tower Law)] 체의 탑 $F \\subseteq E \\subseteq K$에 대하여 $K/E$와 $E/F$가 유한확대체이면 $K/F$도 유한확대체이며 다음이 성립한다:\n$$ [K : F] = [K : E][E : F] $$\n- **따름정리:** $[E : F] = p$ (소수)이면 $F$와 $E$ 사이에는 진중간체가 존재하지 않는다.\n\n## 2. 대입준동형사상, 최소다항식 및 단순확대체 (§3.2~3.3)\n- **대수적 원소와 초월원소:** 확대체 $E/F$의 원소 $\\alpha \\in E$에 대하여 $f(\\alpha) = 0$인 영이 아닌 다항식 $f(x) \\in F[x]$가 존재하면 $\\alpha$를 $F$ 위에서 **대수적(algebraic)**이라 하고, 존재하지 않으면 **초월적(transcendental)**이라 한다.\n- **대입준동형사상 (Evaluation Homomorphism):** $\\phi_\\alpha: F[x] \\to E$, $\\phi_\\alpha(f(x)) = f(\\alpha)$는 환 준동형사상이다. $\\alpha$가 대수적이면 $\\ker \\phi_\\alpha = \\langle p(x) \\rangle$를 생성하는 유일한 모닉 기약다항식 $p(x) \\in F[x]$가 존재하며, 이를 $F$ 위에서 $\\alpha$의 **최소다항식(minimal polynomial)**이라 하고 $\\operatorname{irr}(\\alpha, F)$로 나타낸다.\n> [정리 (단순확대체 $F(\\alpha)$의 구조)] $\\alpha \\in E$가 $F$ 위에서 대수적이고 $\\deg \\operatorname{irr}(\\alpha, F) = n$일 때:\n- (1) $F(\\alpha) = F[\\alpha] \\cong F[x] / \\langle \\operatorname{irr}(\\alpha, F) \\rangle$ 이며 $[F(\\alpha) : F] = n$이다.\n- (2) 집합 $\\{1, \\alpha, \\alpha^2, \\dots, \\alpha^{n-1}\\}$은 $F$ 위의 벡터공간 $F(\\alpha)$의 **기저**이다. (따라서 $F(\\alpha)$의 모든 원소는 $c_0 + c_1\\alpha + \\dots + c_{n-1}\\alpha^{n-1}$ 형태로 유일하게 표현된다.)\n- (3) **원시원소 정리 (Primitive Element Theorem):** 유한 분리확대체 $E/F$는 항상 단순확대체이다(즉, $E = F(\\gamma)$인 $\\gamma \\in E$가 존재한다). 특히 표수가 $0$인 체나 유한체의 모든 유한확대체는 단순확대체이다.\n\n## 3. 대수적 확대체, 대수적 폐포 및 작도 가능성 (§3.4~3.5)\n- **대수적 확대체(Algebraic Extension):** $E$의 모든 원소가 $F$ 위에서 대수적일 때 $E/F$를 대수적 확대체라 한다. 모든 유한확대체는 대수적 확대체이다.\n- **정리 (대수적 원소의 집합):** 확대체 $E/F$에서 $F$ 위에서 대수적인 $E$의 원소 전체의 집합 $K$는 $E$의 부분체를 이룬다. (따라서 대수적 확대체의 대수적 확대체는 다시 대수적 확대체이다.)\n- **대수적 폐포(Algebraic Closure):** $F[x]$의 모든 비상수 다항식이 $C$에서 근을 가질 때 $C$를 대수적으로 닫힌 체라 하며, $F$의 대수적 확대체이면서 대수적으로 닫힌 체 $\\overline{F}$를 $F$의 **대수적 폐포**라 한다 (동형을 제외하고 유일).\n- **작도 가능성 (§3.5):** 실수 $\\alpha$가 눈금 없는 자와 컴퍼스로 작도 가능 $\\implies [\\mathbb{Q}(\\alpha) : \\mathbb{Q}] = 2^k$ ($k \\ge 0$인 정수).\n- **3대 작도 불능 문제:** ① 배적 문제($\\sqrt[3]{2}$, 차수 $3 \\neq 2^k$), ② 임의의 각의 삼등분($60^\\circ$의 삼등분 $\\cos 20^\\circ$, 차수 $3 \\neq 2^k$), ③ 원적 문제($\\sqrt{\\pi}$, 초월수)는 모두 작도 불가능하다."
   }
 ]
