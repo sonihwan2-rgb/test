@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>중등 수학 임용고시 개인 위키</title>
+  <!-- KaTeX 수식 렌더링 라이브러리 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --bg-active: #eef2ff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --callout-bg: #f8fafc;
+      --callout-border: #4f46e5;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    body.dark {
+      --bg-main: #0f172a;
+      --bg-sidebar: #1e293b;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --bg-active: #312e81;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --callout-bg: #0f172a;
+      --callout-border: #6366f1;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Malgun Gothic", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      line-height: 1.65;
+    }
+
+    /* 사이드바 */
+    .sidebar {
+      width: 310px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar-header {
+      padding: 18px 16px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .search-box {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .search-input, .select-filter {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .search-input:focus, .select-filter:focus {
+      border-color: var(--accent);
+    }
+
+    .select-filter {
+      margin-top: 8px;
+    }
+
+    .doc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .doc-item {
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 4px;
+      border: 1px solid transparent;
+    }
+
+    .doc-item:hover {
+      background-color: var(--bg-hover);
+    }
+
+    .doc-item.active {
+      background-color: var(--bg-active);
+      border-color: var(--accent);
+    }
+
+    .doc-item-cat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .doc-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .doc-item-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .sidebar-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    /* 메인 영역 */
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      height: 54px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      margin-right: 10px;
+    }
+
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      background: var(--bg-main);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 24px;
+    }
+
+    .wiki-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    /* 문서 보기 스타일 */
+    .badge {
+      display: inline-block;
+      background: var(--bg-active);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .article-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .article-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .tag-chip {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.76rem;
+    }
+
+    .article-body {
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .article-body h2 {
+      font-size: 1.35rem;
+      margin: 24px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .article-body h3 {
+      font-size: 1.12rem;
+      margin: 18px 0 8px;
+      color: var(--accent);
+    }
+
+    .article-body p {
+      margin-bottom: 12px;
+    }
+
+    .article-body ul {
+      margin: 8px 0 14px 22px;
+    }
+
+    .article-body li {
+      margin-bottom: 5px;
+    }
+
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+
+    .attached-images {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-color);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .attached-img-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-main);
+    }
+
+    .attached-img-box img {
+      width: 100%;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .attached-img-caption {
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 에디터 스타일 */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding: 8px;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .tool-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .tool-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .form-textarea {
+      min-height: 340px;
+      resize: vertical;
+      line-height: 1.6;
+      font-family: "Consolas", "Pretendard", monospace;
+    }
+
+    .preview-box {
+      margin-top: 12px;
+      padding: 16px;
+      border: 1px dashed var(--accent);
+      border-radius: 8px;
+      background: var(--bg-main);
+      display: none;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    /* 이미지 확대 모달 */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal img {
+      max-width: 95%;
+      max-height: 92vh;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 50;
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .mobile-menu-btn {
+        display: inline-block;
+      }
+      .wiki-card {
+        padding: 22px 18px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 좌측 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-row">
+        <div class="brand-title">∑ 수학 임용 위키</div>
+        <button class="icon-btn" id="themeToggle" title="다크모드 전환">🌓 테마</button>
+      </div>
+      <button class="btn-primary" id="newDocBtn">+ 새 정리 문서 작성</button>
+    </div>
+
+    <div class="search-box">
+      <input type="text" class="search-input" id="searchInput" placeholder="제목, 내용, 태그 검색..." />
+      <select class="select-filter" id="categoryFilter">
+        <option value="ALL">전체 영역 보기</option>
+        <option value="해석학">전공수학 - 해석학</option>
+        <option value="현대대수학">전공수학 - 현대대수학</option>
+        <option value="선형대수학">전공수학 - 선형대수학</option>
+        <option value="위상수학">전공수학 - 위상수학</option>
+        <option value="미분기하학">전공수학 - 미분기하학</option>
+        <option value="정수론">전공수학 - 정수론</option>
+        <option value="이산수학">전공수학 - 이산수학</option>
+        <option value="확률및통계">전공수학 - 확률 및 통계</option>
+        <option value="복소해석학">전공수학 - 복소해석학</option>
+        <option value="수학교육론">수학교육론</option>
+        <option value="기출분석">기출문제 분석</option>
+        <option value="시험정보">시험정보 / 일정 / 기타</option>
+      </select>
+    </div>
+
+    <div class="doc-list" id="docList"></div>
+
+    <div class="sidebar-footer">
+      <button class="btn-secondary" id="exportBtn" title="JSON 파일로 백업">💾 백업 저장</button>
+      <button class="btn-secondary" id="importBtn" title="백업 파일 불러오기">📂 불러오기</button>
+      <input type="file" id="importFileInput" accept=".json" style="display:none" />
+    </div>
+  </aside>
+
+  <!-- 우측 메인 화면 -->
+  <main class="main-container">
+    <header class="topbar">
+      <div style="display:flex; align-items:center;">
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">☰ 목록</button>
+        <span class="breadcrumb" id="breadcrumb">문서 보기</span>
+      </div>
+      <div class="action-group" id="viewActions">
+        <button class="btn-secondary" id="editDocBtn">✏️ 수정</button>
+        <button class="btn-danger" id="deleteDocBtn">🗑️ 삭제</button>
+      </div>
+    </header>
+
+    <div class="content-scroll" id="contentScroll">
+      <!-- 문서 열람 뷰 -->
+      <article class="wiki-card" id="viewContainer"></article>
+
+      <!-- 문서 작성/수정 뷰 -->
+      <section class="wiki-card" id="editContainer" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">문서 제목</label>
+          <input type="text" class="form-input" id="editTitle" placeholder="예: [해석학] 바이어슈트라스 M-판정법과 적용" />
+        </div>
+
+        <div class="form-row form-group">
+          <div>
+            <label class="form-label">과목 / 영역 분류</label>
+            <select class="form-select" id="editCategory">
+              <option value="해석학">전공수학 - 해석학</option>
+              <option value="현대대수학">전공수학 - 현대대수학</option>
+              <option value="선형대수학">전공수학 - 선형대수학</option>
+              <option value="위상수학">전공수학 - 위상수학</option>
+              <option value="미분기하학">전공수학 - 미분기하학</option>
+              <option value="정수론">전공수학 - 정수론</option>
+              <option value="이산수학">전공수학 - 이산수학</option>
+              <option value="확률및통계">전공수학 - 확률 및 통계</option>
+              <option value="복소해석학">전공수학 - 복소해석학</option>
+              <option value="수학교육론">수학교육론</option>
+              <option value="기출분석">기출문제 분석</option>
+              <option value="시험정보">시험정보 / 일정 / 기타</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">태그 (쉼표로 구분)</label>
+            <input type="text" class="form-input" id="editTags" placeholder="예: 평등수렴, 2024기출, 필수정리" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">본문 내용 (간단 문법 및 LaTeX 수식 $...$, $$...$$ 지원)</label>
+          <div class="editor-toolbar">
+            <button type="button" class="tool-btn" data-insert="## 소제목&#10;">H2 소제목</button>
+            <button type="button" class="tool-btn" data-insert="### 핵심 정리&#10;">H3 정리제목</button>
+            <button type="button" class="tool-btn" data-insert="**강조텍스트**">굵게</button>
+            <button type="button" class="tool-btn" data-insert="> [정리] ">정리 박스</button>
+            <button type="button" class="tool-btn" data-insert="$f(x) = x^2$">인라인 수식 $</button>
+            <button type="button" class="tool-btn" data-insert="&#10;$$&#10;\lim_{n \to \infty} a_n = L&#10;$$&#10;">블록 수식 $$</button>
+            <button type="button" class="tool-btn" id="uploadImgBtn">🖼️ 이미지 첨부</button>
+            <button type="button" class="tool-btn" id="togglePreviewBtn">👁️ 미리보기</button>
+            <input type="file" id="imgInput" accept="image/*" multiple style="display:none" />
+          </div>
+          <textarea class="form-textarea" id="editBody" placeholder="여기에 정리할 내용을 입력하세요.&#10;- 수식은 $x^2 + y^2 = r^2$ 또는 $$ \int_a^b f(x)\,dx $$ 형태로 작성합니다.&#10;- 줄 앞에 '> '를 붙이면 핵심 정리 강조 상자가 됩니다."></textarea>
+          <div class="preview-box article-body" id="livePreview"></div>
+        </div>
+
+        <!-- 첨부된 이미지 목록 (편집 중) -->
+        <div class="attached-images" id="editImagesList" style="margin-bottom:20px;"></div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button type="button" class="btn-secondary" id="cancelEditBtn">취소</button>
+          <button type="button" class="btn-primary" id="saveDocBtn" style="width:auto; padding:9px 24px;">저장하기</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 이미지 확대 모달 -->
+  <div class="modal" id="imgModal">
+    <img id="modalImg" src="" alt="확대 이미지" />
+  </div>
+
+  <script>
+    const STORAGE_KEY = "math_imyong_wiki_docs_v1";
+
+    // 초기 샘플 데이터
+    const defaultDocs = [
+      {
+        id: "doc-1",
+        title: "평등수렴(Uniform Convergence)과 연속성 보존 정리",
+        category: "해석학",
+        tags: ["함수열", "평등수렴", "필수증명"],
+        updatedAt: "2026-11-12 16:00",
+        images: [],
+        content: `## 1. 정의 (평등수렴)
+함수열 $\\{f_n\\}$이 집합 $E$ 위에서 함수 $f$로 **평등수렴**한다는 것은 임의의 $\\varepsilon > 0$에 대하여 자연수 $N$이 존재하여, 모든 $n \\ge N$과 **모든** $x \\in E$에 대해 다음이 성립함을 뜻한다.
+$$
+|f_n(x) - f(x)| < \\varepsilon
+$$
+
+## 2. 핵심 정리 (연속성의 보존)
+> [정리] 함수열 $\\{f_n\\}$이 $E$ 위에서 $f$로 평등수렴하고, 각 $f_n$이 $x_0 \\in E$에서 연속이면 극한함수 $f$도 $x_0$에서 연속이다.
+
+### 증명 아이디어 ($3\\varepsilon$-논법)
+- 평등수렴성을 이용해 $|f_n(x) - f(x)| < \\frac{\\varepsilon}{3}$ 이 되는 $N$을 고정한다.
+- $f_N$의 $x_0$에서의 연속성을 이용해 $|x - x_0| < \\delta \\implies |f_N(x) - f_N(x_0)| < \\frac{\\varepsilon}{3}$ 인 $\\delta > 0$을 잡는다.
+- 삼각부등식 $|f(x)-f(x_0)| \\le |f(x)-f_N(x)| + |f_N(x)-f_N(x_0)| + |f_N(x_0)-f(x_0)| < \\varepsilon$ 으로 마무리한다.`
+      },
+      {
+        id: "doc-2",
+        title: "라그랑주 정리(Lagrange's Theorem)와 따름정리",
+        category: "현대대수학",
+        tags: ["군론", "부분군", "위수"],
+        updatedAt: "2026-11-12 15:30",
+        images: [],
+        content: `## 1. 라그랑주 정리
+> [정리] 유한군 $G$의 부분군 $H$에 대하여, $H$의 위수 $|H|$는 $G$의 위수 $|G|$를 나눈다. 즉, $|G| = [G : H] |H|$ 이다.
+
+## 2. 주요 따름정리
+- 유한군 $G$의 임의의 원소 $a \\in G$의 위수 $|a|$는 $|G|$의 약수이다.
+- 위수가 소수 $p$인 군 $G$는 순환군이며, $\\mathbb{Z}_p$와 동형이다.
+- **주의사항:** 라그랑주 정리의 역은 성립하지 않는다. (반례: 교대군 $A_4$는 위수가 $12$이지만 위수가 $6$인 부분군을 갖지 않는다.)`
+      },
+      {
+        id: "doc-3",
+        title: "프로이덴탈(Freudenthal)의 수학화 교수-학습론",
+        category: "수학교육론",
+        tags: ["수학화", "안내된재발명", "현실적수학교육"],
+        updatedAt: "2026-11-12 14:20",
+        images: [],
+        content: `## 1. 핵심 개념: 수학화 (Mathematization)
+수학을 완성된 결과물(기성 수학)이 아닌 **인간의 활동**으로 보며, 현상을 수학적 수단으로 조직하는 과정을 의미한다.
+
+- **수평적 수학화:** 현실 세계의 문제 상황을 수학적 세계로 옮겨 수학화하는 과정 (예: 실생활 문제의 방정식 모델링)
+- **수직적 수학화:** 수학적 세계 내부에서 기호화, 일반화, 추상화, 형식화를 통해 더 높은 수준의 수학으로 발전시키는 과정
+
+## 2. 교수 원리
+> [핵심] 안내된 재발명(Guided Reinvention): 학생 스스로 수학적 개념과 원리를 재발명할 수 있도록 교사가 적절한 현상과 반성적 사고의 기회를 제공해야 한다.`
+      }
+    ];
+
+    let docs = [];
+    let currentDocId = null;
+    let editingDocId = null;
+    let tempImages = [];
+
+    // DOM 요소
+    const docListEl = document.getElementById("docList");
+    const searchInputEl = document.getElementById("searchInput");
+    const categoryFilterEl = document.getElementById("categoryFilter");
+    const viewContainerEl = document.getElementById("viewContainer");
+    const editContainerEl = document.getElementById("editContainer");
+    const viewActionsEl = document.getElementById("viewActions");
+    const breadcrumbEl = document.getElementById("breadcrumb");
+
+    // 초기화
+    function init() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          docs = JSON.parse(saved);
+        } catch (e) {
+          docs = [...defaultDocs];
+        }
+      } else {
+        docs = [...defaultDocs];
+        saveToStorage();
+      }
+
+      if (localStorage.getItem("wiki_theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+
+      if (docs.length > 0) {
+        currentDocId = docs[0].id;
+      }
+      renderSidebar();
+      renderView();
+    }
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(docs));
+      } catch (e) {
+        alert("브라우저 저장 공간(LocalStorage) 용량이 부족합니다. JSON 백업 후 불필요한 이미지를 정리해 주세요.");
+      }
+    }
+
+    // HTML 이스케이프
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // 수식 보호 + 간단한 마크다운 파싱
+    function formatContent(rawText) {
+      if (!rawText) return "";
+      const mathBlocks = [];
+
+      // 1. $$ ... $$ 보호
+      let text = rawText.replace(/\$\$([\s\S]*?)\$\$/g, (match) => {
+        mathBlocks.push(match);
+        return `@@MATH_${mathBlocks.length - 1}@@`;
+      });
+
+      // 2. $ ... $ 보호
+      text = text.replace(/\$([^\$\n]+?)\$/g, (match) => {
+        mathBlocks.push(match);
+        return `@@MATH_${mathBlocks.length - 1}@@`;
+      });
+
+      // 3. HTML 이스케이프
+      text = escapeHtml(text);
+
+      // 4. 줄 단위 문법 변환
+      const lines = text.split("\n");
+      let html = "";
+      let inList = false;
+
+      for (let line of lines) {
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("- ")) {
+          if (!inList) {
+            html += "<ul>";
+            inList = true;
+          }
+          html += `<li>${applyInlineFormat(trimmed.slice(2))}</li>`;
+          continue;
+        } else if (inList) {
+          html += "</ul>";
+          inList = false;
+        }
+
+        if (trimmed.startsWith("### ")) {
+          html += `<h3>${applyInlineFormat(trimmed.slice(4))}</h3>`;
+        } else if (trimmed.startsWith("## ")) {
+          html += `<h2>${applyInlineFormat(trimmed.slice(3))}</h2>`;
+        } else if (trimmed.startsWith("&gt; ")) {
+          html += `<div class="callout">${applyInlineFormat(trimmed.slice(5))}</div>`;
+        } else if (trimmed === "") {
+          html += "<div style='height:8px;'></div>";
+        } else {
+          html += `<p>${applyInlineFormat(line)}</p>`;
+        }
+      }
+
+      if (inList) html += "</ul>";
+
+      // 5. 수식 복원
+      html = html.replace(/@@MATH_(\d+)@@/g, (_, idx) => mathBlocks[Number(idx)]);
+      return html;
+    }
+
+    function applyInlineFormat(str) {
+      return str.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    }
+
+    // KaTeX 수식 렌더링 실행
+    function renderMath(element) {
+      if (window.renderMathInElement) {
+        renderMathInElement(element, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // 사이드바 목록 렌더링
+    function renderSidebar() {
+      const keyword = searchInputEl.value.trim().toLowerCase();
+      const cat = categoryFilterEl.value;
+
+      const filtered = docs.filter((doc) => {
+        const matchCat = cat === "ALL" || doc.category === cat;
+        const matchKey =
+          !keyword ||
+          doc.title.toLowerCase().includes(keyword) ||
+          doc.content.toLowerCase().includes(keyword) ||
+          (doc.tags && doc.tags.some((t) => t.toLowerCase().includes(keyword)));
+        return matchCat && matchKey;
+      });
+
+      docListEl.innerHTML = "";
+      if (filtered.length === 0) {
+        docListEl.innerHTML = `<div style="padding:20px; text-align:center; color:var(--text-muted); font-size:0.85rem;">검색 결과가 없습니다.</div>`;
+        return;
+      }
+
+      filtered.forEach((doc) => {
+        const item = document.createElement("div");
+        item.className = "doc-item" + (doc.id === currentDocId ? " active" : "");
+        item.innerHTML = `
+          <div class="doc-item-cat">${escapeHtml(doc.category)}</div>
+          <div class="doc-item-title">${escapeHtml(doc.title)}</div>
+          <div class="doc-item-meta">${escapeHtml(doc.updatedAt)}</div>
+        `;
+        item.onclick = () => {
+          currentDocId = doc.id;
+          switchToView();
+          renderSidebar();
+          renderView();
+          document.getElementById("sidebar").classList.remove("open");
+        };
+        docListEl.appendChild(item);
+      });
+    }
+
+    // 문서 보기 렌더링
+    function renderView() {
+      const doc = docs.find((d) => d.id === currentDocId);
+      if (!doc) {
+        viewActionsEl.style.display = "none";
+        breadcrumbEl.textContent = "문서 없음";
+        viewContainerEl.innerHTML = `
+          <div class="empty-state">
+            <h3>선택된 문서가 없습니다</h3>
+            <p style="margin-top:8px;">좌측 상단의 <strong>[+ 새 정리 문서 작성]</strong> 버튼을 눌러 첫 문서를 만들어보세요.</p>
+          </div>
+        `;
+        return;
+      }
+
+      viewActionsEl.style.display = "flex";
+      breadcrumbEl.textContent = `${doc.category} / ${doc.title}`;
+
+      const tagsHtml = (doc.tags || [])
+        .map((t) => `<span class="tag-chip">#${escapeHtml(t)}</span>`)
+        .join("");
+
+      let imagesHtml = "";
+      if (doc.images && doc.images.length > 0) {
+        imagesHtml = `<div class="attached-images">` +
+          doc.images.map((img, idx) => `
+            <div class="attached-img-box">
+              <img src="${img.data}" alt="${escapeHtml(img.name || '첨부이미지')}" onclick="openModal('${img.data}')" />
+              <div class="attached-img-caption">
+                <span>${escapeHtml(img.name || '참고 이미지 ' + (idx + 1))}</span>
+              </div>
+            </div>
+          `).join("") +
+        `</div>`;
+      }
+
+      viewContainerEl.innerHTML = `
+        <span class="badge">${escapeHtml(doc.category)}</span>
+        <h1 class="article-title">${escapeHtml(doc.title)}</h1>
+        <div class="article-meta">
+          <span>최종 수정: ${escapeHtml(doc.updatedAt)}</span>
+          ${tagsHtml}
+        </div>
+        <div class="article-body" id="renderedBody">${formatContent(doc.content)}</div>
+        ${imagesHtml}
+      `;
+
+      renderMath(document.getElementById("renderedBody"));
+    }
+
+    function switchToView() {
+      editContainerEl.style.display = "none";
+      viewContainerEl.style.display = "block";
+    }
+
+    function switchToEdit(doc = null) {
+      viewContainerEl.style.display = "none";
+      viewActionsEl.style.display = "none";
+      editContainerEl.style.display = "block";
+      document.getElementById("livePreview").style.display = "none";
+
+      if (doc) {
+        editingDocId = doc.id;
+        breadcrumbEl.textContent = `문서 수정 중: ${doc.title}`;
+        document.getElementById("editTitle").value = doc.title;
+        document.getElementById("editCategory").value = doc.category;
+        document.getElementById("editTags").value = (doc.tags || []).join(", ");
+        document.getElementById("editBody").value = doc.content;
+        tempImages = doc.images ? [...doc.images] : [];
+      } else {
+        editingDocId = null;
+        breadcrumbEl.textContent = "새 정리 문서 작성";
+        document.getElementById("editTitle").value = "";
+        document.getElementById("editCategory").value = "해석학";
+        document.getElementById("editTags").value = "";
+        document.getElementById("editBody").value = "";
+        tempImages = [];
+      }
+      renderEditImages();
+    }
+
+    function renderEditImages() {
+      const container = document.getElementById("editImagesList");
+      if (tempImages.length === 0) {
+        container.innerHTML = "";
+        return;
+      }
+      container.innerHTML = tempImages.map((img, idx) => `
+        <div class="attached-img-box">
+          <img src="${img.data}" alt="미리보기" />
+          <div class="attached-img-caption">
+            <span>${escapeHtml(img.name)}</span>
+            <button type="button" class="btn-danger" style="padding:2px 6px; font-size:0.72rem;" onclick="removeTempImage(${idx})">삭제</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.removeTempImage = function(idx) {
+      tempImages.splice(idx, 1);
+      renderEditImages();
+    };
+
+    window.openModal = function(src) {
+      document.getElementById("modalImg").src = src;
+      document.getElementById("imgModal").style.display = "flex";
+    };
+
+    document.getElementById("imgModal").onclick = function() {
+      this.style.display = "none";
+    };
+
+    // 현재 시각 포맷
+    function getNowString() {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+    }
+
+    // 이벤트 연결
+    document.getElementById("newDocBtn").onclick = () => {
+      switchToEdit(null);
+      document.getElementById("sidebar").classList.remove("open");
+    };
+
+    document.getElementById("editDocBtn").onclick = () => {
+      const doc = docs.find((d) => d.id === currentDocId);
+      if (doc) switchToEdit(doc);
+    };
+
+    document.getElementById("deleteDocBtn").onclick = () => {
+      const doc = docs.find((d) => d.id === currentDocId);
+      if (!doc) return;
+      if (confirm(`'${doc.title}' 문서를 정말 삭제하시겠습니까?`)) {
+        docs = docs.filter((d) => d.id !== currentDocId);
+        saveToStorage();
+        currentDocId = docs.length > 0 ? docs[0].id : null;
+        renderSidebar();
+        renderView();
+      }
+    };
+
+    document.getElementById("cancelEditBtn").onclick = () => {
+      switchToView();
+      renderView();
+    };
+
+    document.getElementById("saveDocBtn").onclick = () => {
+      const title = document.getElementById("editTitle").value.trim();
+      const category = document.getElementById("editCategory").value;
+      const tagsRaw = document.getElementById("editTags").value;
+      const content = document.getElementById("editBody").value;
+
+      if (!title) {
+        alert("문서 제목을 입력해 주세요.");
+        return;
+      }
+
+      const tags = tagsRaw
+        .split(",")
+        .map((t) => t.trim())
+        .filter((t) => t.length > 0);
+
+      if (editingDocId) {
+        const idx = docs.findIndex((d) => d.id === editingDocId);
+        if (idx !== -1) {
+          docs[idx] = {
+            ...docs[idx],
+            title,
+            category,
+            tags,
+            content,
+            images: tempImages,
+            updatedAt: getNowString()
+          };
+          currentDocId = editingDocId;
+        }
+      } else {
+        const newDoc = {
+          id: "doc-" + Date.now(),
+          title,
+          category,
+          tags,
+          content,
+          images: tempImages,
+          updatedAt: getNowString()
+        };
+        docs.unshift(newDoc);
+        currentDocId = newDoc.id;
+      }
+
+      saveToStorage();
+      switchToView();
+      renderSidebar();
+      renderView();
+    };
+
+    // 툴바 버튼 삽입
+    document.querySelectorAll(".tool-btn[data-insert]").forEach((btn) => {
+      btn.onclick = () => {
+        const textarea = document.getElementById("editBody");
+        const insertText = btn.getAttribute("data-insert");
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        textarea.value = textarea.value.substring(0, start) + insertText + textarea.value.substring(end);
+        textarea.focus();
+        textarea.selectionStart = textarea.selectionEnd = start + insertText.length;
+      };
+    });
+
+    // 실시간 미리보기 토글
+    document.getElementById("togglePreviewBtn").onclick = () => {
+      const preview = document.getElementById("livePreview");
+      if (preview.style.display === "block") {
+        preview.style.display = "none";
+      } else {
+        preview.style.display = "block";
+        preview.innerHTML = formatContent(document.getElementById("editBody").value);
+        renderMath(preview);
+      }
+    };
+
+    // 이미지 업로드 및 리사이징 압축 (용량 최적화)
+    document.getElementById("uploadImgBtn").onclick = () => {
+      document.getElementById("imgInput").click();
+    };
+
+    document.getElementById("imgInput").onchange = (e) => {
+      const files = Array.from(e.target.files);
+      files.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const maxW = 900;
+            let w = img.width;
+            let h = img.height;
+            if (w > maxW) {
+              h = Math.round((h * maxW) / w);
+              w = maxW;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, w, h);
+            const compressed = canvas.toDataURL("image/jpeg", 0.78);
+            tempImages.push({ name: file.name, data: compressed });
+            renderEditImages();
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = "";
+    };
+
+    // 검색 및 필터
+    searchInputEl.oninput = renderSidebar;
+    categoryFilterEl.onchange = renderSidebar;
+
+    // 다크모드
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("wiki_theme", document.body.classList.contains("dark") ? "dark" : "light");
+    };
+
+    // 모바일 메뉴 토글
+    document.getElementById("mobileMenuBtn").onclick = () => {
+      document.getElementById("sidebar").classList.toggle("open");
+    };
+
+    // JSON 백업 및 복원
+    document.getElementById("exportBtn").onclick = () => {
+      const dataStr = JSON.stringify(docs, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `수학임용위키_백업_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    document.getElementById("importBtn").onclick = () => {
+      document.getElementById("importFileInput").click();
+    };
+
+    document.getElementById("importFileInput").onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const imported = JSON.parse(ev.target.result);
+          if (!Array.isArray(imported)) throw new Error("형식 오류");
+          if (confirm(`총 ${imported.length}개의 문서를 불러옵니다. 현재 위키 데이터를 덮어쓰시겠습니까?`)) {
+            docs = imported;
+            saveToStorage();
+            currentDocId = docs.length > 0 ? docs[0].id : null;
+            switchToView();
+            renderSidebar();
+            renderView();
+          }
+        } catch (err) {
+          alert("올바른 위키 백업 JSON 파일이 아닙니다.");
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    };
+
+    // 외부 스크립트 로드 후 초기 수식 렌더링 보장
+    window.addEventListener("DOMContentLoaded", init);
+    window.addEventListener("load", () => {
+      const bodyEl = document.getElementById("renderedBody");
+      if (bodyEl) renderMath(bodyEl);
+    });
+  </script>
+</body>
+</html>
