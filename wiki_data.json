@@ -1,1 +1,149 @@
-[]
+[
+  {
+    "id": "analysis-01",
+    "title": "[1순위 ★최빈출] Ch.7 함수열의 균등수렴(고른수렴)과 연속성 보존",
+    "category": "해석학",
+    "tags": [
+      "1순위",
+      "함수열",
+      "균등수렴",
+      "고른수렴",
+      "연속성보존",
+      "매년출제"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★ (5개년 매년 출제)] 2022 B10, 2023 A11, 2024 B10, 2025 B10, 2026 A10, 2026 B10 등 최근 5년간 단 한 해도 빠짐없이 출제된 해석학 최고 핵심 단원입니다.\n\n## 1. 점별수렴과 균등수렴의 정의\n- **정의 7.1 (점별수렴, Pointwise Convergence):** 함수열 $\\{f_n\\}$ ($f_n : A \\to \\mathbb{R}$)에 대하여 각 점 $x \\in A$마다 수열 $\\{f_n(x)\\}$가 수렴하면 $\\{f_n\\}$은 $A$에서 극한함수 $f(x) = \\lim_{n\\to\\infty} f_n(x)$로 **점별수렴**한다고 한다.\n- **정의 7.2 (균등수렴 / 고른수렴 / 평등수렴, Uniform Convergence):** 임의의 $\\varepsilon > 0$에 대하여 $x \\in A$에 무관하고 오직 $\\varepsilon$에만 의존하는 자연수 $N(\\varepsilon)$이 존재하여 다음을 만족하면 $\\{f_n\\}$은 $A$에서 $f$로 **균등수렴**($f_n \\rightrightarrows f$ on $A$)한다고 한다.\n$$ \\forall \\varepsilon > 0, \\; \\exists N \\in \\mathbb{N} \\text{ s.t. } n \\ge N, \\; \\forall x \\in A \\implies |f_n(x) - f(x)| < \\varepsilon $$\n- **정의 7.3 (균등유계, Uniformly Bounded):** $\\exists M > 0 \\text{ s.t. } \\forall x \\in A, \\; \\forall n \\in \\mathbb{N}, \\; |f_n(x)| \\le M$일 때 $\\{f_n\\}$은 $A$에서 균등유계라 한다.\n- **성질 (필수예제 54):** 각 $f_n$이 $A$에서 유계이고 $f_n \\rightrightarrows f$ on $A$이면, 극한함수 $f$도 $A$에서 유계이고 $\\{f_n\\}$은 $A$에서 균등유계이다.\n\n## 2. 균등수렴 판정법 (임용 서술형 핵심)\n> [정리 7.4 (상한 판정법)] $f_n \\rightrightarrows f$ on $A \\iff \\lim_{n\\to\\infty} \\sup_{x \\in A} |f_n(x) - f(x)| = 0$\n\n- **정리 7.5 (균등수렴이 아님을 보이는 판정법):** 다음 두 조건은 동치이다.\n- (1) $\\{f_n\\}$은 $A$에서 $f$로 균등수렴하지 않는다.\n- (2) $\\exists \\varepsilon_0 > 0$, $\\{f_n\\}$의 부분수열 $\\{f_{n_k}\\}$, 그리고 $A$의 수열 $\\{x_k\\}$가 존재하여 $\\forall k \\in \\mathbb{N}, \\; |f_{n_k}(x_k) - f(x_k)| \\ge \\varepsilon_0$이다.\n- **실전 팁:** $\\sup_{x \\in A} |f_n(x) - f(x)|$를 구할 때는 $g_n(x) = |f_n(x) - f(x)|$의 도함수 $g_n'(x) = 0$이 되는 극값 지점이나 구간의 양 끝점을 조사한다. (예: 2023 A11 $f_n(x) = (nx)^n(1-x)^{n^2}$의 최댓값 $M_n$ 계산)\n\n## 3. 균등수렴과 연속성의 보존\n> [정리 7.6 (연속성 보존 정리)] 집합 $A \\subseteq \\mathbb{R}$에서 연속인 함수열 $\\{f_n\\}$이 $A$에서 함수 $f$로 균등수렴하면, 극한함수 $f$도 $A$에서 연속이다.\n\n- **대우 명제 활용 (불연속 극한함수 판별):** 각 $f_n$이 $A$에서 연속인데 점별 극한함수 $f$가 $A$에서 불연속이면, $\\{f_n\\}$은 $A$에서 균등수렴하지 않는다.\n- **주의사항 (역은 거짓):** 연속함수열의 극한함수 $f$가 연속이더라도 균등수렴하지 않을 수 있다. (대표 반례: $f_n(x) = nx(1-x^2)^n$ 또는 텐트 함수 on $[0, 1]$)\n- **연속 수열 보존 (필수예제 56):** 연속함수열 $f_n \\rightrightarrows f$ on $A$이고 $x_n \\to x$ ($x_n, x \\in A$)이면 $\\lim_{n\\to\\infty} f_n(x_n) = f(x)$가 성립한다. (삼각부등식 $|f_n(x_n)-f(x)| \\le |f_n(x_n)-f(x_n)| + |f(x_n)-f(x)|$ 이용)"
+  },
+  {
+    "id": "analysis-02",
+    "title": "[1순위 ★최빈출] Ch.7 함수열의 극한과 미분·적분 교환 및 Weierstrass 근사정리",
+    "category": "해석학",
+    "tags": [
+      "1순위",
+      "항별적분",
+      "항별미분",
+      "극한과적분교환",
+      "Weierstrass근사정리",
+      "매년출제"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] \"함수열 $\\{f_n\\}$이 균등수렴함을 보이고 $\\lim_{n\\to\\infty} \\int_a^b f_n(x)\\,dx$의 값을 구하시오\" 형태는 2022 B10, 2024 B10(유제 7-23과 동일 문항), 2025 B10에서 반복 출제된 핵심 유형입니다.\n\n## 1. 함수열에서 극한과 적분의 교환\n> [정리 7.8 (극한과 Riemann 적분의 교환)] 함수열 $\\{f_n\\}$이 유계 닫힌구간 $[a, b]$에서 $R$-적분가능하고 $f$로 균등수렴하면 다음이 성립한다.\n- (1) 극한함수 $f$는 $[a, b]$에서 $R$-적분가능하다.\n- (2) 극한과 적분 기호를 교환할 수 있다:\n$$ \\int_a^b f(x)\\,dx = \\int_a^b \\left(\\lim_{n\\to\\infty} f_n(x)\\right) dx = \\lim_{n\\to\\infty} \\int_a^b f_n(x)\\,dx $$\n\n- **주의사항 (무한구간 $[a, \\infty)$에서의 적분 교환 반례):** 닫힌유계구간 $[a, b]$가 아닌 $[0, \\infty)$에서는 $f_n \\rightrightarrows f$ on $[0, \\infty)$이더라도 $\\lim_{n\\to\\infty} \\int_0^\\infty f_n(x)\\,dx = \\int_0^\\infty f(x)\\,dx$가 성립하지 않을 수 있다. (반례: $f_n(x) = \\frac{1}{n} \\chi_{[0, n]}(x)$ 또는 유제 7-22)\n- **2024 B10 (유제 7-23) 풀이 핵심:** $f_n(x) = \\frac{x}{1+e^{nx}} + \\sum_{k=0}^{n-1} x^k(e^{-kx} - e^{-(k+1)x})$에서 $x=0$일 때 $f_n(0)=0$, $x>0$일 때 $0 < f_n(x) - \\frac{1-x}{1-xe^{-x}} \\le \\frac{1}{ne} + \\frac{1}{e} \\cdot \\dots \\to 0$으로 상한을 잡아 $[0, \\infty)$에서 균등수렴을 보인 뒤 $[0, 1]$에서 적분 교환을 적용한다.\n\n## 2. 함수열에서 극한과 미분의 교환\n> [정리 7.7 (극한과 미분의 교환)] 유계구간 $J \\subseteq \\mathbb{R}$에서 미분가능한 함수열 $\\{f_n\\}$이 다음 두 조건을 만족한다고 하자.\n- ① $\\{f_n(x_0)\\}$가 수렴하는 점 $x_0 \\in J$가 적어도 하나 존재한다.\n- ② $J$에서 **도함수열 $\\{f_n'\\}$이 균등수렴**한다.\n- **결론:** 어떤 함수 $f: J \\to \\mathbb{R}$가 존재하여 $f_n \\rightrightarrows f$ on $J$이고, $f$는 $J$에서 미분가능하며 모든 $x \\in J$에 대하여 다음이 성립한다.\n$$ \\frac{d}{dx}\\left(\\lim_{n\\to\\infty} f_n(x)\\right) = \\lim_{n\\to\\infty} \\left(\\frac{d}{dx} f_n(x)\\right) $$\n\n- **핵심 반례 (필수예제 57):** $f_n(x) = \\frac{x}{1+nx^2}$은 $\\mathbb{R}$에서 $f \\equiv 0$으로 균등수렴하고 극한함수 $f$가 미분가능하지만, $x=0$에서 $f'(0)=0 \\neq 1 = \\lim_{n\\to\\infty} f_n'(0)$이다. 이는 $\\{f_n'\\}$이 $0$ 근방에서 균등수렴하지 않기 때문이다.\n\n## 3. Weierstrass 근사정리\n> [정리 7.9 (Weierstrass Approximation Theorem)] 함수 $f: [a, b] \\to \\mathbb{R}$가 $[a, b]$에서 연속이면, 임의의 $\\varepsilon > 0$에 대하여 모든 $x \\in [a, b]$에서 $|f(x) - p_\\varepsilon(x)| < \\varepsilon$을 만족하는 다항함수 $p_\\varepsilon$이 존재한다. (즉, $f$로 균등수렴하는 다항함수열 $\\{p_n\\}$이 존재한다.)\n\n- **기출 필수 응용 (필수예제 60, 1998 기출):** 연속함수 $f: [0, 1] \\to \\mathbb{R}$가 모든 $n=0, 1, 2, \\dots$에 대해 $\\int_0^1 f(x)x^n\\,dx = 0$을 만족하면 $f \\equiv 0$이다.\n- **증명 논리:** $f$로 균등수렴하는 다항함수열 $\\{p_n\\}$을 잡으면 선형성에 의해 $\\int_0^1 f(x)p_n(x)\\,dx = 0$이고, 유계함수열의 곱 $f p_n \\rightrightarrows f^2$ on $[0, 1]$이므로 $\\int_0^1 f(x)^2\\,dx = \\lim_{n\\to\\infty} \\int_0^1 f(x)p_n(x)\\,dx = 0$이다. $f^2 \\ge 0$이고 연속이므로 $f \\equiv 0$이다."
+  },
+  {
+    "id": "analysis-03",
+    "title": "[1순위 ★최빈출] Ch.7~8 함수항 급수의 균등수렴, M-판정법 및 거듭제곱급수",
+    "category": "해석학",
+    "tags": [
+      "1순위",
+      "함수항급수",
+      "M판정법",
+      "거듭제곱급수",
+      "수렴반경",
+      "매클로린급수"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 함수항 급수의 균등수렴(2022 B10, 2025 B10, 2026 A10)과 거듭제곱급수의 수렴반경·합 계산(2022 A7, 2023 A11)이 매년 출제됩니다.\n\n## 1. 함수항 급수의 균등수렴과 Weierstrass M-판정법\n- **정의 7.10:** 부분합 함수열 $s_n(x) = \\sum_{k=1}^n f_k(x)$가 $D$에서 $s(x)$로 균등수렴할 때, 함수항 급수 $\\sum_{n=1}^\\infty f_n(x)$는 $D$에서 $s(x)$로 **균등수렴**한다고 한다.\n> [정리 7.11 (Weierstrass M-판정법)] 모든 $n \\in \\mathbb{N}$과 모든 $x \\in D$에 대하여 $|f_n(x)| \\le M_n$을 만족하는 음이 아닌 실수열 $\\{M_n\\}$이 존재하고, 급수 $\\sum_{n=1}^\\infty M_n$이 수렴하면, 함수항 급수 $\\sum_{n=1}^\\infty f_n(x)$는 $D$에서 **균등수렴(및 절대수렴)**한다.\n\n- **정리 7.12 (Cauchy 판정법):** $\\sum_{n=1}^\\infty f_n$이 $D$에서 균등수렴 $\\iff \\forall \\varepsilon > 0, \\; \\exists N \\in \\mathbb{N} \\text{ s.t. } m > n \\ge N, \\; \\forall x \\in D \\implies |f_{n+1}(x) + \\dots + f_m(x)| < \\varepsilon$.\n- **주의 (2026 A10형 포인트):** $\\mathbb{R}$ 전체에서는 $M_n$이 존재하지 않더라도, 임의의 유계 닫힌구간 $[-L, L]$ 위에서 $|f_n(x)| \\le M_n(L)$을 잡아 $[-L, L]$에서의 균등수렴을 보이면, 임의의 $x_0 \\in \\mathbb{R}$을 포함하는 $[-L, L]$에서 연속이므로 $\\mathbb{R}$ 전체에서 연속임을 증명할 수 있다!\n\n## 2. 함수항 급수의 항별적분과 항별미분\n- **정리 7.14 (항별적분):** 각 $f_n$이 $[a, b]$에서 $R$-적분가능하고 $\\sum_{n=1}^\\infty f_n(x)$가 $[a, b]$에서 $f(x)$로 균등수렴하면, $f$는 $[a, b]$에서 $R$-적분가능하고 다음이 성립한다.\n$$ \\int_a^b \\left(\\sum_{n=1}^\\infty f_n(x)\\right) dx = \\sum_{n=1}^\\infty \\left(\\int_a^b f_n(x)\\,dx\\right) $$\n- **정리 7.15 (항별미분):** 구간 $J$에서 미분가능한 함수열 $\\{f_n\\}$에 대하여 ① $\\sum_{n=1}^\\infty f_n(x_0)$가 수렴하는 $x_0 \\in J$가 존재하고, ② $\\sum_{n=1}^\\infty f_n'(x)$가 $J$에서 균등수렴하면, $f(x) = \\sum_{n=1}^\\infty f_n(x)$는 $J$에서 미분가능하고 다음이 성립한다.\n$$ \\frac{d}{dx}\\left(\\sum_{n=1}^\\infty f_n(x)\\right) = \\sum_{n=1}^\\infty f_n'(x) $$\n\n## 3. 거듭제곱급수 (Power Series)와 수렴반경\n> [정리 8.13 (Cauchy-Hadamard 정리)] 거듭제곱급수 $\\sum_{n=0}^\\infty a_n (x - c)^n$에 대하여 $\\rho = \\limsup_{n\\to\\infty} |a_n|^{1/n}$이라 할 때, 수렴반경 $R = \\frac{1}{\\rho}$ ($R=0, 0<R<\\infty, R=\\infty$)에 대하여 $|x - c| < R$에서 절대수렴하고, 임의의 $0 < r < R$에 대하여 $[c - r, c + r]$에서 **균등수렴**한다. (단, 끝점 $x = c \\pm R$의 수렴 여부는 직접 대입하여 판정한다.)\n\n- **정리 8.14~8.16 (거듭제곱급수의 미분·적분 및 주요 Maclaurin 급수):** 수렴구간 $(-R, R)$ 내부에서는 자유롭게 항별미분·항별적분이 가능하며 수렴반경 $R$은 변하지 않는다.\n- $\\frac{1}{1-x} = \\sum_{n=0}^\\infty x^n$ ($|x| < 1$)\n- $\\frac{1}{(1-x)^2} = \\sum_{n=1}^\\infty n x^{n-1}$, $\\quad \\frac{1}{(1-x)^3} = \\sum_{n=0}^\\infty \\frac{(n+1)(n+2)}{2} x^n$ ($|x| < 1$, 2022 A7 출제)\n- $\\ln(1+x) = \\sum_{n=1}^\\infty \\frac{(-1)^{n-1}}{n} x^n$ ($-1 < x \\le 1$), $\\quad \\tan^{-1} x = \\sum_{n=0}^\\infty \\frac{(-1)^n}{2n+1} x^{2n+1}$ ($|x| \\le 1$)"
+  },
+  {
+    "id": "analysis-04",
+    "title": "[2순위 ★고빈출] Ch.6 Riemann 적분가능성 판정법 및 미적분학의 기본정리",
+    "category": "해석학",
+    "tags": [
+      "2순위",
+      "리만적분",
+      "적분판정법",
+      "측도0",
+      "적분평균값정리",
+      "미적분학의기본정리"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 정적분 극한 계산, 적분가능성 증명, 미적분학의 기본정리를 이용한 미분/적분 방정식 풀이가 매년 출제됩니다.\n\n## 1. Riemann 상합·하합 및 적분가능성 판정법\n- **정의 6.1:** 유계함수 $f: [a, b] \\to \\mathbb{R}$와 분할 $P = \\{x_0, x_1, \\dots, x_n\\}$에 대하여 $M(f, I_k) = \\sup_{x \\in I_k} f(x)$, $m(f, I_k) = \\inf_{x \\in I_k} f(x)$라 할 때, 상합 $U(f, P) = \\sum_{k=1}^n M(f, I_k)\\Delta x_k$, 하합 $L(f, P) = \\sum_{k=1}^n m(f, I_k)\\Delta x_k$이다.\n- **성질 (정리 6.2~6.3):** 세분 $P_1 \\subseteq P_2$이면 $L(f, P_1) \\le L(f, P_2) \\le U(f, P_2) \\le U(f, P_1)$이고, 임의의 두 분할 $P_1, P_2$에 대해 $L(f, P_1) \\le U(f, P_2)$이다.\n> [정리 6.4 (Riemann 적분가능성 판정법)] 유계함수 $f: [a, b] \\to \\mathbb{R}$가 $[a, b]$에서 $R$-적분가능할 필요충분조건은 임의의 $\\varepsilon > 0$에 대하여 적당한 분할 $P_\\varepsilon$이 존재하여 다음이 성립하는 것이다.\n$$ U(f, P_\\varepsilon) - L(f, P_\\varepsilon) < \\varepsilon $$\n\n## 2. 적분가능 함수족과 Lebesgue 적분가능성 정리\n- **정리 6.9 & 6.10:** $[a, b]$에서 **연속**인 함수와 $[a, b]$에서 **단조**인 함수는 모두 $[a, b]$에서 $R$-적분가능하다.\n- **정리 6.12 (구분구적법과 Riemann 합):** $f$가 $[a, b]$에서 $R$-적분가능하면 분할의 노름 $\\|P\\| \\to 0$일 때 Riemann 합이 적분값으로 수렴한다. 특히 등분할에서 $\\lim_{n\\to\\infty} \\frac{b-a}{n} \\sum_{k=1}^n f\\left(a + \\frac{b-a}{n}k\\right) = \\int_a^b f(x)\\,dx$가 성립한다.\n> [정리 6.14 (불연속점 집합의 측도 0 판정법)] 유계함수 $f: [a, b] \\to \\mathbb{R}$가 $R$-적분가능할 필요충분조건은 $f$의 불연속점 집합 $D$가 **측도 0(measure zero)**인 집합인 것이다. (특히 $D$가 유한집합이거나 가산집합이면 $R$-적분가능하다. 예: Thomae 함수는 불연속점이 $\\mathbb{Q} \\cap [0,1]$으로 가산집합이므로 적분가능하며 적분값은 $0$이다.)\n\n## 3. 적분에 관한 평균값 정리와 미적분학의 기본정리\n- **정리 6.15 (적분의 제1평균값 정리):** $f: [a, b] \\to \\mathbb{R}$가 연속이면 $\\int_a^b f(x)\\,dx = f(x_0)(b - a)$를 만족하는 $x_0 \\in (a, b)$가 존재한다.\n- **정리 6.16 (가중 적분 평균값 정리):** $f, g: [a, b] \\to \\mathbb{R}$가 연속이고 모든 $x \\in [a, b]$에서 $g(x) \\ge 0$이면, $\\int_a^b f(x)g(x)\\,dx = f(c) \\int_a^b g(x)\\,dx$를 만족하는 $c \\in [a, b]$가 존재한다. (2026 B10 등 극한 적분 계산에 매우 유용!)\n> [정리 6.17~6.20 (미적분학의 기본정리 I, II)]\n- **FTC I:** $f$가 $[a, b]$에서 $R$-적분가능할 때 $F(x) = \\int_a^x f(t)\\,dt$는 $[a, b]$에서 균등연속이며, $f$가 $x_0$에서 연속이면 $F'(x_0) = f(x_0)$이다.\n- **변적분 미분 공식:** $f$가 연속이고 $u(x), v(x)$가 미분가능할 때\n$$ \\frac{d}{dx} \\int_{u(x)}^{v(x)} f(t)\\,dt = f(v(x))v'(x) - f(u(x))u'(x) $$\n- **FTC II:** $f$가 $[a, b]$에서 $R$-적분가능하고 $F' = f$인 미분가능함수 $F$가 존재하면 $\\int_a^b f(x)\\,dx = F(b) - F(a)$이다."
+  },
+  {
+    "id": "analysis-05",
+    "title": "[2순위 ★고빈출] Ch.6 특이적분(이상적분)의 수렴·발산 판정 및 절대수렴",
+    "category": "해석학",
+    "tags": [
+      "2순위",
+      "특이적분",
+      "이상적분",
+      "비교판정법",
+      "극한비교판정법",
+      "절대수렴"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2023 B7, 2024 A10, 2025 B10 및 무한급수의 적분판정법과 결합하여 지속적으로 출제되는 영역입니다.\n\n## 1. 특이적분(Improper Integral)의 정의와 기준 적분\n- **제2종 특이적분 (특이점 $a$ 포함):** $f: (a, b] \\to \\mathbb{R}$가 임의의 $c \\in (a, b]$에 대해 $[c, b]$에서 $R$-적분가능할 때 $\\int_a^b f(x)\\,dx = \\lim_{c\\to a^+} \\int_c^b f(x)\\,dx$가 유한한 실수로 존재하면 수렴한다.\n- **제1종 특이적분 (무한구간 $[a, \\infty)$):** $\\int_a^\\infty f(x)\\,dx = \\lim_{b\\to\\infty} \\int_a^b f(x)\\,dx$가 유한한 실수로 존재하면 수렴한다.\n> [정리 6.24 (기본 $p$-적분 판정 기준)]\n- (1) 유한구간 특이점: $\\int_0^1 \\frac{1}{x^p}\\,dx$는 **$p < 1$일 때 수렴** ($\\frac{1}{1-p}$), $p \\ge 1$일 때 발산한다.\n- (2) 무한구간: $\\int_1^\\infty \\frac{1}{x^p}\\,dx$는 **$p > 1$일 때 수렴** ($\\frac{1}{p-1}$), $p \\le 1$일 때 발산한다.\n- (3) 로그 특이적분: $\\int_e^\\infty \\frac{1}{x(\\ln x)^p}\\,dx$는 $p > 1$일 때 수렴, $p \\le 1$일 때 발산한다.\n\n## 2. 특이적분의 비교판정법과 극한비교판정법\n- **정리 6.25 (비교 판정법):** 연속함수 $f, g$가 모든 $x \\in [a, \\infty)$에서 $0 \\le f(x) \\le g(x)$를 만족할 때:\n- $\\int_a^\\infty g(x)\\,dx$가 수렴하면 $\\int_a^\\infty f(x)\\,dx$도 수렴한다.\n- $\\int_a^\\infty f(x)\\,dx$가 발산하면 $\\int_a^\\infty g(x)\\,dx$도 발산한다.\n> [정리 6.26 (극한비교 판정법)] 양의 연속함수 $f, g: [a, \\infty) \\to (0, \\infty)$에 대하여 $\\lim_{x\\to\\infty} \\frac{f(x)}{g(x)} = L$ ($0 < L < \\infty$)이면, $\\int_a^\\infty f(x)\\,dx$와 $\\int_a^\\infty g(x)\\,dx$의 수렴·발산은 서로 동치이다.\n\n## 3. 절대적분가능성(절대수렴)과 조건수렴\n- **정리 6.28 (절대수렴 정리):** $\\int_a^\\infty |f(x)|\\,dx$가 수렴하면 $\\int_a^\\infty f(x)\\,dx$도 수렴하고 $\\left|\\int_a^\\infty f(x)\\,dx\\right| \\le \\int_a^\\infty |f(x)|\\,dx$가 성립한다.\n- **필수예제 52 (대표 조건수렴 적분):**\n$$ \\int_1^\\infty \\frac{\\sin x}{x}\\,dx \\text{는 수렴(부분적분 이용)하지만,} \\quad \\int_1^\\infty \\left|\\frac{\\sin x}{x}\\right|\\,dx \\text{는 발산한다.} $$\n- **핵심 기교:** 진동하는 함수 $\\int_1^\\infty \\frac{\\sin x}{x^p}\\,dx$ ($p > 0$)의 수렴성은 부분적분 $\\left[-\\frac{\\cos x}{x^p}\\right]_1^b - p \\int_1^b \\frac{\\cos x}{x^{p+1}}\\,dx$를 취해 절대수렴하는 적분으로 바꾸어 증명한다."
+  },
+  {
+    "id": "analysis-06",
+    "title": "[2순위 ★고빈출] Ch.8 무한급수의 수렴·발산 판정법 총정리",
+    "category": "해석학",
+    "tags": [
+      "2순위",
+      "무한급수",
+      "비판정법",
+      "근판정법",
+      "Raabe판정법",
+      "Dirichlet판정법",
+      "Abel판정법"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 급수 $\\sum (a_n)^\\alpha$의 수렴 범위 판정(2024 A10), 거듭제곱급수의 수렴구간 끝점 판정 등에서 필수적으로 사용됩니다.\n\n## 1. 급수 수렴의 기본 필요조건과 Cauchy 판정법\n- **발산판정법:** $\\sum_{n=1}^\\infty a_n$이 수렴하면 $\\lim_{n\\to\\infty} a_n = 0$이다. (대우: $\\lim_{n\\to\\infty} a_n \\neq 0$이면 발산)\n- **정리 8.5 (단조감소 양항급수 성질):** $a_n > 0$이 감소수열이고 $\\sum_{n=1}^\\infty a_n$이 수렴하면 $\\lim_{n\\to\\infty} n a_n = 0$이다. (역은 거짓: $a_n = \\frac{1}{n \\ln n}$)\n- **정리 8.6 (Cauchy 판정법):** $\\sum x_n$이 수렴 $\\iff \\forall \\varepsilon > 0, \\; \\exists M(\\varepsilon) \\text{ s.t. } m > n \\ge M(\\varepsilon) \\implies |x_{n+1} + \\dots + x_m| < \\varepsilon$.\n\n## 2. 양항급수 판정법 (정리 8.7)\n- **(1) 비교판정법:** $0 \\le x_n \\le y_n$일 때 $\\sum y_n$ 수렴 $\\implies \\sum x_n$ 수렴, $\\sum x_n$ 발산 $\\implies \\sum y_n$ 발산.\n- **(2) 비판정법 (Ratio Test):** $r = \\lim_{n\\to\\infty} \\left|\\frac{x_{n+1}}{x_n}\\right|$에 대해 $r < 1$이면 절대수렴, $r > 1$이면 발산, $r = 1$이면 판정 불가.\n- **(3) 근판정법 (Root Test):** $r = \\lim_{n\\to\\infty} |x_n|^{1/n}$ (또는 $\\limsup$)에 대해 $r < 1$이면 절대수렴, $r > 1$이면 발산, $r = 1$이면 판정 불가.\n- **(4) 적분판정법:** $f: [1, \\infty) \\to (0, \\infty)$가 연속이고 감소할 때 $\\sum_{k=1}^\\infty f(k)$ 수렴 $\\iff \\int_1^\\infty f(t)\\,dt$ 수렴.\n- **(5) 극한비교판정법:** $x_n, y_n > 0$이고 $r = \\lim_{n\\to\\infty} \\frac{x_n}{y_n}$에 대해 $0 < r < \\infty$이면 두 급수의 수렴·발산이 같다.\n> [정리 8.7 (7) Raabe 판정법 — 비판정법 $r=1$일 때의 구원투수] 양항급수 $\\sum x_n$에 대하여 $a = \\lim_{n\\to\\infty} n\\left(1 - \\frac{x_{n+1}}{x_n}\\right)$가 존재할 때:\n$$ a > 1 \\implies \\sum x_n \\text{ 수렴}, \\qquad a < 1 \\implies \\sum x_n \\text{ 발산} $$\n\n## 3. 교대급수, Dirichlet 판정법, Abel 판정법\n- **정리 8.4 (교대급수 판정법, Leibniz):** $x_n \\ge 0$이 단조감소하고 $\\lim_{n\\to\\infty} x_n = 0$이면 교대급수 $\\sum_{n=1}^\\infty (-1)^{n+1} x_n$은 수렴한다.\n> [정리 8.9 (Dirichlet & Abel 판정법)]\n- **(1) Dirichlet 판정법:** ① 부분합 $s_n = \\sum_{k=1}^n x_k$가 **유계**이고, ② $\\{y_n\\}$이 **단조**이며 $\\lim_{n\\to\\infty} y_n = 0$이면 급수 $\\sum_{n=1}^\\infty x_n y_n$은 수렴한다. (예: $\\sum \\frac{\\sin(nx)}{n}$의 수렴성)\n- **(2) Abel 판정법:** ① $\\sum_{n=1}^\\infty x_n$이 **수렴**하고, ② $\\{y_n\\}$이 **단조이고 유계**이면 급수 $\\sum_{n=1}^\\infty x_n y_n$은 수렴한다."
+  },
+  {
+    "id": "analysis-07",
+    "title": "[3순위 ★중빈출] Ch.4 연속함수, 사잇값 정리 및 균등연속(평등연속)",
+    "category": "해석학",
+    "tags": [
+      "3순위",
+      "연속함수",
+      "수열판정법",
+      "사잇값정리",
+      "최대최소정리",
+      "균등연속",
+      "Lipschitz"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2025 A12(특수 함수의 연속성 판별 및 사잇값 정리 증명), 2026 A10(급수 함수의 연속성) 등 증명 문항의 핵심 논리로 출제됩니다.\n\n## 1. 연속의 정의와 수열판정법\n- **정의 4.1:** $f: A \\to \\mathbb{R}$가 $c \\in A$에서 연속 $\\iff \\forall \\varepsilon > 0, \\; \\exists \\delta > 0 \\text{ s.t. } x \\in A, \\; |x - c| < \\delta \\implies |f(x) - f(c)| < \\varepsilon$.\n- **정리 4.2 (수열판정법):** $f$가 $c \\in A$에서 연속 $\\iff$ $c$로 수렴하는 $A$의 모든 수열 $\\{x_n\\}$에 대하여 $\\lim_{n\\to\\infty} f(x_n) = f(c)$.\n- **유리수·무리수 분리 함수 핵심 정리 (필수예제 15~17):**\n- $f(x) = \\begin{cases} g(x), & x \\in \\mathbb{Q} \\\\ h(x), & x \\in \\mathbb{Q}^c \\end{cases}$ ($g, h$ 연속)는 오직 **$g(c) = h(c)$인 점 $c$에서만 연속**이다.\n- 연속함수 $f, g: \\mathbb{R} \\to \\mathbb{R}$가 모든 유리수 $r \\in \\mathbb{Q}$에서 $f(r) = g(r)$이면, 유리수의 조밀성과 수열판정법에 의해 모든 $x \\in \\mathbb{R}$에서 $f(x) = g(x)$이다.\n- **Dirichlet 함수** ($\\mathbb{Q}$에서 $1$, $\\mathbb{Q}^c$에서 $0$)는 모든 점에서 불연속, **Thomae 함수** ($x=m/n$ 기약분수일 때 $1/n$, 무리수일 때 $0$)는 유리수에서 불연속, 무리수에서 연속이다.\n\n## 2. 최대-최소 정리, 사잇값 정리, 연속 역함수 정리\n- **정리 4.11 (최대-최소 정리):** 닫힌 유계구간 $[a, b]$에서 연속인 함수 $f$는 $[a, b]$에서 반드시 최댓값과 최솟값을 갖는다.\n- **정리 4.12 (사잇값 정리):** 구간 $I$에서 연속인 함수 $f$와 $a, b \\in I$에 대하여 $k$가 $f(a)$와 $f(b)$ 사이의 값이면 $f(c) = k$인 $c$가 $a$와 $b$ 사이에 존재한다.\n- **정리 4.20 (연속 역함수 정리):** 구간 $I$에서 순단조이고 연속인 함수 $f: I \\to \\mathbb{R}$의 역함수 $f^{-1}: f(I) \\to I$는 $f(I)$에서 순단조이고 연속이다. (단, 정의역이 구간이 아니면 반례 존재!)\n\n## 3. 균등연속(Uniform Continuity) 판정법 총정리\n> [정의 4.13] $\\forall \\varepsilon > 0, \\; \\exists \\delta > 0 \\text{ s.t. } x, y \\in A, \\; |x - y| < \\delta \\implies |f(x) - f(y)| < \\varepsilon$\n\n- **균등연속이 아님을 보이는 판정법 (정리 4.14):** $|f(x_n) - f(y_n)| \\ge \\varepsilon_0$이면서 $\\lim_{n\\to\\infty} (x_n - y_n) = 0$인 $A$의 두 수열 $\\{x_n\\}, \\{y_n\\}$이 존재함을 보인다.\n- **균등연속임을 보이는 4가지 핵심 도구:**\n- (1) **유계 닫힌구간 정리 (정리 4.18):** $f$가 $[a, b]$에서 연속이면 $[a, b]$에서 균등연속이다.\n- (2) **연속확장정리 (정리 4.15):** $f: (a, b) \\to \\mathbb{R}$가 $(a, b)$에서 균등연속 $\\iff$ 양 끝점 극한 $\\lim_{x\\to a^+} f(x)$와 $\\lim_{x\\to b^-} f(x)$가 유한한 실수로 존재한다.\n- (3) **Lipschitz 조건 (정리 4.17):** $\\exists K > 0 \\text{ s.t. } |f(x) - f(y)| \\le K|x - y|$이면 균등연속이다.\n- (4) **유계 도함수 판정법 (정리 4.19):** 구간 $I$에서 미분가능하고 $f'$이 $I$에서 유계이면 $f$는 $I$에서 균등연속이다."
+  },
+  {
+    "id": "analysis-08",
+    "title": "[3순위 ★중빈출] Ch.5 미분가능성, 평균값 정리, Darboux 정리 및 Taylor 정리",
+    "category": "해석학",
+    "tags": [
+      "3순위",
+      "미분가능성",
+      "평균값정리",
+      "Darboux정리",
+      "Taylor정리",
+      "실해석적함수"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2023 B7(역함수의 미분법), 2026 B10($e^{-1/x^2}$ 매끄러운 함수 성질) 및 평균값 정리를 활용한 부등식·수렴성 증명이 꾸준히 출제됩니다.\n\n## 1. 미분가능성과 역함수의 미분\n- **정의 5.1:** $f'(c) = \\lim_{x\\to c} \\frac{f(x) - f(c)}{x - c}$가 존재할 때 $c$에서 미분가능하다.\n- **자주 나오는 판별 유형 (필수예제 25~26):**\n- $|f(x)| \\le |x|^\\alpha$ ($\\alpha > 1$)이면 $f(0) = 0$이고 $f'(0) = 0$이다.\n- $f(x) = x^r \\sin(1/x)$ ($x > 0$), $0$ ($x \\le 0$)에서: $r > 0 \\iff$ 연속, $r > 1 \\iff$ 미분가능, $r > 2 \\iff f'$이 $x=0$에서 연속.\n- **정리 5.6 (역함수의 미분법):** 구간 $I$에서 순단조이고 연속인 함수 $f$가 $c \\in I$에서 미분가능하고 $f'(c) \\neq 0$이면, 역함수 $f^{-1}$은 $d = f(c)$에서 미분가능하고 $(f^{-1})'(d) = \\frac{1}{f'(c)}$이다. (2023 B7 출제)\n\n## 2. 평균값 정리(MVT)와 Darboux 정리\n> [정리 5.9 (평균값 정리, MVT)] $f$가 $[a, b]$에서 연속이고 $(a, b)$에서 미분가능하면, $f(b) - f(a) = f'(c)(b - a)$를 만족하는 $c \\in (a, b)$가 적어도 하나 존재한다.\n\n- **응용 1 (축약사상 고정점 수렴, 필수예제 31):** $\\sup |f'(x)| = a < 1$이면 점화식 $s_n = f(s_{n-1})$은 $|s_{n+1} - s_n| \\le a|s_n - s_{n-1}|$을 만족하는 축약수열이므로 수렴한다.\n- **응용 2 (도함수와 단조성, 정리 5.10):** 구간 $I$에서 미분가능한 $f$가 증가 $\\iff \\forall x \\in I, \\; f'(x) \\ge 0$.\n> [정리 5.12 (Darboux 정리)] $f$가 $[a, b]$에서 미분가능하고 $k$가 $f'(a)$와 $f'(b)$ 사이의 값이면 $f'(c) = k$를 만족하는 $c \\in (a, b)$가 존재한다.\n- **따름정리 (유제 5-25~26):** 도함수 $f'$은 불연속일 수는 있어도 **비약 불연속점(jump discontinuity)을 가질 수 없으며**, 만약 $f'$이 단조함수이면 $f'$은 반드시 연속함수이다.\n\n## 3. Taylor 정리, Maclaurin 급수 및 실해석적 함수\n> [정리 5.16 (Taylor 정리와 Lagrange 나머지항)] $f, f', \\dots, f^{(n)}$이 $[a, b]$에서 연속이고 $f^{(n)}$이 $(a, b)$에서 미분가능할 때, $x, x_0 \\in [a, b]$ ($x \\neq x_0$)에 대하여 다음을 만족하는 $c$가 $x$와 $x_0$ 사이에 존재한다.\n$$ f(x) = \\sum_{k=0}^n \\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \\frac{f^{(n+1)}(c)}{(n+1)!}(x - x_0)^{n+1} $$\n\n- **정리 5.18:** $f(x) = \\sum_{n=0}^\\infty \\frac{f^{(n)}(a)}{n!}(x - a)^n \\iff \\lim_{n\\to\\infty} R_n(x) = 0$.\n- **필수예제 38 & 2026 B10 핵심 반례 (실해석적 함수가 아닌 $C^\\infty$ 함수):**\n$$ f(x) = \\begin{cases} e^{-1/x^2}, & x \\neq 0 \\\\ 0, & x = 0 \\end{cases} $$\n- 위 함수 $f$는 $\\mathbb{R}$ 전체에서 무한번 미분가능($C^\\infty$)하며 모든 $n \\ge 0$에 대해 $f^{(n)}(0) = 0$이다. 따라서 $x=0$에서의 Taylor 급수는 항등적으로 $0$이지만 $x \\neq 0$에서 $f(x) > 0$이므로 **$x=0$에서 실해석적(analytic)이지 않다.** (복소함수와의 결정적 차이!)"
+  },
+  {
+    "id": "analysis-09",
+    "title": "[4순위 ★기초필수] Ch.1~3 실수계(상한·하한), 수열(Cauchy·상극한) 및 함수의 극한",
+    "category": "해석학",
+    "tags": [
+      "4순위",
+      "상한하한",
+      "완비성공리",
+      "단조수렴정리",
+      "BolzanoWeierstrass",
+      "Cauchy수열",
+      "상극한하극한"
+    ],
+    "updatedAt": "2026-11-12 17:00",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2026 B10에서 집합의 상한($\\sup S$)과 하한($\\inf S$)을 직접 물었으며, 나머지 모든 해석학 증명의 기초 도구로 사용됩니다.\n\n## 1. 실수계의 완비성과 상한·하한 (Chapter 1)\n- **정리 1.3 (완비성 공리):** 공집합이 아니고 위로 유계인 $\\mathbb{R}$의 부분집합은 $\\mathbb{R}$에서 상한($\\sup S$)을 갖는다. (아래로 유계이면 하한 $\\inf S$를 갖는다.)\n> [정리 1.5 & 1.6 (상한·하한의 근사정리)]\n- 상계 $u = \\sup S \\iff \\forall \\varepsilon > 0, \\; \\exists s \\in S \\text{ s.t. } u - \\varepsilon < s \\le u$.\n- 하계 $w = \\inf S \\iff \\forall \\varepsilon > 0, \\; \\exists s \\in S \\text{ s.t. } w \\le s < w + \\varepsilon$.\n- **필수예제 1 & 유제 1-2 (집합 연산 성질):**\n- $a > 0 \\implies \\sup(aS) = a\\sup S, \\; \\inf(aS) = a\\inf S$\n- $b < 0 \\implies \\sup(bS) = b\\inf S, \\; \\inf(bS) = b\\sup S$\n- $\\sup(A+B) = \\sup A + \\sup B, \\; \\inf(A+B) = \\inf A + \\inf B$\n- **정리 1.7 & 2.7:** Archimedes 성질($\\forall x \\in \\mathbb{R}, \\; \\exists n_x \\in \\mathbb{N} \\text{ s.t. } x < n_x$) 및 유리수·무리수의 조밀성.\n\n## 2. 실수열의 핵심 수렴 정리 (Chapter 2)\n- **정리 2.9 (조임정리, Squeeze Theorem):** $x_n \\le y_n \\le z_n$이고 $\\lim x_n = \\lim z_n = a \\implies \\lim y_n = a$.\n- **정리 2.15 (단조수렴정리):** 단조실수열이 수렴할 필요충분조건은 유계인 것이다. (유계 증가수열 $\\to \\sup\\{x_n\\}$, 유계 감소수열 $\\to \\inf\\{x_n\\}$)\n- **정리 2.18 (Bolzano-Weierstrass 정리):** 유계인 실수열은 반드시 수렴하는 부분수열을 갖는다.\n- **정리 2.22 (Cauchy 수렴판정법):** $\\mathbb{R}$에서 실수열 $\\{x_n\\}$이 수렴 $\\iff \\{x_n\\}$이 Cauchy 수열이다.\n- **정리 2.24 (축약수열):** 상수 $C \\in (0, 1)$에 대해 $|x_{n+2} - x_{n+1}| \\le C|x_{n+1} - x_n|$이면 축약수열이며 모든 축약수열은 Cauchy 수열이므로 수렴한다.\n> [정의 2.28 & 정리 2.29~2.30 (상극한과 하극한)]\n- $s_n = \\sup\\{x_m \\mid m \\ge n\\}$, $t_n = \\inf\\{x_m \\mid m \\ge n\\}$일 때 $\\limsup x_n = \\lim_{n\\to\\infty} s_n$, $\\liminf x_n = \\lim_{n\\to\\infty} t_n$.\n- 유계수열 $\\{x_n\\}$의 부분수열 극한 집합을 $A$라 하면 $\\limsup x_n = \\sup A$, $\\liminf x_n = \\inf A$이며, $\\{x_n\\}$이 $x$로 수렴 $\\iff \\limsup x_n = \\liminf x_n = x$.\n\n## 3. 함수의 극한 (Chapter 3)\n- **정리 3.3 (함수의 극한 수열판정법):** $c$가 $A$의 집적점일 때, $\\lim_{x\\to c} f(x) = L \\iff$ $x_n \\neq c$이고 $x_n \\to c$인 $A$의 모든 수열 $\\{x_n\\}$에 대하여 $\\lim_{n\\to\\infty} f(x_n) = L$.\n- **정리 3.8:** $\\lim_{x\\to c} f(x) = L \\iff \\lim_{x\\to c^+} f(x) = L = \\lim_{x\\to c^-} f(x)$."
+  }
+]
