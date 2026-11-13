@@ -176,7 +176,6 @@
       transition: transform 0.34s var(--ios-spring);
     }
 
-    /* 사이드바 상단 접이식 영역 (로그인 + 새 문서 + 검색) */
     .sidebar-top-collapsible {
       overflow: hidden;
       max-height: 360px;
@@ -196,7 +195,6 @@
       pointer-events: none;
     }
 
-    /* 사이드바 축소 시 나타나는 얇은 iOS 상단 캡슐 핸들 */
     .sidebar-top-pill {
       display: flex;
       align-items: center;
@@ -376,7 +374,6 @@
     }
     .doc-item-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
 
-    /* 사이드바 하단 접이식 영역 (병합, 새로고침, 복원, 백업) */
     .sidebar-footer-wrap {
       border-top: 1px solid var(--glass-border-subtle);
       background: var(--glass-elevated);
@@ -426,7 +423,7 @@
       opacity: 1;
     }
 
-    /* 메인 영역 (상단 바 제거됨) */
+    /* 메인 영역 */
     .main-container {
       position: relative;
       z-index: 10;
@@ -491,7 +488,6 @@
       padding: calc(18px + var(--safe-top)) 24px 36px;
     }
 
-    /* 본문 리퀴드 글라스 카드 */
     .wiki-card {
       max-width: 860px;
       margin: 0 auto;
@@ -677,7 +673,6 @@
 
     .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 
-    /* 모바일 하단 플로팅 독 (PC에서는 숨김) */
     .mobile-bottom-bar { display: none; }
 
     /* 글라스 모달 */
@@ -725,7 +720,6 @@
       margin-bottom: 12px;
     }
 
-    /* 아이폰 17 및 모바일·태블릿(폭 820px 이하) 최적화 */
     @media (max-width: 820px) {
       .sidebar {
         position: fixed;
@@ -749,7 +743,6 @@
       .form-row-3 { grid-template-columns: 1fr; }
       .search-input, .select-filter, .form-input, .form-select, .form-textarea { font-size: 16px; }
 
-      /* iOS 스타일 플로팅 알약 독 & 스크롤 시 얇은 바 축소 애니메이션 */
       .mobile-bottom-bar {
         display: flex;
         justify-content: space-between;
@@ -877,6 +870,7 @@
           <select class="select-filter" id="categoryFilter">
             <option value="ALL">전체 과목</option>
             <option value="해석학">해석학</option>
+            <option value="다변수해석학">다변수해석학</option>
             <option value="현대대수학">현대대수학</option>
             <option value="선형대수학">선형대수학</option>
             <option value="위상수학">위상수학</option>
@@ -912,7 +906,7 @@
     </div>
   </aside>
 
-  <!-- 우측 메인 화면 (상단 바 제거됨, 왼쪽 스와이프 시 목록 열림) -->
+  <!-- 우측 메인 화면 -->
   <main class="main-container" id="mainContainer">
     <div class="content-scroll" id="contentScroll">
       <!-- 문서 열람 뷰 -->
@@ -922,7 +916,7 @@
       <section class="wiki-card" id="editContainer" style="display:none;">
         <div class="form-group">
           <label class="form-label">문서 제목</label>
-          <input type="text" class="form-input" id="editTitle" placeholder="예: [해석학] 바이어슈트라스 M-판정법과 적용" />
+          <input type="text" class="form-input" id="editTitle" placeholder="예: [다변수해석학] 극좌표 변환과 이중적분 계산" />
         </div>
 
         <div class="form-row-3 form-group">
@@ -930,6 +924,7 @@
             <label class="form-label">과목 (대분류)</label>
             <select class="form-select" id="editCategory">
               <option value="해석학">해석학</option>
+              <option value="다변수해석학">다변수해석학</option>
               <option value="현대대수학">현대대수학</option>
               <option value="선형대수학">선형대수학</option>
               <option value="위상수학">위상수학</option>
@@ -944,12 +939,12 @@
           </div>
           <div>
             <label class="form-label">세부 단원 (중분류 · 세분화용)</label>
-            <input type="text" class="form-input" id="editSubCategory" list="subCatSuggestions" placeholder="예: 함수열과 급수 / 갈루아 이론" />
+            <input type="text" class="form-input" id="editSubCategory" list="subCatSuggestions" placeholder="예: 이중적분과 극좌표 변환 / 그린 정리" />
             <datalist id="subCatSuggestions"></datalist>
           </div>
           <div>
             <label class="form-label">태그 (쉼표로 구분)</label>
-            <input type="text" class="form-input" id="editTags" placeholder="예: 1순위, 평등수렴, 2026기출" />
+            <input type="text" class="form-input" id="editTags" placeholder="예: 1순위, 그린정리, 2026기출" />
           </div>
         </div>
 
@@ -979,7 +974,7 @@
       </section>
     </div>
 
-    <!-- 아이폰 스타일 하단 플로팅 독 (복제 버튼 제거, 스크롤 시 축소) -->
+    <!-- 아이폰 스타일 하단 플로팅 독 -->
     <nav class="mobile-bottom-bar" id="mobileBottomBar">
       <button type="button" class="btn-secondary" id="mobMenuBtn">☰ 목록</button>
       <button type="button" class="btn-accent-outline" id="mobEditBtn">✏️ 수정</button>
@@ -995,7 +990,6 @@
         <button type="button" class="icon-btn" id="toggleSetupModeBtn">⚙️ 새 금고 만들기</button>
       </div>
 
-      <!-- 1. 일반 로그인 화면 (아이디 + 비밀번호만 입력) -->
       <div id="masterLoginSection">
         <div class="vault-badge" id="vaultStatusBadge">🛡️ AES-256 암호화 금고 대기 중</div>
         <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:14px;">
@@ -1018,7 +1012,6 @@
         </div>
       </div>
 
-      <!-- 2. 최초 1회 암호화 금고 생성 화면 -->
       <div id="masterSetupSection" style="display:none;">
         <p style="font-size:0.81rem; color:var(--text-secondary); margin-bottom:12px;">
           GitHub 토큰을 <strong>아이디+비밀번호</strong>로 암호화합니다. 생성된 암호화 코드를 <code>index.html</code> 상단의 <code>ENCRYPTED_MASTER_VAULT</code>에 붙여넣으면 어느 기기에서든 아이디/비번만으로 로그인할 수 있습니다.
@@ -1063,11 +1056,6 @@
   </div>
 
   <script>
-    /* =========================================================================
-       [보안 마스터 금고]
-       '새 금고 만들기'에서 생성한 암호문을 아래에 붙여넣으면
-       F12로 소스를 보아도 토큰·아이디·비밀번호가 노출되지 않습니다.
-       ========================================================================= */
     const ENCRYPTED_MASTER_VAULT = "AP1cwKXw0iZXvJbM7iHFouA2pCSOIRLzbPGp/2EDKTMYc50jqiSYgw1rtnYRotICtkbbopmOd+wQ49I/dmR6kRlCEnzyQHnRpR4zBSozBZ3ZfZLnN+3yknMhSJaaikwDYmThicU3S9284Knt3oYpZi13q3inBdY8Yyk9vYrY5uU8I3UGgMsy0SEynwjAr8z/HKHxgUINX4A9jPzrJ0933eOv/pTbvT98/ddwA3aCrqCUq4CHX5GGEz/XvHbMX/y4CN3NbdkI2CjBE1pyMVNM9h6SpQ==";
 
     const STORAGE_KEY = "math_imyong_wiki_docs_v1";
@@ -1099,9 +1087,6 @@
       if (badgeEl) badgeEl.textContent = text;
     }
 
-    /* =========================================================================
-       1. Web Crypto API 기반 AES-256-GCM 암호화 / 복호화 모듈
-       ========================================================================= */
     async function deriveAesKey(masterId, masterPw, saltBytes) {
       const enc = new TextEncoder();
       const rawMaterial = await crypto.subtle.importKey(
@@ -1165,9 +1150,6 @@
       return localStorage.getItem(LOCAL_VAULT_KEY) || "";
     }
 
-    /* =========================================================================
-       2. 누적 이동 거리 & 경계 바운스 보호가 적용된 iOS 스크롤 컨트롤러
-       ========================================================================= */
     function createScrollCollapseController(scrollEl, { onCollapse, onExpand, threshold = 28 }) {
       let lastTop = 0;
       let anchorTop = 0;
@@ -1306,9 +1288,6 @@
       sidebarEl.classList.remove("chrome-collapsed");
     };
 
-    /* =========================================================================
-       3. 사이드바 열기/닫기 및 메인 화면 스와이프 제스처
-       ========================================================================= */
     function openSidebar() {
       sidebarScrollCtrl.reset();
       sidebarEl.classList.add("open");
@@ -1322,7 +1301,6 @@
 
     backdropEl.onclick = closeSidebar;
 
-    // 메인 화면 스와이프 감지 (화면을 왼쪽으로 스와이프 시 목록 열기 + 열린 목록 왼쪽 스와이프 시 닫기)
     (function setupSwipeNavigation() {
       let touchStartX = 0;
       let touchStartY = 0;
@@ -1356,10 +1334,8 @@
         const dy = e.changedTouches[0].clientY - touchStartY;
         const elapsed = Date.now() - touchStartTime;
 
-        // 빠르고 명확한 가로 스와이프인지 판정 (수직 스크롤 오인 방지)
         if (elapsed < 700 && Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.6) {
           if (!sidebarEl.classList.contains("open")) {
-            // 화면을 왼쪽으로 스와이프(dx < 0)하거나 왼쪽 가장자리에서 오른쪽으로 스와이프 시 목록 열기
             if (dx < -55 || (touchStartX <= 36 && dx > 50)) {
               openSidebar();
             }
@@ -1367,7 +1343,6 @@
         }
       }, { passive: true });
 
-      // 사이드바가 열려 있을 때 왼쪽으로 스와이프하면 닫기
       let sbStartX = 0;
       let sbStartY = 0;
       sidebarEl.addEventListener("touchstart", (e) => {
@@ -1897,9 +1872,6 @@
       await pushToGitHub(`Save doc: ${title}`);
     };
 
-    /* =========================================================================
-       4. 마스터키 로그인 & AES-256 금고 모달 이벤트
-       ========================================================================= */
     const authModal = document.getElementById("authModal");
     const loginSection = document.getElementById("masterLoginSection");
     const setupSection = document.getElementById("masterSetupSection");
