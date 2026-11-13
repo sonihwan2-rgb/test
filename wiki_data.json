@@ -898,5 +898,128 @@
     "updatedAt": "2026-11-13 17:12",
     "images": [],
     "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2023 A2(원뿔형 영역 $\\Omega$ 위 원통좌표 삼중적분 $\\iiint_\\Omega z(x^2+y^2)\\,dV$), 2026 A8(극좌표 넓이 공식 $A = \\frac{1}{2}\\int r^2 d\\theta$) 등 삼중적분 좌표계 변환과 극좌표 적분이 출제됩니다.\n\n## 1. 삼중적분과 원기둥좌표 · 구면좌표 변환 (Ch.3, 정의 3.14~3.17, 정리 3.15~3.20)\n> [3차원 좌표계 변환 야코비안 핵심 공식 (2023 A2 출제)]\n- **(1) 원기둥좌표계 $(r, \\theta, z)$:** $x = r\\cos\\theta, \\; y = r\\sin\\theta, \\; z = z$ ($x^2 + y^2 = r^2$)\n$$ dV = dx\\,dy\\,dz = r\\,dz\\,dr\\,d\\theta $$\n- **(2) 구면좌표계 $(\\rho, \\theta, \\phi)$:** $x = \\rho\\sin\\phi\\cos\\theta, \\; y = \\rho\\sin\\phi\\sin\\theta, \\; z = \\rho\\cos\\phi$ ($x^2 + y^2 + z^2 = \\rho^2$, $0 \\le \\phi \\le \\pi$, $0 \\le \\theta \\le 2\\pi$)\n$$ dV = dx\\,dy\\,dz = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta $$\n- **(3) 일반 3변수 변환 (정리 3.20, 필수예제 43):** 타원체 $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} + \\frac{z^2}{c^2} \\le 1$에서는 $x = au, y = bv, z = cw$ ($|J| = abc$)로 치환해 단위구 $u^2+v^2+w^2 \\le 1$로 바꾼 뒤 구면좌표를 적용한다.\n\n## 2. 매개변수곡선과 극곡선의 미적분 공식 (Ch.1, 정리 1.2~1.10)\n- **매개변수곡선 $x = f(t), \\; y = g(t)$ ($\\alpha \\le t \\le \\beta$):**\n- **접선의 기울기 (정리 1.2):** $\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}$ ($\\frac{dx}{dt} \\neq 0$).\n- **곡선 아래 넓이 (정리 1.3):** $A = \\int_\\alpha^\\beta g(t) f'(t)\\,dt$.\n- **호의 길이 (정리 1.4):** $L = \\int_\\alpha^\\beta \\sqrt{\\left(\\frac{dx}{dt}\\right)^2 + \\left(\\frac{dy}{dt}\\right)^2}\\,dt$.\n- **$x$축 회전곡면 넓이 (정리 1.5):** $S = \\int_\\alpha^\\beta 2\\pi y \\sqrt{\\left(\\frac{dx}{dt}\\right)^2 + \\left(\\frac{dy}{dt}\\right)^2}\\,dt$ ($y = g(t) \\ge 0$).\n> [극곡선 $r = f(\\theta)$ ($a \\le \\theta \\le b$)의 핵심 공식 — 2026 A8 출제]\n- **극좌표 영역의 넓이 (정리 1.9):** $A = \\frac{1}{2}\\int_a^b [f(\\theta)]^2\\,d\\theta = \\frac{1}{2}\\int_a^b r^2\\,d\\theta$. (2026 A8: $x^4+y^4-xy^2 \\le 0, y \\ge 0$에서 $x = r\\cos\\theta, y = r\\sin\\theta$를 대입하면 $r^2(\\cos^4\\theta + \\sin^4\\theta) \\le r\\cos\\theta\\sin^2\\theta \\implies r \\le \\frac{\\cos\\theta\\sin^2\\theta}{\\cos^4\\theta + \\sin^4\\theta}$를 얻어 넓이를 계산한다!)\n- **극곡선의 호의 길이 (정리 1.10):** $L = \\int_a^b \\sqrt{r^2 + \\left(\\frac{dr}{d\\theta}\\right)^2}\\,d\\theta$.\n- **극곡선의 접선 기울기 (정리 1.8):** $\\frac{dy}{dx} = \\frac{\\frac{dr}{d\\theta}\\sin\\theta + r\\cos\\theta}{\\frac{dr}{d\\theta}\\cos\\theta - r\\sin\\theta}$."
+  },
+  {
+    "id": "diffgeom-01",
+    "title": "[1순위 ★최빈출] 제3장(§3.4~3.6) 모양연산자, 기본계수, 법곡률(오일러 공식), 가우스곡률과 평균곡률",
+    "category": "미분기하학",
+    "subCategory": "곡면의 곡률과 모양연산자",
+    "tags": [
+      "1순위",
+      "가우스곡률",
+      "평균곡률",
+      "주곡률",
+      "법곡률",
+      "오일러공식",
+      "모양연산자",
+      "제1제2기본계수",
+      "2022기출",
+      "2024기출",
+      "2025기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★ (5개년 매년 출제)] 2022 B2(오일러 공식 적분과 가우스곡률로부터 주곡률 구하기), 2024 B7(타원면 위 점의 가우스곡률 $K$), 2025 A9(매개화 곡면의 접평면, 가우스곡률 $K$, 평균곡률 $H$), 2026 B11(회전면 위 원의 가우스곡률 $K$) 등 매년 빠짐없이 출제되는 미분기하학 최고 핵심 단원입니다.\n\n## 1. 제1·제2기본계수와 모양연산자(Shape Operator) (§3.4)\n- **정의 3.4.1 (모양연산자 $S_p$):** 곡면 $M$의 단위법벡터장 $U$와 접벡터 $v \\in T_p(M)$에 대하여 $S_p(v) = -\\nabla_v U$로 정의되는 자기수반(대칭) 선형연산자이다($S(w)\\cdot v = w\\cdot S(v)$).\n> [정의 3.4.2 & 정리 3.4.1, 3.4.3 (제1·제2기본계수와 모양연산자의 행렬)] 좌표조각사상 $\\mathbf{x}(u, v)$와 단위법벡터장 $U = \\frac{\\mathbf{x}_u \\times \\mathbf{x}_v}{\\|\\mathbf{x}_u \\times \\mathbf{x}_v\\|}$에 대하여:\n- **제1기본계수:** $E = \\mathbf{x}_u \\cdot \\mathbf{x}_u$, $\\quad F = \\mathbf{x}_u \\cdot \\mathbf{x}_v$, $\\quad G = \\mathbf{x}_v \\cdot \\mathbf{x}_v$ $\\quad (EG - F^2 = \\|\\mathbf{x}_u \\times \\mathbf{x}_v\\|^2 > 0)$\n- **제2기본계수:** $L = S(\\mathbf{x}_u)\\cdot\\mathbf{x}_u = U \\cdot \\mathbf{x}_{uu}$, $\\quad M = S(\\mathbf{x}_u)\\cdot\\mathbf{x}_v = U \\cdot \\mathbf{x}_{uv}$, $\\quad N = S(\\mathbf{x}_v)\\cdot\\mathbf{x}_v = U \\cdot \\mathbf{x}_{vv}$\n- **기저 $B = \\{\\mathbf{x}_u, \\mathbf{x}_v\\}$에 대한 $S_p$의 행렬표현:**\n$$ [S_p]_B = \\begin{bmatrix} E & F \\\\ F & G \\end{bmatrix}^{-1} \\begin{bmatrix} L & M \\\\ M & N \\end{bmatrix} $$\n\n## 2. 법곡률(Normal Curvature), 주곡률 및 오일러 공식 (§3.5)\n- **정의 3.5.1 & 정리 3.5.2~3.5.3 (법곡률 $k_n$):** 단위접벡터 $u \\in T_p(M)$ 방향으로의 법곡률은 $k_n(u) = S(u)\\cdot u$이며, 곡면 위 곡선 $\\alpha$가 $\\alpha(t_0)=p, \\alpha'(t_0)=u$를 만족할 때:\n$$ k_n(u) = \\frac{\\alpha''(t_0) \\cdot U(p)}{\\|\\alpha'(t_0)\\|^2} = \\kappa(t_0) N(t_0) \\cdot U(p) = \\frac{La^2 + 2Mab + Nb^2}{Ea^2 + 2Fab + Gb^2} \\quad (u = a\\mathbf{x}_u + b\\mathbf{x}_v) $$\n- **주곡률(Principal Curvature)과 주방향 (정의 3.5.2, 정리 3.5.4):** 법곡률 $k_n(u)$의 최댓값과 최솟값 $k_1, k_2$를 **주곡률**, 그 방향의 단위벡터 $e_1, e_2$를 **주벡터(주방향)**라 하며, $S(e_1) = k_1 e_1, \\; S(e_2) = k_2 e_2$ (즉, 모양연산자 $S$의 고윳값과 고유벡터)이고 배꼽점($k_1 = k_2$)이 아니면 $e_1 \\perp e_2$이다. (직교조각사상 $F = M = 0$이면 주곡률은 $\\frac{L}{E}, \\frac{N}{G}$이다.)\n> [따름정리 3.5.5 (오일러 공식, Euler's Formula — 2022 B2 출제)] 주벡터 $e_1, e_2$에 대해 단위접벡터 $u = \\cos\\theta\\,e_1 + \\sin\\theta\\,e_2$ ($\\theta = \\angle(u, e_1)$) 방향으로의 법곡률은 다음과 같다:\n$$ k_n(\\theta) = k_1 \\cos^2\\theta + k_2 \\sin^2\\theta $$\n- **2022 B2 핵심 적분:** $\\int_0^\\pi k_n(\\theta)\\,d\\theta = \\int_0^\\pi (k_1 \\cos^2\\theta + k_2 \\sin^2\\theta)\\,d\\theta = \\frac{\\pi}{2}(k_1 + k_2) = \\pi H$ 이므로 평균곡률 $H$와 가우스곡률 $K = k_1 k_2$를 연립하면 주곡률 $k_1, k_2 = H \\pm \\sqrt{H^2 - K}$를 즉시 구할 수 있다.\n\n## 3. 가우스곡률($K$)과 평균곡률($H$) 계산 공식 (§3.6)\n> [정의 3.6.1 & 정리 3.6.1~3.6.3 (가우스곡률과 평균곡률 — 2024 B7, 2025 A9, 2026 B11 출제)]\n$$ K = \\det(S) = k_1 k_2 = \\frac{LN - M^2}{EG - F^2}, \\qquad H = \\frac{1}{2}\\operatorname{tr}(S) = \\frac{k_1 + k_2}{2} = \\frac{EN + GL - 2FM}{2(EG - F^2)} $$\n- **특수 곡면별 빠른 공식 (암기 필수):**\n- **(1) 몽주 조각사상 $z = f(x, y)$:**\n$$ K = \\frac{f_{xx} f_{yy} - f_{xy}^2}{(1 + f_x^2 + f_y^2)^2}, \\qquad H = \\frac{(1 + f_y^2)f_{xx} - 2f_x f_y f_{xy} + (1 + f_x^2)f_{yy}}{2(1 + f_x^2 + f_y^2)^{3/2}} $$\n- **(2) 회전면 (2026 B11 적용):** 곡선 $y = f(x) > 0$ ($z=0$)을 $x$축 둘레로 회전시킨 곡면 $\\mathbf{x}(x, \\theta) = (x, f(x)\\cos\\theta, f(x)\\sin\\theta)$의 주곡률과 가우스곡률은 다음과 같다:\n$$ k_1 = \\frac{-f''(x)}{(1 + (f'(x))^2)^{3/2}} \\; (\\text{경도선}), \\qquad k_2 = \\frac{1}{f(x)\\sqrt{1 + (f'(x))^2}} \\; (\\text{위도선}), \\qquad K = k_1 k_2 = \\frac{-f''(x)}{f(x)(1 + (f'(x))^2)^2} $$\n- **점의 분류:** $K(p) > 0$ 타원점, $K(p) < 0$ 쌍곡점, $K(p) = 0$ 포물점($S \\neq 0$) 또는 평면점($S = 0$). $K \\equiv 0$이면 평탄곡면, $H \\equiv 0$이면 극소곡면이다."
+  },
+  {
+    "id": "diffgeom-02",
+    "title": "[1순위 ★최빈출] 제1장(§1.5~1.6) 단위속력·임의속력곡선의 프레네-세레 공식, 곡률·비틀림률 및 주면나선",
+    "category": "미분기하학",
+    "subCategory": "공간곡선과 프레네-세레 공식",
+    "tags": [
+      "1순위",
+      "프레네세레공식",
+      "단위속력곡선",
+      "곡률",
+      "비틀림률",
+      "열률",
+      "주면나선",
+      "2022기출",
+      "2024기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 2022 A9(프레네 틀장으로 적분 정의된 새로운 곡선 $\\beta(t)$의 정칙성과 곡률 계산), 2024 A4(두 곡면 교선의 접선과 곡률 $\\kappa$), 2026 A4(단위속력곡선의 내적 조건 $\\alpha\\cdot\\alpha'=0, \\alpha\\cdot N=-2s^2$으로부터 $\\kappa(1)$과 $|\\tau(1)|$ 도출) 등 공간곡선론의 핵심입니다.\n\n## 1. 단위속력곡선의 프레네-세레 공식 (Frenet-Serret Formulas, §1.5)\n- **정의 1.5.1 (프레네 틀장 $\\{T, N, B\\}$):** 단위속력곡선 $\\alpha(s)$ ($\\|\\alpha'(s)\\| = 1$)에 대하여:\n- 단위접벡터장 $T = \\alpha'$, $\\quad$ 곡률 $\\kappa = \\|T'\\| = \\|\\alpha''\\|$\n- 단위주법벡터장 $N = \\frac{T'}{\\kappa}$ ($\\kappa > 0$), $\\quad$ 단위종법벡터장 $B = T \\times N$ ($N = B \\times T, \\; T = N \\times B$)\n- 비틀림률(열률, torsion) $\\tau = -B' \\cdot N = N' \\cdot B$\n> [정리 1.5.2 (단위속력곡선의 프레네-세레 공식 — 2022 A9, 2026 A4 출제)]\n$$ \\begin{bmatrix} T' \\\\ N' \\\\ B' \\end{bmatrix} = \\begin{bmatrix} 0 & \\kappa & 0 \\\\ -\\kappa & 0 & \\tau \\\\ 0 & -\\tau & 0 \\end{bmatrix} \\begin{bmatrix} T \\\\ N \\\\ B \\end{bmatrix} \\iff \\begin{cases} T' = \\kappa N \\\\ N' = -\\kappa T + \\tau B \\\\ B' = -\\tau N \\end{cases} $$\n- **2026 A4 실전 미분 기법:** $\\alpha(s) \\cdot \\alpha'(s) = 0$을 미분하면 $\\alpha'\\cdot\\alpha' + \\alpha\\cdot\\alpha'' = 1 + \\kappa(s)(\\alpha(s)\\cdot N(s)) = 0$을 얻어 $\\kappa(s)$를 바로 구하고, $\\alpha(s)\\cdot N(s) = -2s^2$을 한 번 더 미분하여 $T\\cdot N + \\alpha\\cdot(-\\kappa T + \\tau B) = -4s$로부터 $\\tau(s)$를 구한다!\n\n## 2. 임의속력곡선의 곡률·비틀림률 계산 공식 (§1.6)\n> [정리 1.6.1~1.6.3 (임의속력곡선 $\\alpha(t)$의 공식 — 2024 A4 출제)] 속력 $v(t) = \\|\\alpha'(t)\\|$일 때 $\\alpha' = vT$, $\\alpha'' = v'T + \\kappa v^2 N$ 이며 다음이 성립한다:\n$$ T = \\frac{\\alpha'}{\\|\\alpha'\\|}, \\qquad B = \\frac{\\alpha' \\times \\alpha''}{\\|\\alpha' \\times \\alpha''\\|}, \\qquad N = B \\times T $$\n$$ \\kappa(t) = \\frac{\\|\\alpha'(t) \\times \\alpha''(t)\\|}{\\|\\alpha'(t)\\|^3}, \\qquad \\tau(t) = \\frac{(\\alpha'(t) \\times \\alpha''(t)) \\cdot \\alpha'''(t)}{\\|\\alpha'(t) \\times \\alpha''(t)\\|^2} $$\n- **특수 평면 (정의 1.5.2):** 접촉평면($T, N$ 포함, 법선 $B$), 법평면($N, B$ 포함, 법선 $T$), 전직평면($B, T$ 포함, 법선 $N$).\n- **정리 1.5.1 & 1.5.3:** $\\kappa \\equiv 0 \\iff$ 직선(의 일부), $\\quad \\tau \\equiv 0 \\iff$ 평면곡선 ($\\kappa > 0$인 정칙곡선).\n\n## 3. 주면나선(Cylindrical Helix)과 전곡률·전열률 (§1.6)\n- **정리 1.6.4 (주면나선 판정법):** $\\kappa > 0$인 곡선 $\\alpha$가 일정한 단위벡터 $u$와 항상 일정한 각($T(t)\\cdot u = \\cos\\theta$)을 이루는 **주면나선**일 필요충분조건은 **$\\frac{\\tau}{\\kappa} = \\text{상수}$** ($= \\pm \\cot\\theta$)인 것이다. (특히 $\\kappa, \\tau$가 모두 $0$이 아닌 상수이면 **원기둥나선**이다.)\n- **펜첼의 정리 (Fenchel's Theorem, p.50):** $\\mathbb{R}^3$의 단순닫힌곡선 $\\alpha$의 전곡률은 $\\int_\\alpha \\kappa\\,ds \\ge 2\\pi$이며, 등호는 평면 위 볼록곡선일 때만 성립한다."
+  },
+  {
+    "id": "diffgeom-03",
+    "title": "[1순위 ★최빈출] 제3장(§3.7) 곡면 위의 특별한 곡선: 측지선, 측지곡률(k_g), 주곡선 및 점근선",
+    "category": "미분기하학",
+    "subCategory": "측지선과 측지곡률",
+    "tags": [
+      "1순위",
+      "측지선",
+      "측지곡률",
+      "다르부틀장",
+      "주곡선",
+      "점근선",
+      "회전면측지선",
+      "2023기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 2023 B9(두 곡면 $M, N$의 교선 $\\gamma$의 $M$ 위에서의 측지곡률 $k_g$와 법곡률 $k_n$ 계산), 2026 B11(회전면 $M$ 위 평면 단면 원들의 측지곡률 $k_g$ 조건으로부터 함수 $f(x)$ 결정) 등 최근 기출에서 매우 비중 있게 출제되는 핵심 주제입니다.\n\n## 1. 다르부 틀장(Darboux Frame)과 측지곡률($k_g$) (§3.7)\n- **예제 3.7.9 (다르부 틀장 $\\{T, V, U\\}$):** 곡면 $M$ 위의 단위속력곡선 $\\alpha$에 대하여, $T = \\alpha'$는 단위접벡터, $U$는 $\\alpha$를 따라 제한된 $M$의 단위법벡터, **$V = U \\times T$** 는 $M$에 접하면서 $\\alpha$에 수직인 단위벡터이다.\n- **다르부 미분 공식:**\n$$ T' = k_g V + k_n U, \\qquad V' = -k_g T + k_t U, \\qquad U' = -k_n T - k_t V $$\n- 여기서 $k_g = T' \\cdot V$를 **측지곡률(geodesic curvature)**, $k_n = T' \\cdot U$를 **법곡률(normal curvature)**, $k_t = V' \\cdot U$를 **측지비틀림률(geodesic torsion)**이라 한다.\n> [정리 3.7.9 & 예제 3.7.9 (측지곡률 공식과 곡률 피타고라스 관계 — 2023 B9, 2026 B11 출제)]\n- **(1) 곡률의 분해 공식:** 곡선 $\\alpha$의 공간 곡률 $\\kappa$에 대하여 다음 항등식이 항상 성립한다:\n$$ \\kappa^2 = k_n^2 + k_g^2, \\qquad |k_g| = \\kappa |\\sin\\theta| \\quad (\\theta = \\angle(U, N)) $$\n- **(2) 임의속력곡선 $\\alpha(t)$의 측지곡률 계산 공식 (2023 B9 필수 공식):**\n$$ k_g = \\frac{(\\alpha'(t) \\times \\alpha''(t)) \\cdot U(p)}{\\|\\alpha'(t)\\|^3} = \\kappa(t) B(t) \\cdot U(p) $$\n- **2023 B9 교선 $\\gamma = M \\cap N$ 계산 팁:** 교선을 직접 매개화하기 어려울 때는 점 $p$에서 $\\gamma'(0) = \\nabla F_M(p) \\times \\nabla F_N(p)$로 접벡터를 구하고, $\\gamma''(0) \\cdot \\nabla F_M(p) = -\\dots$ 와 $\\gamma''(0) \\cdot \\nabla F_N(p) = -\\dots$ 를 연립하여 $\\gamma''(0)$을 구한 뒤 공식 $k_n = \\frac{\\gamma'' \\cdot U}{\\|\\gamma'\\|^2}$, $k_g = \\frac{(\\gamma' \\times \\gamma'') \\cdot U}{\\|\\gamma'\\|^3}$ 에 대입한다!\n\n## 2. 측지선(Geodesic), 주곡선(Principal Curve), 점근선(Asymptotic Curve) (§3.7)\n> [곡면 위 3대 특수 곡선의 필요충분조건]\n- **(1) 측지선 (정의 3.7.3):** $\\alpha'' \\parallel U$ (즉, 가속도벡터가 접평면 성분을 갖지 않음) $\\iff$ **$k_g \\equiv 0$**.\n- **(2) 점근선 (정의 3.7.2, 정리 3.7.5):** 접선 방향의 법곡률이 $0$인 곡선 $\\iff$ **$k_n \\equiv 0$** $\\iff U \\cdot \\alpha'' = 0 \\iff U' \\cdot \\alpha' = 0$. (직교조각사상 $F=0$에서 매개변수 곡선들이 점근선 $\\iff L = N = 0$.)\n- **(3) 주곡선 (정의 3.7.1, 정리 3.7.1):** 모든 점에서 $\\alpha'$이 주방향을 가리키는 곡선 $\\iff$ **$k_t \\equiv 0$** $\\iff$ **$\\alpha' \\parallel U'$** (로드리게스 공식). (배꼽점 없는 조각사상에서 매개변수 곡선들이 주곡선 $\\iff F = M = 0$.)\n\n## 3. 회전면 위의 측지선 판정법 (예제 3.7.6, 3.7.14 — 2026 B11 핵심!)\n- **경도선(Meridian):** 회전면의 모든 경도선은 항상 **측지선($k_g = 0$)** 이자 **주곡선**이다.\n> [위도선(Parallel)의 측지곡률과 측지선 조건 — 2026 B11 그대로 출제!]\n- 곡선 $y = f(x) > 0$ ($z = 0$)을 $x$축 둘레로 회전한 회전면에서 $x = x_0$일 때 생기는 반지름 $r = f(x_0)$인 원(위도선)에 대하여, 생성곡선의 접선이 $x$축과 만나는 점까지의 접선 길이를 $d$라 하면:\n$$ |k_g| = \\frac{|f'(x_0)|}{f(x_0)\\sqrt{1 + (f'(x_0))^2}}, \\qquad |k_n| = \\frac{1}{f(x_0)\\sqrt{1 + (f'(x_0))^2}} $$\n- 따라서 **위도선이 측지선($k_g = 0$)이 될 필요충분조건은 $f'(x_0) = 0$** (즉, 생성곡선의 접선이 회전축과 평행한 극값 위치)이다! (2026 B11에서 $x=0$과 $x=2/3$에서 위도선의 측지곡률이 $0$이라는 조건은 곧 **$f'(0) = 0$ 이고 $f'(2/3) = 0$** 을 뜻한다!)"
+  },
+  {
+    "id": "diffgeom-04",
+    "title": "[2순위 ★고빈출] 제4장(§4.4~4.5) 곡면의 넓이, 전곡률 및 국소·대역적 가우스-보네 정리",
+    "category": "미분기하학",
+    "subCategory": "가우스-보네 정리와 전곡률",
+    "tags": [
+      "2순위",
+      "가우스보네정리",
+      "전곡률",
+      "오일러표수",
+      "곡면넓이",
+      "측지삼각형",
+      "2024기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2024 B7(타원면 $x^2 + 4y^2 + 4z^2 = 4$의 일부분 $M$ 위에서 전곡률 $\\iint_M K\\,dA$ 구하기 — 국소 가우스-보네 정리 적용)에서 4점 서술형으로 직접 출제되었습니다.\n\n## 1. 곡면의 넓이와 전곡률(Total Gaussian Curvature) (§4.4)\n- **정의 4.4.1 (곡면의 넓이):** 좌표조각사상 $\\mathbf{x}: D \\to M$에 대하여 영역 $R = \\mathbf{x}(D)$의 넓이는\n$$ \\operatorname{Area}(R) = \\iint_D \\|\\mathbf{x}_u \\times \\mathbf{x}_v\\|\\,du\\,dv = \\iint_D \\sqrt{EG - F^2}\\,du\\,dv $$\n- **정의 4.4.2 (전곡률):** 영역 $R$에서의 가우스 전곡률은 $\\iint_R K\\,dM = \\iint_D K(\\mathbf{x}(u,v))\\sqrt{EG - F^2}\\,du\\,dv$이다.\n\n## 2. 국소 가우스-보네 정리 (Local Gauss-Bonnet Theorem, §4.5)\n> [정리 4.5.1 & 따름정리 4.5.6 (국소 가우스-보네 정리 — 2024 B7 출제)] 단순영역 $R$의 경계곡선 $\\partial R$이 양의 방향(반시계 방향)을 갖는 조각마다 매끄러운 단위속력 단순폐곡선이고, 각 꼭짓점에서의 외각(exterior angle)이 $\\varepsilon_1, \\dots, \\varepsilon_n$일 때 다음이 성립한다:\n$$ \\iint_R K\\,dM + \\int_{\\partial R} k_g\\,ds + \\sum_{i=1}^n \\varepsilon_i = 2\\pi $$\n- **2024 B7 실전 적용법 (경계가 모두 측지선인 영역):**\n- 타원면 $M: x^2 + 4y^2 + 4z^2 = 4$에서 평면 $y=0$, $z=0$, $z=\\sqrt{3}y$, $x=\\frac{4\\sqrt{5}}{5}$로 잘린 영역의 경계 곡선들은 대칭평면과 수직으로 만나므로 모두 **측지선($k_g = 0$)** 이다!\n- 따라서 $\\int_{\\partial R} k_g\\,ds = 0$이 되어 적분 계산 없이 **꼭짓점의 내각 $\\theta_i$ (외각 $\\varepsilon_i = \\pi - \\theta_i$)** 만 구하면 전곡률이 즉시 계산된다:\n$$ \\iint_R K\\,dA = 2\\pi - \\sum_{i=1}^n (\\pi - \\theta_i) = \\sum_{i=1}^n \\theta_i - (n - 2)\\pi $$\n- **따름정리 4.5.8 (측지삼각형):** 세 변이 모두 측지선인 삼각형 $\\Delta$의 내각이 $\\theta_1, \\theta_2, \\theta_3$일 때 $\\iint_\\Delta K\\,dM = (\\theta_1 + \\theta_2 + \\theta_3) - \\pi$.\n\n## 3. 대역적 가우스-보네 정리와 오일러 표수 (§4.5)\n> [정리 4.5.5 & 따름정리 4.5.7 (대역적 가우스-보네 정리)]\n- 경계가 있는 정칙영역 $R$ (오일러 표수 $\\chi(R) = v - e + f$)에 대하여:\n$$ \\iint_R K\\,dM + \\int_{\\partial R} k_g\\,ds + \\sum_{i=1}^n \\varepsilon_i = 2\\pi \\chi(R) $$\n- 경계가 없는 컴팩트 곡면 $M$ (손잡이 $h$개인 곡면 $S^2[h]$의 오일러 표수 $\\chi(M) = 2 - 2h$)에 대하여:\n$$ \\iint_M K\\,dM = 2\\pi \\chi(M) = 4\\pi(1 - h) $$\n- **대표 컴팩트곡면 전곡률:** 구면 $S^2$ ($h=0, \\chi=2$) $\\implies 4\\pi$, $\\quad$ 원환면(토러스) $T^2$ ($h=1, \\chi=0$) $\\implies 0$."
+  },
+  {
+    "id": "diffgeom-05",
+    "title": "[2순위 ★고빈출] 제1장(§1.7) 평면곡선의 부호 있는 곡률(k), 접촉원, 극곡선 및 회전수 정리",
+    "category": "미분기하학",
+    "subCategory": "평면곡선과 접촉원",
+    "tags": [
+      "2순위",
+      "평면곡선",
+      "평면곡률",
+      "접촉원",
+      "곡률중심",
+      "곡률반경",
+      "극곡선곡률",
+      "회전수",
+      "2023기출",
+      "2025기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2023 A3(평면곡선 $\\alpha(t) = (2\\sin t - \\sin 2t, 2\\cos t - \\cos 2t)$의 $t = \\pi/2$에서의 접촉원 중심과 반지름), 2025 B2(극방정식 심장형 $r = 1 - \\cos(\\theta - \\pi/3)$의 길이와 전곡률)가 출제되었습니다.\n\n## 1. 평면곡선의 부호 있는 곡률($k$)과 접촉원 (§1.6~1.7)\n- **정의 1.7.1 & 정리 1.7.1 (평면곡률 $k$):** $\\mathbb{R}^2$의 단위속력곡선 $\\alpha(s) = (x(s), y(s))$에 대해 단위접벡터 $t = (x', y')$, 반시계방향 $90^\\circ$ 회전한 단위법벡터 $n = (-y', x')$일 때 평면곡률은 $k = t' \\cdot n$이며, 공간곡률 $\\kappa$와는 $\\kappa = |k|$ 관계가 있다.\n> [정리 1.7.2 & 정의 1.6.2 (임의속력 평면곡선 $\\alpha(t) = (x(t), y(t))$의 곡률과 접촉원 — 2023 A3 출제)]\n- **(1) 부호 있는 평면곡률:**\n$$ k(t) = \\frac{x'(t)y''(t) - x''(t)y'(t)}{\\big((x'(t))^2 + (y'(t))^2\\big)^{3/2}}, \\qquad \\kappa(t) = |k(t)| $$\n- **(2) 접촉원 (Osculating Circle):** 점 $p = \\alpha(t_0)$에서 $\\kappa(t_0) \\neq 0$일 때:\n- **곡률반경 (반지름):** $R = \\frac{1}{\\kappa(t_0)}$\n- **곡률중심 (중심):** $C = p + \\frac{1}{\\kappa(t_0)} N(t_0) = p + \\frac{1}{k(t_0)} n(t_0)$ (주의: $n(t_0) = \\frac{(-y'(t_0), x'(t_0))}{\\sqrt{(x'(t_0))^2 + (y'(t_0))^2}}$이며 부호가 있는 $k(t_0)$를 그대로 나누면 방향이 자동 일치한다!)\n\n## 2. 극곡선 $r = r(\\theta)$의 길이, 곡률 및 전곡률 (예제 1.7.3~1.7.4)\n> [극방정식 $r = r(\\theta)$ ($a \\le \\theta \\le b$) 공식 — 2025 B2 출제]\n- **곡선의 길이:** $L = \\int_a^b \\sqrt{(r(\\theta))^2 + (r'(\\theta))^2}\\,d\\theta$\n- **평면곡률 $k(\\theta)$:**\n$$ k(\\theta) = \\frac{r^2 + 2(r')^2 - r r''}{\\big(r^2 + (r')^2\\big)^{3/2}} $$\n- **전곡률 계산 팁 (2025 B2 적용):** 단순닫힌정칙곡선이면 회전수 정리에 의해 전곡률 $\\oint k\\,ds = \\pm 2\\pi$이지만, 첨점(cusp, $r = 0$인 점)이 있는 심장형 $r = 1 - \\cos(\\theta - \\pi/3)$에서는 첨점에서 접선각이 $\\pi$만큼 점프하므로 실제 접선 회전각을 적분하거나 호장 미분 $ds = \\sqrt{r^2 + (r')^2}\\,d\\theta$로 직접 $\\int_0^{2\\pi} \\kappa(\\theta)\\sqrt{r^2 + (r')^2}\\,d\\theta$를 계산해 검증해야 한다!\n\n## 3. 회전수(Rotation Index) 정리 (§1.7)\n- **정의 1.7.2 & 정리 1.7.3~1.7.4 (회전수 정리):** 단위속력 폐곡선 $\\alpha: [0, l] \\to \\mathbb{R}^2$에서 $\\alpha'(s) = (\\cos\\theta(s), \\sin\\theta(s))$라 할 때:\n$$ \\int_0^l k(s)\\,ds = \\theta(l) - \\theta(0) = 2\\pi \\cdot i_\\alpha $$\n- **회전수 정리:** 평면의 모든 정칙 단순닫힌곡선의 회전수 $i_\\alpha$는 반시계방향일 때 **$+1$**, 시계방향일 때 **$-1$** 이다."
+  },
+  {
+    "id": "diffgeom-06",
+    "title": "[3순위 ★중빈출] 제2장 & 제3장(§3.1~3.2) & 제4장(§4.1~4.3) 정칙곡면, 접평면 및 가우스의 위대한 정리",
+    "category": "미분기하학",
+    "subCategory": "정칙곡면과 본질적 기하학",
+    "tags": [
+      "3순위",
+      "정칙곡면",
+      "접평면",
+      "등장사상",
+      "국소등장사상",
+      "가우스의위대한정리",
+      "크리스토펠기호",
+      "리프만정리",
+      "2025기출"
+    ],
+    "updatedAt": "2026-11-13 18:18",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2025 A9(매개화 곡면 $X(u, v)$의 접평면 방정식), 2023 B9(음함수 곡면의 법선벡터) 및 가우스의 위대한 정리(Theorema Egregium) 기반 진위 판별 문항에 필수적인 이론입니다.\n\n## 1. 정칙곡면과 접평면의 방정식 (§3.1~3.2)\n- **정의 3.1.1 & 정리 3.1.1:** 좌표조각사상 $\\mathbf{x}: D \\to \\mathbb{R}^3$이 정칙($\\mathbf{x}_u \\times \\mathbf{x}_v \\neq 0$, 즉 $\\operatorname{rank}(d\\mathbf{x}) = 2$)이고 위상동형이면 정칙곡면을 이룬다. 또한 음함수 곡면 $M: g(x, y, z) = c$에서 모든 $p \\in M$에 대해 $\\nabla g(p) \\neq 0$이면 정칙곡면이다.\n> [정리 3.2.1 & 3.2.2 (접평면 $T_p(M)$과 법벡터 — 2025 A9 출제)]\n- **(1) 매개화 곡면 $\\mathbf{x}(u, v)$의 점 $p = \\mathbf{x}(u_0, v_0)$:** 접평면 $T_p(M) = \\operatorname{span}\\{\\mathbf{x}_u(p), \\mathbf{x}_v(p)\\}$, 법선벡터 $\\mathbf{n} = \\mathbf{x}_u(p) \\times \\mathbf{x}_v(p) = (a, b, c)$이므로 접평면의 방정식은\n$$ a(x - x_0) + b(y - y_0) + c(z - z_0) = 0 $$\n- **(2) 음함수 곡면 $g(x, y, z) = c$의 점 $p = (x_0, y_0, z_0)$:** 법선벡터 $\\nabla g(p) = (g_x(p), g_y(p), g_z(p))$이므로\n$$ g_x(p)(x - x_0) + g_y(p)(y - y_0) + g_z(p)(z - z_0) = 0 $$\n\n## 2. 등장사상과 가우스의 위대한 정리 (Theorema Egregium, §2.2, §4.1~4.2)\n- **정리 2.2.5 ($\\mathbb{R}^3$의 등장사상 분해정리):** $\\mathbb{R}^3$의 모든 등장사상 $F$는 직교변환 $C$ ($C^T C = I, \\det C = \\pm 1$)와 평행이동 $T_a$의 합성 $F = T_a \\circ C$로 유일하게 분해된다.\n- **정리 4.1.2 (곡면 사이의 국소등장사상 판정법):** 사상 $\\Phi: M \\to \\overline{M}$에 대하여 $\\mathbf{x}$와 $\\overline{\\mathbf{x}} = \\Phi \\circ \\mathbf{x}$의 제1기본계수가 모두 일치($E = \\overline{E}, \\; F = \\overline{F}, \\; G = \\overline{G}$)할 필요충분조건은 $\\Phi$가 **국소등장사상(local isometry)**인 것이다. (대표 예: 평면과 원기둥면, 나선면과 현수면은 서로 국소등장적이다.)\n> [따름정리 4.2.3 & 정리 4.2.4~4.2.5 (가우스의 위대한 정리와 본질적 불변량)]\n- **Theorema Egregium:** 곡면의 **가우스곡률 $K$**는 오직 제1기본계수 $E, F, G$와 그 편도함수만으로 표현되므로 **국소등장사상에 의해 보존되는 본질적(intrinsic) 불변량**이다. (반면 평균곡률 $H$, 주곡률 $k_1, k_2$, 법곡률 $k_n$은 보존되지 않는다!)\n- **직교조각사상($F = 0$)일 때의 $K$ 공식 (정리 4.2.4):**\n$$ K = -\\frac{1}{2\\sqrt{EG}}\\left\\{ \\left(\\frac{G_u}{\\sqrt{EG}}\\right)_u + \\left(\\frac{E_v}{\\sqrt{EG}}\\right)_v \\right\\} $$\n- **정리 4.2.5:** **측지곡률 $k_g$와 측지선** 역시 국소등장사상에 의해 보존된다.\n\n## 3. 곡면의 대역적 정리 (§4.3, 정리 4.3.1~4.3.9)\n- **정리 4.3.2 & 4.3.6 (배꼽점 정리):** 모든 점이 배꼽점인 연결곡면은 구 또는 평면의 일부이며, 특히 컴팩트곡면이면 구이다.\n- **정리 4.3.7 & 4.3.9 (리프만의 정리, Liebmann's Theorem):** $\\mathbb{R}^3$의 컴팩트곡면 $M$에는 $K(p) > 0$인 점이 적어도 하나 존재하며($K \\le 0$인 컴팩트곡면은 존재하지 않음), **가우스곡률 $K$가 상수인 컴팩트곡면은 반지름 $\\frac{1}{\\sqrt{K}}$인 구뿐**이다."
   }
 ]
