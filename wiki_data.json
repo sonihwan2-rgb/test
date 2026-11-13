@@ -681,5 +681,124 @@
     "updatedAt": "2026-11-13 16:43",
     "images": [],
     "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 행렬식($\\det$), 대각합($\\operatorname{tr}$), 수반행렬($\\operatorname{adj}(A)$), 특수행렬(대칭·멱등·멱영행렬)의 대수적 성질은 모든 선형대수학 문제 계산의 필수 도구입니다.\n\n## 1. 대각합(Trace)과 특수행렬의 성질 (§1.2~1.4)\n- **정리 1.2.5 (대각합 성질):** $\\operatorname{tr}(A^T) = \\operatorname{tr}(A)$, $\\quad \\operatorname{tr}(AB) = \\operatorname{tr}(BA)$, $\\quad \\operatorname{tr}(P^{-1}AP) = \\operatorname{tr}(A)$. (따라서 $AB - BA = I_n$을 만족하는 정방행렬은 존재하지 않는다: 좌변 대각합은 $0$, 우변은 $n$.)\n- **대칭·반대칭행렬 (정리 1.4.2~1.4.4, 예제 1.4.2):**\n- 임의의 정방행렬 $A$는 대칭행렬 $\\frac{1}{2}(A + A^T)$와 반대칭행렬 $\\frac{1}{2}(A - A^T)$의 합으로 유일하게 분해된다.\n- 두 대칭행렬 $A, B$의 곱 $AB$가 대칭행렬 $\\iff AB = BA$.\n- **멱등행렬 & 멱영행렬 (정의 1.4.3, 예제 1.4.3~1.4.4):**\n- **멱등행렬 ($A^2 = A$):** $I - A$도 멱등행렬이며, $2A - I$는 가역이다($(2A - I)^2 = I$). 멱등행렬의 고윳값은 $0$ 또는 $1$뿐이며 항상 대각화가능하고 $\\operatorname{rank}(A) = \\operatorname{tr}(A)$이다.\n- **멱영행렬 ($A^m = O$):** $I - A$는 항상 가역이며 $(I - A)^{-1} = I + A + A^2 + \\dots + A^{m-1}$이다. 멱영행렬의 고윳값은 모두 $0$이다.\n\n## 2. 행렬식(Determinant)과 방데르몽드 행렬식 (§2.1)\n- **정리 2.1.4~2.1.12 (행렬식 핵심 공식):**\n- $n$차 정방행렬 $A, B$와 상수 $k$에 대하여: $\\det(kA) = k^n \\det(A)$, $\\quad \\det(AB) = \\det(A)\\det(B)$, $\\quad \\det(A^T) = \\det(A)$, $\\quad \\det(A^{-1}) = \\frac{1}{\\det(A)}$.\n- 한 행(열)에 $k$배 하면 $\\det$도 $k$배, 두 행(열) 교환 시 부호 반전($-$), 한 행(열)의 상수배를 다른 행(열)에 더해도 $\\det$ 불변.\n- **블록 삼각행렬식 (정리 2.1.12):** $\\det\\begin{bmatrix} A & C \\\\ O & B \\end{bmatrix} = \\det\\begin{bmatrix} A & O \\\\ C & B \\end{bmatrix} = \\det(A)\\det(B)$.\n- **방데르몽드 행렬식 (예제 2.1.6~2.1.7):**\n$$ \\det\\begin{bmatrix} 1 & 1 & \\cdots & 1 \\\\ a_1 & a_2 & \\cdots & a_n \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_1^{n-1} & a_2^{n-1} & \\cdots & a_n^{n-1} \\end{bmatrix} = \\prod_{1 \\le i < j \\le n} (a_j - a_i) $$\n\n## 3. 수반행렬(Adjoint Matrix)과 크래머의 규칙 (§2.1)\n> [정의 2.1.3 & 정리 2.1.13~2.1.14 (수반행렬 $\\operatorname{adj}(A)$의 6대 공식 — 2011 기출)] 여인수 $C_{ij} = (-1)^{i+j} M_{ij}$의 전치행렬 $\\operatorname{adj}(A) = [C_{ji}]$에 대하여 ($n$차 정방행렬):\n- (1) $A \\operatorname{adj}(A) = \\operatorname{adj}(A) A = \\det(A) I_n$, $\\quad A^{-1} = \\frac{1}{\\det(A)} \\operatorname{adj}(A)$\n- (2) **$\\det(\\operatorname{adj}(A)) = (\\det(A))^{n-1}$**\n- (3) **$\\operatorname{adj}(kA) = k^{n-1} \\operatorname{adj}(A)$**\n- (4) **$\\operatorname{adj}(AB) = \\operatorname{adj}(B)\\operatorname{adj}(A)$**, $\\quad \\operatorname{adj}(A^m) = (\\operatorname{adj}(A))^m$\n- (5) **$\\operatorname{adj}(A^T) = (\\operatorname{adj}(A))^T$**, $\\quad \\operatorname{adj}(A^{-1}) = (\\operatorname{adj}(A))^{-1} = \\frac{1}{\\det(A)} A$\n- (6) **$\\operatorname{adj}(\\operatorname{adj}(A)) = (\\det(A))^{n-2} A$** (단, $n \\ge 2$)\n- **정리 2.1.15 (크래머의 규칙):** $\\det(A) \\neq 0$일 때 $Ax = b$의 유일해는 $x_j = \\frac{\\det(A_j)}{\\det(A)}$ ($A_j$는 $A$의 $j$열을 $b$로 바꾼 행렬)."
+  },
+  {
+    "id": "prob-01",
+    "title": "[1순위 ★최빈출] 제6장~제7장 표본분포, 중심극한정리(CLT) 및 신뢰구간 추정",
+    "category": "확률및통계",
+    "subCategory": "표본분포와 통계적 추정",
+    "tags": [
+      "1순위",
+      "표본분포",
+      "표본평균",
+      "표본분산",
+      "중심극한정리",
+      "신뢰구간",
+      "2022기출",
+      "2023기출",
+      "2024기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 2022 B7(중심극한정리 적용 근사확률), 2023 A4(두 모비율 평균의 90% 신뢰구간), 2024 B2(포아송분포 표본분산의 기댓값), 2026 A2(두 독립 정규모집단 평균 합의 95% 신뢰구간) 등 최근 5년간 4회 출제된 최고 빈출 영역입니다.\n\n## 1. 표본평균과 표본분산의 분포 (§6.2)\n- **정의 (확률표본):** 모집단에서 서로 독립이고 동일한 분포(i.i.d.)를 따르도록 추출한 확률변수 $X_1, X_2, \\dots, X_n$을 크기 $n$인 확률표본이라 한다.\n> [정리 (표본평균 $\\bar{X}$와 표본분산 $S^2$의 핵심 성질 — 2024 B2 출제)] 모평균이 $\\mu$, 모분산이 $\\sigma^2$인 모집단에서 추출한 크기 $n$인 확률표본에 대하여:\n- **(1) 표본평균 $\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i$:**\n$$ E(\\bar{X}) = \\mu, \\qquad V(\\bar{X}) = \\frac{\\sigma^2}{n}, \\qquad S(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}} $$\n- **(2) 표본분산 $S^2 = \\frac{1}{n-1}\\sum_{i=1}^n (X_i - \\bar{X})^2$의 불편성:**\n$$ E(S^2) = \\sigma^2 \\iff E\\left(\\sum_{i=1}^n (X_i - \\bar{X})^2\\right) = (n-1)\\sigma^2 $$\n- **기출 적용 (2024 B2):** $X_1, \\dots, X_n \\stackrel{\\text{i.i.d.}}{\\sim} \\operatorname{Poi}(\\lambda)$이면 $\\sigma^2 = \\lambda$이므로 $E\\left(\\sum_{i=1}^n (X_i - \\bar{X})^2\\right) = (n-1)\\lambda$이다.\n- **(3) 정규모집단에서의 분포:** 모집단이 $N(\\mu, \\sigma^2)$이면 표본 크기 $n$에 관계없이 정확히 $\\bar{X} \\sim N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)$이고, $\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)$이며 $\\bar{X}$와 $S^2$는 서로 독립이다.\n\n## 2. 중심극한정리(Central Limit Theorem)와 표본비율 (§6.2)\n> [정리 (중심극한정리, CLT — 2022 B7 출제)] 평균이 $\\mu$, 분산이 $\\sigma^2$ ($0 < \\sigma^2 < \\infty$)인 임의의 모집단에서 추출한 크기 $n$인 확률표본의 표본평균 $\\bar{X}$에 대하여, $n$이 충분히 클 때($n \\ge 30$) 다음이 근사적으로 성립한다:\n$$ Z = \\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} = \\frac{\\sum_{i=1}^n X_i - n\\mu}{\\sqrt{n}\\sigma} \\xrightarrow{d} N(0, 1) $$\n- **표본비율 $\\hat{p} = \\frac{X}{n}$의 근사분포:** 모비율이 $p$인 모집단에서 크기 $n$인 표본을 추출할 때($np \\ge 5, nq \\ge 5$), $E(\\hat{p}) = p$, $V(\\hat{p}) = \\frac{pq}{n}$이므로 $\\hat{p} \\approx N\\left(p, \\frac{pq}{n}\\right)$이다.\n\n## 3. 신뢰구간(Confidence Interval) 공식 총정리 (§7.2)\n> [임용 필수 신뢰구간 공식 (2023 A4, 2026 A2 출제)] 신뢰수준 $100(1-\\alpha)\\%$에 대해 $P(|Z| \\le z_{\\alpha/2}) = 1 - \\alpha$ ($z_{0.05}=1.645, \\; z_{0.025}=1.96, \\; z_{0.005}=2.58$)일 때:\n- **(1) 모평균 $\\mu$의 신뢰구간 ($\\sigma$ 기지 또는 대표본):**\n$$ \\bar{X} - z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} \\le \\mu \\le \\bar{X} + z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$\n- **(2) 모비율 $p$의 신뢰구간 (대표본):** $\\hat{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\hat{p}\\hat{q}}{n}}$\n- **(3) 두 독립 모집단 평균의 차($\\mu_1 - \\mu_2$) 및 합($\\mu_1 + \\mu_2$)의 신뢰구간 (2026 A2 출제):**\n$$ (\\bar{X} \\pm \\bar{Y}) - z_{\\alpha/2}\\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}} \\le \\mu_1 \\pm \\mu_2 \\le (\\bar{X} \\pm \\bar{Y}) + z_{\\alpha/2}\\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}} $$\n- **(4) 두 독립 모비율의 차($p_1 - p_2$) 및 평균($\\frac{p_1 + p_2}{2}$)의 신뢰구간 (2023 A4 출제):**\n- $V(\\hat{p}_1 - \\hat{p}_2) = \\frac{p_1 q_1}{n_1} + \\frac{p_2 q_2}{n_2}$, $\\quad V\\left(\\frac{\\hat{p}_1 + \\hat{p}_2}{2}\\right) = \\frac{1}{4}\\left(\\frac{p_1 q_1}{n_1} + \\frac{p_2 q_2}{n_2}\\right)$이므로 표준오차 $b = \\frac{1}{2}\\sqrt{\\frac{\\hat{p}_1\\hat{q}_1}{n_1} + \\frac{\\hat{p}_2\\hat{q}_2}{n_2}}$를 사용한다.\n\n## 4. 점추정과 가설검정 핵심 개념 (§7.1, §7.3)\n- **불편추정량(Unbiased Estimator):** $E(\\hat{\\theta}) = \\theta$를 만족하는 추정량 $\\hat{\\theta}$.\n- **최대우도추정량(MLE):** 표본 $x_1, \\dots, x_n$에 대한 우도함수 $L(\\theta) = \\prod_{i=1}^n f(x_i; \\theta)$ (또는 로그우도 $\\ln L(\\theta)$)를 최대로 하는 $\\hat{\\theta}$.\n- **가설검정 오류:** 제1종 오류($H_0$가 참인데 기각, 확률 = 유의수준 $\\alpha$), 제2종 오류($H_0$가 거짓인데 채택, 확률 = $\\beta$, 검정력 = $1 - \\beta$)."
+  },
+  {
+    "id": "prob-02",
+    "title": "[1순위 ★최빈출] 제2장(§2.4~2.6) & 제4장(§4.1, §4.3) 적률생성함수, 확률변수 변환 및 정규분포",
+    "category": "확률및통계",
+    "subCategory": "적률생성함수 · 변수변환 · 정규분포",
+    "tags": [
+      "1순위",
+      "적률생성함수",
+      "확률변수변환",
+      "확률적분변환",
+      "정규분포",
+      "선형결합",
+      "2022기출",
+      "2024기출",
+      "2025기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★★] 2022 B7(적률생성함수 $M_X(t)=(1-2t)^{-4}$에서 분산 도출), 2024 A11(누적분포함수 $F(X)$의 확률밀도함수 및 변환확률), 2025 A4(독립 표준정규분포의 선형결합 분산과 분위수), 2026 A2(독립 정규확률변수 합 $X+Y$의 표준편차) 등 매년 출제되는 핵심 단원입니다.\n\n## 1. 기댓값, 분산 및 적률생성함수(MGF) (§2.4~2.5)\n- **정리 2.4.1~2.4.3 (기댓값과 분산의 선형성):**\n- $E(aX + bY + c) = aE(X) + bE(Y) + c$, $\\qquad V(X) = E(X^2) - \\{E(X)\\}^2$\n- $V(aX + b) = a^2 V(X)$, $\\qquad S(aX + b) = |a| S(X)$\n> [정의 2.5.1 & 정리 2.5.1~2.5.2 (적률생성함수 $M_X(t) = E(e^{tX})$ — 2022 B7 출제)]\n- **(1) 원점적률 및 평균·분산 계산:**\n$$ M_X^{(n)}(0) = E(X^n), \\qquad E(X) = M_X'(0), \\qquad V(X) = M_X''(0) - \\{M_X'(0)\\}^2 $$\n- **(2) 선형변환 및 독립합 성질:** $M_{aX+b}(t) = e^{bt} M_X(at)$이며, $X, Y$가 **독립**이면 **$M_{X+Y}(t) = M_X(t) M_Y(t)$**이다.\n- **(3) 분포의 유일성:** 두 확률변수의 적률생성함수가 $0$ 근방에서 일치하면 두 확률변수는 동일한 확률분포를 갖는다. (참고: $M_X(t) = (1 - \\beta t)^{-\\alpha}$는 감마분포 $\\Gamma(\\alpha, \\beta)$의 MGF이며 평균 $\\alpha\\beta$, 분산 $\\alpha\\beta^2$이다.)\n\n## 2. 일변수 확률변수의 변환과 확률적분변환 (§2.6, §4.1)\n- **정리 2.6.2 (연속확률변수의 일대일 변환):** $Y = g(X)$에서 $g$가 순단조이고 미분가능($g'(x) \\neq 0$)할 때:\n$$ f_Y(y) = f_X(g^{-1}(y)) \\left|\\frac{d}{dy} g^{-1}(y)\\right| $$\n- **비단조 변환($Y = X^2, Y = |X|$ 등):** 반드시 누적분포함수 $F_Y(y) = P(g(X) \\le y)$를 먼저 구한 뒤 $y$에 대해 미분하여 $f_Y(y) = F_Y'(y)$를 구한다.\n> [예제 4.1.5 (확률적분변환, Probability Integral Transformation — 2024 A11 출제)]\n- 연속확률변수 $X$의 누적분포함수 $F(x)$가 연속인 순증가함수일 때, 확률변수 $Y = F(X)$의 치역은 $(0, 1)$이고 임의의 $y \\in (0, 1)$에 대하여\n$$ F_Y(y) = P(F(X) \\le y) = P(X \\le F^{-1}(y)) = F(F^{-1}(y)) = y $$\n이므로 **$Y = F(X) \\sim U(0, 1)$** (확률밀도함수 $f_Y(y) = 1$, $0 < y < 1$)을 따른다!\n\n## 3. 정규분포 $N(\\mu, \\sigma^2)$와 선형결합 성질 (§4.3)\n> [정리 4.3.1~4.3.2 (정규분포의 재생성과 선형결합 — 2025 A4, 2026 A2 출제)]\n- **(1) 기본 특성:** $X \\sim N(\\mu, \\sigma^2)$이면 $M_X(t) = e^{\\mu t + \\frac{1}{2}\\sigma^2 t^2}$, $E(X) = \\mu$, $V(X) = \\sigma^2$, 표준화 $Z = \\frac{X - \\mu}{\\sigma} \\sim N(0, 1)$.\n- **(2) 선형결합의 정규성:** $X_1, \\dots, X_n$이 서로 독립이고 $X_i \\sim N(\\mu_i, \\sigma_i^2)$이면, 임의의 상수 $a_1, \\dots, a_n$ (모두 $0$은 아님)에 대하여 선형결합 $Y = \\sum_{i=1}^n a_i X_i + b$ 역시 정규분포를 따른다:\n$$ Y \\sim N\\left(\\sum_{i=1}^n a_i \\mu_i + b, \\; \\sum_{i=1}^n a_i^2 \\sigma_i^2\\right) $$\n- **(3) 이항분포의 정규근사 (정리 4.3.4):** $X \\sim B(n, p)$에서 $np \\ge 5, nq \\ge 5$이면 $X \\approx N(np, npq)$이다."
+  },
+  {
+    "id": "prob-03",
+    "title": "[2순위 ★고빈출] 제5장(§5.1~5.4) 결합확률분포, 주변·조건부확률분포, 독립성 및 공분산",
+    "category": "확률및통계",
+    "subCategory": "결합확률분포와 독립성",
+    "tags": [
+      "2순위",
+      "결합확률분포",
+      "주변확률분포",
+      "조건부확률분포",
+      "독립성판정",
+      "이변수변환",
+      "공분산",
+      "2022기출",
+      "2023기출",
+      "2025기출"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★★] 2022 A4(이산 결합확률질량함수 표에서 미지수·조건부확률), 2023 B8(연속 결합확률밀도함수에서 $Z=Y-X$의 누적분포함수 $G(z)$와 확률), 2025 B6(연속 결합확률밀도함수의 독립성 판별과 조건부확률 $P(X \\le 2 \\mid Y \\le 2)$)가 4점 서술형으로 출제되었습니다.\n\n## 1. 결합확률분포, 주변확률분포 및 조건부확률분포 (§5.1~5.3)\n- **주변확률밀도(질량)함수 (정의 5.2.1~5.2.2):**\n$$ f_X(x) = \\int_{-\\infty}^\\infty f(x, y)\\,dy \\quad \\left(\\text{이산: } \\sum_y f(x, y)\\right), \\qquad f_Y(y) = \\int_{-\\infty}^\\infty f(x, y)\\,dx \\quad \\left(\\text{이산: } \\sum_x f(x, y)\\right) $$\n- **조건부확률밀도(질량)함수 (§5.3):** $f_X(x) > 0$일 때 조건부확률분포와 조건부기댓값은 다음과 같다:\n$$ f_{Y|X}(y \\mid x) = \\frac{f(x, y)}{f_X(x)}, \\qquad E(Y \\mid X = x) = \\int_{-\\infty}^\\infty y f_{Y|X}(y \\mid x)\\,dy $$\n- **조건부확률 계산 주의 (2025 B6):** 사건 조건 $P(X \\le 2 \\mid Y \\le 2)$를 물을 때는 정의대로 $\\frac{P(X \\le 2, \\; Y \\le 2)}{P(Y \\le 2)}$를 계산하며, 특히 $X, Y$가 독립이면 $P(X \\le 2 \\mid Y \\le 2) = P(X \\le 2)$로 즉시 단순화된다!\n\n## 2. 확률변수의 독립성 판정법 (§5.2)\n> [정의 5.2.3 & 정리 5.2.1 (독립성 필요충분조건 — 2025 B6 출제)]\n- **(1) 정의에 의한 판정:** 모든 $(x, y)$에 대하여 **$f(x, y) = f_X(x) f_Y(y)$** 가 성립하면 $X, Y$는 서로 독립이다.\n- **(2) 정리 5.2.1 (빠른 판정법):** 연속확률변수 $X, Y$가 독립일 필요충분조건은 결합확률밀도함수의 양수 영역(support)이 **직사각형 영역 $A \\times B$** 이고 $f(x, y) = g(x) h(y)$ 꼴로 변수 분리되는 것이다. (예: 2025 B6 $f(x,y) = \\frac{1}{\\sqrt{2\\pi}} e^{-\\frac{1}{2}(x + y^2)}$ ($x>0, y>0$)은 영역이 $(0,\\infty)\\times(0,\\infty)$ 직사각형이고 $e^{-x/2} \\cdot e^{-y^2/2}$로 분리되므로 독립이다! 반면 $0 < x < y < 3$처럼 삼각형 영역이면 즉시 종속이다.)\n\n## 3. 이변수 확률변수의 변환과 변수 차 $Z = Y - X$ (§5.1)\n> [정리 5.1.4 (야코비안 변환) & 누적분포함수(CDF) 기법 — 2023 B8 출제]\n- **(1) 이변수 일대일 변환:** $(Z, W) = (g(X, Y), h(X, Y))$의 역변환이 $(x, y) = (u(z, w), v(z, w))$일 때:\n$$ f_{Z, W}(z, w) = f_{X, Y}(u(z, w), v(z, w)) \\left|\\frac{\\partial(x, y)}{\\partial(z, w)}\\right|, \\qquad \\frac{\\partial(x, y)}{\\partial(z, w)} = \\det\\begin{bmatrix} \\frac{\\partial x}{\\partial z} & \\frac{\\partial x}{\\partial w} \\\\ \\frac{\\partial y}{\\partial z} & \\frac{\\partial y}{\\partial w} \\end{bmatrix} $$\n- **(2) 합·차 단일변환 CDF 기법 (2023 B8 $Z = Y - X$):** $G(z) = P(Y - X \\le z) = \\iint_{y - x \\le z} f(x, y)\\,dx\\,dy$를 $z$의 구간별로 영역의 넓이(또는 적분)로 구한 뒤 미분하여 $g(z) = G'(z)$를 얻는다.\n\n## 4. 공분산(Covariance)과 상관계수(Correlation) (§5.4)\n- **정의 및 성질:**\n$$ \\operatorname{Cov}(X, Y) = E\\big((X - \\mu_X)(Y - \\mu_Y)\\big) = E(XY) - E(X)E(Y), \\qquad \\rho(X, Y) = \\frac{\\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y} \\in [-1, 1] $$\n- **선형결합의 분산:** $V(aX + bY) = a^2 V(X) + b^2 V(Y) + 2ab \\operatorname{Cov}(X, Y)$.\n- **독립과 공분산의 관계:** $X, Y$가 독립이면 $\\operatorname{Cov}(X, Y) = 0$ ($\rho = 0$)이다. (**역은 거짓!** 예: $X \\sim U(-1, 1), Y = X^2$이면 $\\operatorname{Cov}(X, Y) = 0$이지만 종속이다.)"
+  },
+  {
+    "id": "prob-04",
+    "title": "[3순위 ★중빈출] 제3장(§3.1~3.6) 주요 이산확률분포 총정리 (이항·음이항·기하·초기하·포아송)",
+    "category": "확률및통계",
+    "subCategory": "주요 이산확률분포",
+    "tags": [
+      "3순위",
+      "이항분포",
+      "음이항분포",
+      "기하분포",
+      "무기억성",
+      "초기하분포",
+      "포아송분포",
+      "2024기출",
+      "2026기출"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2024 B2(포아송분포의 평균·분산), 2026 B6(연속확률변수 확률과 이항분포의 결합 출제) 등 분포의 정의와 평균·분산·근사 관계가 필수적으로 출제됩니다.\n\n## 1. 6대 이산확률분포 핵심 비교표 (Ch.3)\n> [이산확률분포 공식 일람] ($q = 1 - p$)\n- **(1) 베르누이분포 $\\operatorname{Ber}(p)$:** $f(x) = p^x q^{1-x}$ ($x=0,1$), $\\quad E(X) = p$, $\\quad V(X) = pq$, $\\quad M_X(t) = pe^t + q$.\n- **(2) 이항분포 $B(n, p)$ (2026 B6 출제):** $n$회 독립시행 중 성공 횟수.\n$$ f(x) = \\binom{n}{x} p^x q^{n-x} \\; (x=0,1,\\dots,n), \\quad E(X) = np, \\quad V(X) = npq, \\quad M_X(t) = (pe^t + q)^n $$\n- **(3) 음이항분포 $\\operatorname{NB}(k, p)$:** $k$번 성공할 때까지의 총 시행 횟수 $X$.\n$$ f(x) = \\binom{x-1}{k-1} p^k q^{x-k} \\; (x=k, k+1, \\dots), \\quad E(X) = \\frac{k}{p}, \\quad V(X) = \\frac{kq}{p^2}, \\quad M_X(t) = \\left(\\frac{pe^t}{1-qe^t}\\right)^k $$\n- **(4) 기하분포 $\\operatorname{Geo}(p) = \\operatorname{NB}(1, p)$:** 처음 성공할 때까지의 총 시행 횟수 $X$.\n$$ f(x) = p q^{x-1} \\; (x=1, 2, \\dots), \\quad E(X) = \\frac{1}{p}, \\quad V(X) = \\frac{q}{p^2}, \\quad M_X(t) = \\frac{pe^t}{1-qe^t} $$\n- **(5) 초기하분포 $\\operatorname{Hyp}(N, M, n)$:** $N$개(성공 $M$개) 중 $n$개 **비복원추출** 시 성공 개수 ($p = M/N$).\n$$ f(x) = \\frac{\\binom{M}{x}\\binom{N-M}{n-x}}{\\binom{N}{n}}, \\quad E(X) = np, \\quad V(X) = npq\\left(\\frac{N-n}{N-1}\\right) $$\n- **(6) 포아송분포 $\\operatorname{Poi}(\\lambda)$ (2024 B2 출제):** 단위구간 평균 발생 횟수 $\\lambda$.\n$$ f(x) = \\frac{e^{-\\lambda} \\lambda^x}{x!} \\; (x=0, 1, 2, \\dots), \\quad E(X) = \\lambda, \\quad V(X) = \\lambda, \\quad M_X(t) = e^{\\lambda(e^t - 1)} $$\n\n## 2. 이산확률분포의 핵심 성질 및 극한 근사 정리\n- **기하분포의 무기억성 (정리 3.4.2):** $X \\sim \\operatorname{Geo}(p)$일 때 임의의 자연수 $n, k$에 대하여\n$$ P(X > n + k \\mid X > n) = P(X > k), \\qquad P(X = n + k \\mid X > n) = P(X = k) $$\n- **음이항분포와 이항분포의 쌍대 관계 (참고 2, p.60):** $X \\sim \\operatorname{NB}(k, p)$, $Y \\sim B(n, p)$일 때 $P(X \\le n) = P(Y \\ge k)$이다.\n- **포아송분포의 가법성:** $X_1 \\sim \\operatorname{Poi}(\\lambda_1), \\; X_2 \\sim \\operatorname{Poi}(\\lambda_2)$가 독립이면 $X_1 + X_2 \\sim \\operatorname{Poi}(\\lambda_1 + \\lambda_2)$이다 (적률생성함수로 즉시 증명).\n- **분포 간의 근사 관계 (정리 3.5.2, 3.6.2):**\n- 초기하분포 $\\operatorname{Hyp}(N, M, n)$에서 $N$이 충분히 크면($n/N \\le 0.1$) $\\implies B(n, M/N)$으로 근사.\n- 이항분포 $B(n, p)$에서 $n$이 크고 $p$가 작으면($n \\ge 30, p \\le 0.05$) $\\implies \\operatorname{Poi}(\\lambda = np)$로 근사."
+  },
+  {
+    "id": "prob-05",
+    "title": "[3순위 ★중빈출] 제4장(§4.1~4.2) & 제6장(§6.3) 균등분포, 지수분포(무기억성) 및 순서통계량",
+    "category": "확률및통계",
+    "subCategory": "균등 · 지수분포와 순서통계량",
+    "tags": [
+      "3순위",
+      "균등분포",
+      "지수분포",
+      "무기억성",
+      "순서통계량",
+      "최솟값최댓값분포"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 2024 A11(균등분포 $U(0,1)$ 변환), 2026 B6(연속확률밀도함수의 적분 상수 결정 및 구간 확률 계산) 등 연속확률분포 기본 성질과 순서통계량은 단골 소재입니다.\n\n## 1. 균등분포 $U(a, b)$와 지수분포 $\\operatorname{Exp}(\\lambda)$ (§4.1~4.2)\n- **균등분포 $X \\sim U(a, b)$ (정리 4.1.1):** $f(x) = \\frac{1}{b-a}$ ($a \\le x \\le b$), $F(x) = \\frac{x-a}{b-a}$.\n$$ E(X) = \\frac{a+b}{2}, \\qquad V(X) = \\frac{(b-a)^2}{12}, \\qquad M_X(t) = \\frac{e^{bt} - e^{at}}{(b-a)t} $$\n> [지수분포 $X \\sim \\operatorname{Exp}(\\lambda)$의 성질과 무기억성 (정의 4.2.1, 정리 4.2.1~4.2.2)]\n- **확률밀도함수 및 누적분포함수:** $f(x) = \\lambda e^{-\\lambda x}$ ($x > 0$), $\\quad F(x) = 1 - e^{-\\lambda x}$ ($x > 0$), $\\quad P(X > x) = e^{-\\lambda x}$.\n- **평균 · 분산 · 적률생성함수:**\n$$ E(X) = \\frac{1}{\\lambda}, \\qquad V(X) = \\frac{1}{\\lambda^2}, \\qquad M_X(t) = \\frac{\\lambda}{\\lambda - t} \\; (t < \\lambda) $$\n- **지수분포의 무기억성 (No-Memory Property):** 임의의 $s, t > 0$에 대하여 다음이 성립하며, 연속확률분포 중 무기억성을 갖는 분포는 지수분포가 유일하다:\n$$ P(X > t + s \\mid X > t) = P(X > s) $$\n- **포아송 과정과의 연계:** 단위시간당 평균 $\\lambda$회 발생하는 포아송 과정에서 첫 사건이 발생할 때까지의 대기시간 $X$는 $\\operatorname{Exp}(\\lambda)$를 따른다.\n\n## 2. 순서통계량(Order Statistics)의 분포 (§6.3)\n> [정리 (최솟값 $X_{(1)}$, 최댓값 $X_{(n)}$, $k$번째 순서통계량 $X_{(k)}$의 분포)] 연속확률변수 모집단(PDF $f(x)$, CDF $F(x)$)에서 추출한 크기 $n$인 확률표본 $X_1, \\dots, X_n$을 크기순으로 나열한 $X_{(1)} \\le X_{(2)} \\le \\dots \\le X_{(n)}$에 대하여:\n- **(1) 최댓값 $X_{(n)} = \\max\\{X_1, \\dots, X_n\\}$ (병렬 시스템 수명):**\n$$ F_{X_{(n)}}(x) = P(X_{(n)} \\le x) = \\{F(x)\\}^n, \\qquad f_{X_{(n)}}(x) = n \\{F(x)\\}^{n-1} f(x) $$\n- **(2) 최솟값 $X_{(1)} = \\min\\{X_1, \\dots, X_n\\}$ (직렬 시스템 수명 — 예제 5.2.10):**\n$$ F_{X_{(1)}}(x) = 1 - P(X_{(1)} > x) = 1 - \\{1 - F(x)\\}^n, \\qquad f_{X_{(1)}}(x) = n \\{1 - F(x)\\}^{n-1} f(x) $$\n- **(3) $k$번째 순서통계량 $X_{(k)}$의 확률밀도함수:**\n$$ f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} \\{F(x)\\}^{k-1} \\{1 - F(x)\\}^{n-k} f(x) $$\n- **중요 응용:** 독립인 지수확률변수 $X_i \\sim \\operatorname{Exp}(\\lambda_i)$ ($i=1, \\dots, n$)의 최솟값 $Z = \\min\\{X_1, \\dots, X_n\\}$은 **$Z \\sim \\operatorname{Exp}(\\lambda_1 + \\dots + \\lambda_n)$** 을 따른다 (예제 5.2.10)."
+  },
+  {
+    "id": "prob-06",
+    "title": "[3순위 ★중빈출] 제1장(§1.1~1.6) 공리적 확률, 조건부확률, 베이즈 정리 및 사건의 독립",
+    "category": "확률및통계",
+    "subCategory": "확률의 공리와 조건부확률",
+    "tags": [
+      "3순위",
+      "공리적확률",
+      "부울부등식",
+      "본페로니부등식",
+      "조건부확률",
+      "전확률의법칙",
+      "베이즈정리",
+      "사건의독립"
+    ],
+    "updatedAt": "2026-11-13 16:55",
+    "images": [],
+    "content": "## 0. 기출 출제 분석 (2022~2026)\n> [출제 빈도: ★★★] 조건부확률(2022 A4, 2025 B6), 독립시행(2026 B6) 및 확률의 공리·부등식은 모든 확률 문제 풀이와 수학교육론 확률 지도 문항(2022 B4, 2026 A6)의 이론적 배경이 됩니다.\n\n## 1. 공리적 확률과 확률 부등식 (§1.2~1.3)\n- **정의 1.2.4 (콜모고로프 확률 공리):** 표본공간 $S$의 사건에 정의된 함수 $P$가 ① $0 \\le P(A) \\le 1$, ② $P(S) = 1$, ③ 쌍마다 배반인 사건열 $\\{A_i\\}_{i=1}^\\infty$에 대하여 $P\\left(\\bigcup_{i=1}^\\infty A_i\\right) = \\sum_{i=1}^\\infty P(A_i)$ (가산가법성)를 만족할 때 확률이라 한다.\n- **정리 1.3.2 (포함배제의 원리):** $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.\n> [정리 1.3.3 & 1.3.4 (부울의 부등식과 본페로니 부등식)] 임의의 사건 $A_1, A_2, \\dots, A_n$에 대하여:\n- **부울 부등식 (Boole's Inequality):** $P\\left(\\bigcup_{i=1}^n A_i\\right) \\le \\sum_{i=1}^n P(A_i)$\n- **본페로니 부등식 (Bonferroni's Inequality):**\n$$ P\\left(\\bigcap_{i=1}^n A_i\\right) \\ge 1 - \\sum_{i=1}^n P(A_i^c) = \\sum_{i=1}^n P(A_i) - (n - 1) $$\n\n## 2. 조건부확률, 전확률의 법칙 및 베이즈 정리 (§1.5)\n- **정의 1.5.1 & 정리 1.5.2 (조건부확률과 곱셈정리):** $P(A) > 0$일 때 $P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}$, 즉 $P(A \\cap B) = P(A)P(B \\mid A) = P(B)P(A \\mid B)$.\n> [정리 1.5.3 & 1.5.4 (전확률의 법칙과 베이즈 정리)] $A_1, A_2, \\dots, A_n$이 표본공간 $S$의 **분할**(쌍마다 배반이고 합집합이 $S$)이고 $P(B) > 0$일 때:\n- **전확률의 법칙:** $P(B) = \\sum_{i=1}^n P(A_i) P(B \\mid A_i)$\n- **베이즈 정리 (Bayes' Theorem):**\n$$ P(A_k \\mid B) = \\frac{P(A_k) P(B \\mid A_k)}{\\sum_{i=1}^n P(A_i) P(B \\mid A_i)} $$\n\n## 3. 사건의 독립과 종속 (§1.6)\n- **정의 1.6.1 & 정리 1.6.2~1.6.3:** $P(A \\cap B) = P(A)P(B)$일 때 $A, B$는 **독립**이다. $A, B$가 독립이면 $(A, B^c)$, $(A^c, B)$, $(A^c, B^c)$도 모두 독립이다. (주의: $P(A)>0, P(B)>0$인 배반사건은 항상 종속이다!)\n- **상호독립 vs 쌍별독립 (정의 1.6.2, 예제 1.6.3):** 세 사건 $A_1, A_2, A_3$가 상호독립(mutually independent)이려면 ① 쌍별독립 $P(A_i \\cap A_j) = P(A_i)P(A_j)$ ($i < j$) 조건 **3개**와 ② 세 사건 동시 교집합 조건 $P(A_1 \\cap A_2 \\cap A_3) = P(A_1)P(A_2)P(A_3)$ 까지 **총 4개 조건을 모두 만족**해야 한다! (쌍별독립이지만 상호독립이 아닌 대표 반례: 주사위 2회 던지기에서 $A_1$: 1회 홀수, $A_2$: 2회 홀수, $A_3$: 두 눈의 합 홀수)"
   }
 ]
