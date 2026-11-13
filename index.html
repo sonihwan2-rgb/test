@@ -42,7 +42,6 @@
       --safe-left: env(safe-area-inset-left, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
 
-      /* 아이폰 감성 물리 스프링 베지어 곡선 */
       --ios-spring: cubic-bezier(0.22, 1, 0.36, 1);
       --ios-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
     }
@@ -183,9 +182,10 @@
       max-height: 360px;
       opacity: 1;
       transform: translateY(0);
+      will-change: max-height, opacity, transform;
       transition:
         max-height 0.42s var(--ios-spring),
-        opacity 0.3s var(--ios-spring),
+        opacity 0.28s var(--ios-spring),
         transform 0.42s var(--ios-spring);
     }
 
@@ -211,11 +211,12 @@
       color: var(--text-secondary);
       background: var(--glass-elevated);
       border-bottom: 1px solid transparent;
+      flex-shrink: 0;
       transition: height 0.36s var(--ios-spring), opacity 0.26s ease, border-color 0.26s ease;
     }
 
     .sidebar.chrome-collapsed .sidebar-top-pill {
-      height: 30px;
+      height: 32px;
       opacity: 1;
       border-bottom-color: var(--glass-border-subtle);
     }
@@ -224,7 +225,7 @@
       width: 32px;
       height: 4px;
       border-radius: 999px;
-      background: rgba(142, 142, 147, 0.45);
+      background: rgba(142, 142, 147, 0.48);
     }
 
     .sidebar-header {
@@ -348,6 +349,7 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
       padding: 10px;
     }
 
@@ -378,6 +380,7 @@
     .sidebar-footer-wrap {
       border-top: 1px solid var(--glass-border-subtle);
       background: var(--glass-elevated);
+      flex-shrink: 0;
       transition: all 0.38s var(--ios-spring);
     }
 
@@ -390,6 +393,7 @@
       opacity: 1;
       transform: translateY(0);
       overflow: hidden;
+      will-change: max-height, opacity, transform;
       transition:
         max-height 0.4s var(--ios-spring),
         padding 0.4s var(--ios-spring),
@@ -418,7 +422,7 @@
     }
 
     .sidebar.chrome-collapsed .sidebar-bottom-pill {
-      height: 24px;
+      height: 26px;
       opacity: 1;
     }
 
@@ -792,6 +796,7 @@
         z-index: 40;
         overflow: hidden;
         cursor: pointer;
+        will-change: height, max-width, bottom;
         transition:
           height 0.38s var(--ios-spring),
           max-width 0.38s var(--ios-spring),
@@ -814,7 +819,6 @@
         transition: opacity 0.22s ease, transform 0.34s var(--ios-spring);
       }
 
-      /* 아래로 스크롤할 때 얇은 홈 인디케이터형 글라스 바로 축소 */
       .mobile-bottom-bar.minimized {
         height: 18px;
         max-width: 148px;
@@ -868,13 +872,11 @@
 
   <!-- 좌측 플로팅 글라스 사이드바 -->
   <aside class="sidebar" id="sidebar">
-    <!-- 스크롤 축소 시 탭하여 다시 펼치는 상단 핸들 -->
     <div class="sidebar-top-pill" id="sidebarTopPill" title="탭하여 검색 및 로그인 메뉴 펼치기">
       <span class="pill-grabber"></span>
       <span>검색 · 로그인 펼치기</span>
     </div>
 
-    <!-- 아래로 스크롤 시 부드럽게 축소되는 상단 영역 -->
     <div class="sidebar-top-collapsible">
       <div class="sidebar-header">
         <div class="brand-row">
@@ -919,7 +921,6 @@
 
     <div class="doc-list" id="docList"></div>
 
-    <!-- 아래로 스크롤 시 부드럽게 축소되는 하단 영역 -->
     <div class="sidebar-footer-wrap">
       <div class="sidebar-bottom-pill" id="sidebarBottomPill" title="탭하여 도구 펼치기">
         <span class="pill-grabber"></span>
@@ -1104,8 +1105,8 @@
   <script>
     /* =========================================================================
        [보안 마스터 금고]
-       아래 문자열에 '새 금고 만들기'에서 생성한 암호문을 붙여넣으면
-       F12로 소스를 보아도 토큰·아이디·비밀번호가 절대 노출되지 않습니다.
+       '새 금고 만들기'에서 생성한 암호문을 아래에 붙여넣으면
+       F12로 소스를 보아도 토큰·아이디·비밀번호가 노출되지 않습니다.
        ========================================================================= */
     const ENCRYPTED_MASTER_VAULT = "AP1cwKXw0iZXvJbM7iHFouA2pCSOIRLzbPGp/2EDKTMYc50jqiSYgw1rtnYRotICtkbbopmOd+wQ49I/dmR6kRlCEnzyQHnRpR4zBSozBZ3ZfZLnN+3yknMhSJaaikwDYmThicU3S9284Knt3oYpZi13q3inBdY8Yyk9vYrY5uU8I3UGgMsy0SEynwjAr8z/HKHxgUINX4A9jPzrJ0933eOv/pTbvT98/ddwA3aCrqCUq4CHX5GGEz/XvHbMX/y4CN3NbdkI2CjBE1pyMVNM9h6SpQ==";
 
@@ -1200,77 +1201,166 @@
     }
 
     /* =========================================================================
-       2. 아이폰 감성 스크롤 방향 감지 축소/복원 컨트롤러
+       2. 누적 이동 거리 & 경계 바운스 보호가 적용된 iOS 스크롤 컨트롤러
+          - 느린 스크롤: 방향 전환 기준점(anchorTop)으로부터 누적 거리로 판정
+          - 맨 위(Top): iOS 러버밴드 음수(-) 바운스 복귀 시 오작동 차단
+          - 맨 아래(Bottom): 바닥 도달 시 바운스 반동 및 높이 변화 떨림(Jitter) 차단
        ========================================================================= */
-    function setupScrollCollapse(scrollEl, onScrollDown, onScrollUp) {
-      let lastScrollTop = 0;
+    function createScrollCollapseController(scrollEl, { onCollapse, onExpand, threshold = 28 }) {
+      let lastTop = 0;
+      let anchorTop = 0;
+      let lastDir = 0; // 1: 아래로, -1: 위로
+      let isCollapsed = false;
+      let isTransitioning = false;
+      let lockTimer = null;
       let ticking = false;
 
+      function setCollapsed(nextState) {
+        if (isCollapsed === nextState) return;
+        isCollapsed = nextState;
+        isTransitioning = true;
+        clearTimeout(lockTimer);
+        lockTimer = setTimeout(() => {
+          isTransitioning = false;
+          // 레이아웃 높이 변화가 끝난 직후의 좌표를 기준점으로 재동기화
+          lastTop = Math.max(0, scrollEl.scrollTop);
+          anchorTop = lastTop;
+          lastDir = 0;
+        }, 420);
+
+        if (nextState) onCollapse();
+        else onExpand();
+      }
+
       scrollEl.addEventListener("scroll", () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            const currentTop = scrollEl.scrollTop;
-            const delta = currentTop - lastScrollTop;
+        if (ticking) return;
+        ticking = true;
 
-            if (currentTop <= 16) {
-              onScrollUp();
-            } else if (delta > 8) {
-              onScrollDown();
-            } else if (delta < -8) {
-              onScrollUp();
-            }
+        window.requestAnimationFrame(() => {
+          ticking = false;
+          const maxScroll = scrollEl.scrollHeight - scrollEl.clientHeight;
+          // 스크롤 가능한 여유 공간이 충분하지 않으면 항상 펼침 유지
+          if (maxScroll <= 40) {
+            if (isCollapsed) setCollapsed(false);
+            return;
+          }
 
-            lastScrollTop = currentTop;
-            ticking = false;
-          });
-          ticking = true;
-        }
+          // iOS Safari 바운스(음수 또는 maxScroll 초과) 값을 안전 범위로 클램핑
+          const rawTop = scrollEl.scrollTop;
+          const currentTop = Math.max(0, Math.min(rawTop, maxScroll));
+
+          // 1. 최상단 안전 영역 (맨 위 도달 시 항상 펼침)
+          if (currentTop <= 24) {
+            anchorTop = currentTop;
+            lastTop = currentTop;
+            lastDir = 0;
+            if (isCollapsed) setCollapsed(false);
+            return;
+          }
+
+          // 애니메이션 중 레이아웃 높이 변화로 발생하는 미세 스크롤 변화는 무시
+          if (isTransitioning) {
+            lastTop = currentTop;
+            anchorTop = currentTop;
+            return;
+          }
+
+          // 2. 최하단 바운스 반동 보호 영역 (바닥 부근에서 튀어오르는 반동으로 갑자기 펼쳐지는 현상 방지)
+          const nearBottom = currentTop >= maxScroll - 24;
+          const step = currentTop - lastTop;
+
+          if (Math.abs(step) < 0.5) return;
+
+          const currentDir = step > 0 ? 1 : -1;
+
+          // 스크롤 방향이 전환되면 해당 위치를 새로운 누적 기준점(anchorTop)으로 설정
+          if (currentDir !== lastDir) {
+            anchorTop = lastTop;
+            lastDir = currentDir;
+          }
+
+          const cumulativeDelta = currentTop - anchorTop;
+
+          // 느린 스크롤이라도 기준점 대비 threshold(28px) 이상 누적 이동하면 반응
+          if (currentDir === 1 && cumulativeDelta >= threshold) {
+            setCollapsed(true);
+            anchorTop = currentTop;
+          } else if (currentDir === -1 && !nearBottom && cumulativeDelta <= -threshold) {
+            setCollapsed(false);
+            anchorTop = currentTop;
+          }
+
+          lastTop = currentTop;
+        });
       }, { passive: true });
+
+      return {
+        reset() {
+          clearTimeout(lockTimer);
+          isTransitioning = false;
+          isCollapsed = false;
+          lastTop = Math.max(0, scrollEl.scrollTop);
+          anchorTop = lastTop;
+          lastDir = 0;
+          onExpand();
+        },
+        syncState(collapsedState) {
+          isCollapsed = collapsedState;
+          lastTop = Math.max(0, scrollEl.scrollTop);
+          anchorTop = lastTop;
+          lastDir = 0;
+        }
+      };
     }
 
-    // 본문 영역 스크롤 -> 하단 플로팅 독 축소 / 복원
-    setupScrollCollapse(
-      contentScrollEl,
-      () => {
+    // 1) 본문 스크롤 컨트롤러 (하단 플로팅 독 제어)
+    const contentScrollCtrl = createScrollCollapseController(contentScrollEl, {
+      threshold: 28,
+      onCollapse: () => {
         if (window.innerWidth <= 820 && editContainerEl.style.display === "none") {
           mobileBottomBarEl.classList.add("minimized");
         }
       },
-      () => {
-        mobileBottomBarEl.classList.remove("minimized");
-      }
-    );
-
-    // 축소된 하단 얇은 바를 터치하면 즉시 다시 복원
-    mobileBottomBarEl.addEventListener("click", (e) => {
-      if (mobileBottomBarEl.classList.contains("minimized")) {
-        e.stopPropagation();
+      onExpand: () => {
         mobileBottomBarEl.classList.remove("minimized");
       }
     });
 
-    // 사이드바 목록 스크롤 -> 상단(로그인/검색) 및 하단(병합/새로고침) 영역 축소 / 복원
-    setupScrollCollapse(
-      docListEl,
-      () => {
-        if (docListEl.scrollHeight > docListEl.clientHeight + 40) {
-          sidebarEl.classList.add("chrome-collapsed");
-        }
+    // 축소된 하단 얇은 바를 터치하면 즉시 복원
+    mobileBottomBarEl.addEventListener("click", (e) => {
+      if (mobileBottomBarEl.classList.contains("minimized")) {
+        e.stopPropagation();
+        contentScrollCtrl.syncState(false);
+        mobileBottomBarEl.classList.remove("minimized");
+      }
+    });
+
+    // 2) 사이드바 목록 스크롤 컨트롤러 (상단 로그인·검색 + 하단 도구바 제어)
+    const sidebarScrollCtrl = createScrollCollapseController(docListEl, {
+      threshold: 28,
+      onCollapse: () => {
+        sidebarEl.classList.add("chrome-collapsed");
       },
-      () => {
+      onExpand: () => {
         sidebarEl.classList.remove("chrome-collapsed");
       }
-    );
+    });
 
-    // 축소된 사이드바 상단/하단 핸들 클릭 시 즉시 펼침
-    document.getElementById("sidebarTopPill").onclick = () => sidebarEl.classList.remove("chrome-collapsed");
-    document.getElementById("sidebarBottomPill").onclick = () => sidebarEl.classList.remove("chrome-collapsed");
+    // 축소된 사이드바 상단/하단 핸들 탭 시 즉시 복원
+    document.getElementById("sidebarTopPill").onclick = () => {
+      sidebarScrollCtrl.syncState(false);
+      sidebarEl.classList.remove("chrome-collapsed");
+    };
+    document.getElementById("sidebarBottomPill").onclick = () => {
+      sidebarScrollCtrl.syncState(false);
+      sidebarEl.classList.remove("chrome-collapsed");
+    };
 
     /* =========================================================================
        3. 사이드바 열기/닫기 및 기본 유틸리티
        ========================================================================= */
     function openSidebar() {
-      sidebarEl.classList.remove("chrome-collapsed");
+      sidebarScrollCtrl.reset();
       sidebarEl.classList.add("open");
       backdropEl.classList.add("show");
     }
@@ -1408,7 +1498,6 @@
     }
 
     async function init() {
-      // 세션 동안만 유지되는 복호화 상태 복원 (탭 종료 시 자동 잠금)
       const sessionAuth = sessionStorage.getItem(SESSION_KEY);
       if (sessionAuth) {
         try { ghConfig = JSON.parse(sessionAuth); } catch (e) {}
@@ -1586,7 +1675,7 @@
           renderSidebar();
           renderView();
           contentScrollEl.scrollTop = 0;
-          mobileBottomBarEl.classList.remove("minimized");
+          contentScrollCtrl.reset();
           closeSidebar();
         };
         docListEl.appendChild(item);
@@ -1649,7 +1738,7 @@
       viewContainerEl.style.display = "block";
       if (window.innerWidth <= 820) {
         mobileBottomBarEl.style.display = "flex";
-        mobileBottomBarEl.classList.remove("minimized");
+        contentScrollCtrl.reset();
       }
     }
 
@@ -1853,7 +1942,6 @@
     document.getElementById("backToLoginBtn").onclick = showLoginSection;
     document.getElementById("closeAuthModalBtn").onclick = () => { authModal.style.display = "none"; };
 
-    // 마스터 아이디/비밀번호로 금고 복호화 및 로그인
     document.getElementById("unlockVaultBtn").onclick = async () => {
       const mId = document.getElementById("loginMasterId").value.trim();
       const mPw = document.getElementById("loginMasterPw").value;
@@ -1892,7 +1980,6 @@
       }
     };
 
-    // 새 암호화 금고 생성 및 즉시 연결
     document.getElementById("generateVaultBtn").onclick = async () => {
       const mId = document.getElementById("setupMasterId").value.trim();
       const mPw = document.getElementById("setupMasterPw").value;
@@ -1908,17 +1995,14 @@
       const payload = { owner, repo, path: "wiki_data.json", token };
       const encryptedBase64 = await encryptVaultPayload(mId, mPw, payload);
 
-      // 현재 기기 브라우저에도 암호화된 상태로 저장
       localStorage.setItem(LOCAL_VAULT_KEY, encryptedBase64);
 
-      // 다른 기기(아이폰 17 등)에서도 쓰려면 index.html에 붙여넣을 수 있도록 표시
       const outBox = document.getElementById("generatedVaultBox");
       const outArea = document.getElementById("generatedVaultOutput");
       outBox.style.display = "block";
       outArea.value = encryptedBase64;
       outArea.select();
 
-      // 즉시 세션 잠금 해제 및 연동
       ghConfig = payload;
       sessionStorage.setItem(SESSION_KEY, JSON.stringify(ghConfig));
       updateAuthUI();
@@ -2001,9 +2085,9 @@
       e.target.value = "";
     };
 
-    searchInputEl.oninput = renderSidebar;
-    categoryFilterEl.onchange = () => { refreshSubCategoryOptions(); renderSidebar(); };
-    subCategoryFilterEl.onchange = renderSidebar;
+    searchInputEl.oninput = () => { renderSidebar(); sidebarScrollCtrl.reset(); };
+    categoryFilterEl.onchange = () => { refreshSubCategoryOptions(); renderSidebar(); sidebarScrollCtrl.reset(); };
+    subCategoryFilterEl.onchange = () => { renderSidebar(); sidebarScrollCtrl.reset(); };
 
     document.getElementById("themeToggle").onclick = () => {
       document.body.classList.toggle("dark");
