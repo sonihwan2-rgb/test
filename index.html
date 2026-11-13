@@ -2,7 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="수학임용위키" />
   <title>중등 수학 임용고시 개인 위키</title>
   <!-- KaTeX 수식 렌더링 라이브러리 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -10,92 +13,245 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <style>
     :root {
-      --bg-main: #f8fafc;
-      --bg-sidebar: #ffffff;
-      --bg-card: #ffffff;
-      --bg-hover: #f1f5f9;
-      --bg-active: #eef2ff;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #94a3b8;
-      --border-color: #e2e8f0;
-      --accent: #4f46e5;
-      --accent-hover: #4338ca;
-      --success: #10b981;
-      --danger: #ef4444;
-      --callout-bg: #f8fafc;
-      --callout-border: #4f46e5;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      /* 라이트 모드 리퀴드 글라스 팔레트 */
+      --bg-canvas: #eef2f9;
+      --glass-surface: rgba(255, 255, 255, 0.64);
+      --glass-surface-strong: rgba(255, 255, 255, 0.78);
+      --glass-elevated: rgba(255, 255, 255, 0.52);
+      --glass-hover: rgba(255, 255, 255, 0.85);
+      --glass-active: rgba(0, 122, 255, 0.13);
+      --glass-border: rgba(255, 255, 255, 0.72);
+      --glass-border-subtle: rgba(15, 23, 42, 0.08);
+      --glass-specular: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(255, 255, 255, 0.25);
+      --glass-shadow: 0 12px 36px rgba(15, 23, 42, 0.07), 0 2px 8px rgba(15, 23, 42, 0.04);
+
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #8e8e93;
+
+      /* iOS 시스템 블루 & 액센트 */
+      --accent: #007aff;
+      --accent-hover: #0062cc;
+      --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
+      --success: #34c759;
+      --danger: #ff3b30;
+
+      --callout-bg: rgba(0, 122, 255, 0.07);
+      --callout-border: #007aff;
+
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
     }
 
     body.dark {
-      --bg-main: #0f172a;
-      --bg-sidebar: #1e293b;
-      --bg-card: #1e293b;
-      --bg-hover: #334155;
-      --bg-active: #312e81;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #64748b;
-      --border-color: #334155;
-      --accent: #6366f1;
-      --accent-hover: #818cf8;
-      --callout-bg: #0f172a;
-      --callout-border: #6366f1;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      /* 다크 모드 리퀴드 글라스 팔레트 */
+      --bg-canvas: #070b14;
+      --glass-surface: rgba(28, 32, 46, 0.62);
+      --glass-surface-strong: rgba(34, 39, 56, 0.78);
+      --glass-elevated: rgba(255, 255, 255, 0.06);
+      --glass-hover: rgba(255, 255, 255, 0.11);
+      --glass-active: rgba(10, 132, 255, 0.22);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --glass-border-subtle: rgba(255, 255, 255, 0.09);
+      --glass-specular: inset 0 1px 1px rgba(255, 255, 255, 0.24), inset 0 -1px 1px rgba(255, 255, 255, 0.04);
+      --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 2px 10px rgba(0, 0, 0, 0.3);
+
+      --text-primary: #f5f5f7;
+      --text-secondary: #aeaeb2;
+      --text-muted: #636366;
+
+      --accent: #0a84ff;
+      --accent-hover: #409cff;
+      --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
+      --success: #30d158;
+      --danger: #ff453a;
+
+      --callout-bg: rgba(10, 132, 255, 0.14);
+      --callout-border: #0a84ff;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Malgun Gothic", sans-serif;
-      background-color: var(--bg-main);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      background-color: var(--bg-canvas);
       color: var(--text-primary);
       display: flex;
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
-      line-height: 1.65;
+      line-height: 1.68;
+      position: relative;
+      letter-spacing: -0.012em;
     }
 
-    /* 사이드바 */
+    /* 리퀴드 글라스 투과용 앰비언트 배경 오브 */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.65;
+      animation: floatOrb 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 48vw;
+      height: 48vw;
+      max-width: 560px;
+      max-height: 560px;
+      background: radial-gradient(circle, rgba(94, 92, 230, 0.35), rgba(0, 122, 255, 0.08));
+      top: -12%;
+      left: -8%;
+    }
+
+    .orb-2 {
+      width: 44vw;
+      height: 44vw;
+      max-width: 520px;
+      max-height: 520px;
+      background: radial-gradient(circle, rgba(52, 199, 89, 0.25), rgba(50, 173, 230, 0.12));
+      bottom: -14%;
+      right: -6%;
+      animation-delay: -6s;
+    }
+
+    .orb-3 {
+      width: 36vw;
+      height: 36vw;
+      max-width: 420px;
+      max-height: 420px;
+      background: radial-gradient(circle, rgba(255, 45, 85, 0.18), rgba(175, 82, 222, 0.08));
+      top: 38%;
+      left: 42%;
+      animation-delay: -12s;
+    }
+
+    body.dark .orb {
+      opacity: 0.48;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(24px, -28px) scale(1.06); }
+    }
+
+    /* 공통 리퀴드 글라스 믹스인 효과 */
+    .liquid-glass {
+      background: var(--glass-surface);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-specular);
+    }
+
+    /* iOS 스프링 버튼 인터랙션 */
+    button {
+      font-family: inherit;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    /* 모바일 사이드바 배경 오버레이 */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 28, 0.36);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 45;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .sidebar-backdrop.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* 좌측 플로팅 글라스 사이드바 */
     .sidebar {
-      width: 320px;
-      background-color: var(--bg-sidebar);
-      border-right: 1px solid var(--border-color);
+      position: relative;
+      z-index: 50;
+      width: 326px;
+      margin: 12px 0 12px 12px;
+      border-radius: 26px;
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-specular);
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      transition: transform 0.25s ease;
+      overflow: hidden;
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .sidebar-header {
-      padding: 16px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 18px 16px 14px;
+      border-bottom: 1px solid var(--glass-border-subtle);
     }
 
     .brand-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .brand-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
     }
 
     .auth-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--bg-main);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 7px 10px;
+      gap: 6px;
+      background: var(--glass-elevated);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 14px;
+      padding: 8px 11px;
       margin-bottom: 10px;
       font-size: 0.78rem;
+    }
+
+    .auth-info {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .auth-info span:last-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
     }
 
     .status-dot {
@@ -104,86 +260,112 @@
       height: 8px;
       border-radius: 50%;
       background: var(--text-muted);
-      margin-right: 6px;
+      margin-right: 7px;
+      flex-shrink: 0;
     }
 
-    .status-dot.online { background: var(--success); }
+    .status-dot.online {
+      background: var(--success);
+      box-shadow: 0 0 8px rgba(52, 199, 89, 0.6);
+    }
 
     .icon-btn {
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 0.78rem;
+      background: var(--glass-elevated);
+      border: 1px solid var(--glass-border-subtle);
+      color: var(--text-primary);
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.77rem;
+      font-weight: 600;
       cursor: pointer;
+      flex-shrink: 0;
     }
 
-    .icon-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .icon-btn:hover { background: var(--glass-hover); }
 
     .btn-primary {
       width: 100%;
-      background-color: var(--accent);
+      background: var(--accent-gradient);
       color: #ffffff;
       border: none;
-      border-radius: 8px;
-      padding: 9px 12px;
-      font-size: 0.88rem;
+      border-radius: 15px;
+      padding: 11px 14px;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 122, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
-    .btn-primary:hover { background-color: var(--accent-hover); }
+    .btn-primary:hover { opacity: 0.94; }
 
     .search-box {
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--glass-border-subtle);
     }
 
     .search-input, .select-filter {
       width: 100%;
-      padding: 7px 10px;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      background: var(--bg-main);
+      padding: 9px 12px;
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 13px;
+      background: var(--glass-elevated);
       color: var(--text-primary);
       font-size: 0.84rem;
       outline: none;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .search-input:focus, .select-filter:focus {
+      border-color: var(--accent);
+      background: var(--glass-hover);
     }
 
     .filter-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      gap: 7px;
       margin-top: 8px;
     }
 
     .doc-list {
       flex: 1;
       overflow-y: auto;
-      padding: 8px;
+      -webkit-overflow-scrolling: touch;
+      padding: 10px 10px;
     }
+
+    /* 아이폰 스크롤바 미니멀화 */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(142, 142, 147, 0.3); border-radius: 999px; }
 
     .doc-item {
-      padding: 10px 12px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: 16px;
       cursor: pointer;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       border: 1px solid transparent;
+      transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
     }
 
-    .doc-item:hover { background-color: var(--bg-hover); }
-    .doc-item.active { background-color: var(--bg-active); border-color: var(--accent); }
+    .doc-item:hover { background-color: var(--glass-hover); }
+    .doc-item:active { transform: scale(0.98); }
+
+    .doc-item.active {
+      background-color: var(--glass-active);
+      border-color: rgba(0, 122, 255, 0.32);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
 
     .doc-item-cat {
       font-size: 0.72rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent);
       margin-bottom: 2px;
     }
 
     .doc-item-title {
-      font-size: 0.88rem;
+      font-size: 0.89rem;
       font-weight: 600;
       color: var(--text-primary);
       white-space: nowrap;
@@ -192,96 +374,121 @@
     }
 
     .doc-item-meta {
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       margin-top: 3px;
     }
 
     .sidebar-footer {
-      padding: 10px 16px;
-      border-top: 1px solid var(--border-color);
+      padding: 12px 14px;
+      border-top: 1px solid var(--glass-border-subtle);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      gap: 7px;
+      background: var(--glass-elevated);
     }
-
-    .sidebar-footer .full-span { grid-column: span 2; }
 
     /* 메인 영역 */
     .main-container {
+      position: relative;
+      z-index: 10;
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      min-width: 0;
     }
 
     .topbar {
-      height: 54px;
-      padding: 0 24px;
-      border-bottom: 1px solid var(--border-color);
-      background: var(--bg-card);
+      margin: 12px 16px 0;
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04), var(--glass-specular);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       flex-shrink: 0;
     }
 
-    .mobile-menu-btn { display: none; margin-right: 10px; }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      margin-right: 10px;
+      font-weight: 600;
+    }
 
     .breadcrumb {
       font-size: 0.84rem;
       color: var(--text-secondary);
-      font-weight: 500;
+      font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 55vw;
     }
 
-    .action-group { display: flex; gap: 6px; align-items: center; }
+    .action-group {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
     .sync-badge {
-      font-size: 0.76rem;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: var(--bg-main);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--glass-elevated);
       color: var(--text-secondary);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--glass-border-subtle);
+      white-space: nowrap;
     }
 
     .btn-secondary {
-      background: var(--bg-main);
+      background: var(--glass-elevated);
       color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 0.81rem;
-      font-weight: 500;
+      border: 1px solid var(--glass-border-subtle);
+      padding: 7px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
       cursor: pointer;
     }
 
-    .btn-secondary:hover { background: var(--bg-hover); }
+    .btn-secondary:hover { background: var(--glass-hover); }
 
     .btn-accent-outline {
-      background: var(--bg-active);
+      background: var(--glass-active);
       color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 0.81rem;
-      font-weight: 600;
+      border: 1px solid rgba(0, 122, 255, 0.25);
+      padding: 7px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
       cursor: pointer;
     }
 
     .btn-accent-outline:hover { background: var(--accent); color: #ffffff; }
 
     .btn-danger {
-      background: transparent;
+      background: rgba(255, 59, 48, 0.08);
       color: var(--danger);
-      border: 1px solid var(--danger);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 0.81rem;
+      border: 1px solid rgba(255, 59, 48, 0.22);
+      padding: 7px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
       cursor: pointer;
     }
 
@@ -290,42 +497,49 @@
     .content-scroll {
       flex: 1;
       overflow-y: auto;
-      padding: 32px 24px;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 24px 36px;
     }
 
+    /* 본문 리퀴드 글라스 카드 */
     .wiki-card {
       max-width: 860px;
       margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 36px 40px;
-      box-shadow: var(--shadow);
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(32px) saturate(190%);
+      -webkit-backdrop-filter: blur(32px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 38px 42px;
+      box-shadow: var(--glass-shadow), var(--glass-specular);
     }
 
-    .badge-row { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+    .badge-row { display: flex; gap: 7px; margin-bottom: 14px; flex-wrap: wrap; }
 
     .badge {
       display: inline-block;
-      background: var(--bg-active);
+      background: var(--glass-active);
       color: var(--accent);
       font-size: 0.78rem;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 999px;
+      border: 1px solid rgba(0, 122, 255, 0.18);
     }
 
     .badge-sub {
-      background: var(--bg-main);
+      background: var(--glass-elevated);
       color: var(--text-secondary);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--glass-border-subtle);
     }
 
     .article-title {
-      font-size: 1.8rem;
+      font-size: 1.78rem;
       font-weight: 800;
-      line-height: 1.3;
-      margin-bottom: 10px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      word-break: keep-all;
+      letter-spacing: -0.025em;
     }
 
     .article-meta {
@@ -333,61 +547,89 @@
       color: var(--text-muted);
       padding-bottom: 18px;
       margin-bottom: 24px;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--glass-border-subtle);
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
 
     .tag-chip {
-      background: var(--bg-main);
-      border: 1px solid var(--border-color);
+      background: var(--glass-elevated);
+      border: 1px solid var(--glass-border-subtle);
       color: var(--text-secondary);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.76rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
     }
 
-    .article-body { font-size: 1rem; color: var(--text-primary); }
+    .article-body {
+      font-size: 1rem;
+      color: var(--text-primary);
+      overflow-wrap: break-word;
+      word-break: keep-all;
+    }
+
     .article-body h2 {
-      font-size: 1.32rem;
-      margin: 24px 0 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border-color);
+      font-size: 1.28rem;
+      font-weight: 700;
+      margin: 26px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--glass-border-subtle);
+      letter-spacing: -0.02em;
     }
-    .article-body h3 { font-size: 1.1rem; margin: 18px 0 8px; color: var(--accent); }
-    .article-body p { margin-bottom: 12px; }
-    .article-body ul { margin: 8px 0 14px 22px; }
-    .article-body li { margin-bottom: 5px; }
 
+    .article-body h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 18px 0 8px;
+      color: var(--accent);
+    }
+
+    .article-body p { margin-bottom: 12px; }
+    .article-body ul { margin: 8px 0 14px 20px; }
+    .article-body li { margin-bottom: 7px; }
+
+    /* 모바일 긴 LaTeX 블록 수식 가로 스크롤 보호 */
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 아이폰 스타일 유리 콜아웃 박스 */
     .callout {
       background: var(--callout-bg);
+      border: 1px solid rgba(0, 122, 255, 0.16);
       border-left: 4px solid var(--callout-border);
       padding: 14px 18px;
-      border-radius: 0 8px 8px 0;
+      border-radius: 16px;
       margin: 16px 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
     }
 
     .attached-images {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px dashed var(--border-color);
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--glass-border-subtle);
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
     }
 
     .attached-img-box {
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
       overflow: hidden;
-      background: var(--bg-main);
+      background: var(--glass-elevated);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
     }
 
     .attached-img-box img { width: 100%; display: block; cursor: zoom-in; }
     .attached-img-caption {
-      padding: 6px 10px;
+      padding: 8px 12px;
       font-size: 0.78rem;
       color: var(--text-secondary);
       display: flex;
@@ -399,7 +641,7 @@
     .form-group { margin-bottom: 16px; }
     .form-label {
       display: block;
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--text-secondary);
@@ -411,16 +653,19 @@
     }
     .form-input, .form-select, .form-textarea {
       width: 100%;
-      padding: 9px 12px;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--bg-main);
+      padding: 10px 14px;
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 14px;
+      background: var(--glass-elevated);
       color: var(--text-primary);
       font-family: inherit;
       font-size: 0.92rem;
       outline: none;
     }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      background: var(--glass-hover);
+    }
 
     .editor-toolbar {
       display: flex;
@@ -428,46 +673,52 @@
       gap: 6px;
       margin-bottom: 8px;
       padding: 8px;
-      background: var(--bg-main);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      background: var(--glass-elevated);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 16px;
     }
 
     .tool-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: var(--glass-surface-strong);
+      border: 1px solid var(--glass-border-subtle);
       color: var(--text-primary);
-      padding: 4px 9px;
-      border-radius: 5px;
+      padding: 6px 11px;
+      border-radius: 10px;
       font-size: 0.8rem;
+      font-weight: 500;
       cursor: pointer;
     }
     .tool-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     .form-textarea {
-      min-height: 340px;
+      min-height: 320px;
       resize: vertical;
       line-height: 1.6;
-      font-family: "Consolas", "Pretendard", monospace;
+      font-family: "SF Mono", "Consolas", "Pretendard", monospace;
     }
 
     .preview-box {
       margin-top: 12px;
-      padding: 16px;
+      padding: 18px;
       border: 1px dashed var(--accent);
-      border-radius: 8px;
-      background: var(--bg-main);
+      border-radius: 18px;
+      background: var(--glass-elevated);
       display: none;
     }
 
     .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 
-    /* 모달 */
+    /* 모바일 하단 플로팅 독 (PC에서는 숨김) */
+    .mobile-bottom-bar { display: none; }
+
+    /* 글라스 모달 */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(10, 15, 28, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 100;
       justify-content: center;
       align-items: center;
@@ -475,35 +726,122 @@
     }
 
     .modal-card {
-      background: var(--bg-card);
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(36px) saturate(200%);
+      -webkit-backdrop-filter: blur(36px) saturate(200%);
       color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px 28px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22), var(--glass-specular);
+      border-radius: 28px;
+      padding: 26px;
       width: 100%;
       max-width: 440px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-height: 90dvh;
+      overflow-y: auto;
     }
 
-    .modal img { max-width: 95%; max-height: 92vh; border-radius: 8px; }
+    .modal img { max-width: 95%; max-height: 92dvh; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 
-    @media (max-width: 768px) {
+    /* 아이폰 17 및 모바일·태블릿(폭 820px 이하) 최적화 */
+    @media (max-width: 820px) {
       .sidebar {
         position: fixed;
-        top: 0; bottom: 0; left: 0;
-        z-index: 50;
-        transform: translateX(-100%);
+        top: calc(10px + var(--safe-top));
+        bottom: calc(10px + var(--safe-bottom));
+        left: 10px;
+        margin: 0;
+        width: 84vw;
+        max-width: 340px;
+        border-radius: 28px;
+        transform: translateX(calc(-100% - 24px));
       }
-      .sidebar.open { transform: translateX(0); }
-      .mobile-menu-btn { display: inline-block; }
-      .wiki-card { padding: 22px 18px; }
-      .form-row-3 { grid-template-columns: 1fr; }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        font-size: 0.83rem;
+      }
+      .topbar {
+        margin: calc(8px + var(--safe-top)) 12px 0;
+        padding: 9px 14px;
+        border-radius: 999px;
+      }
+      #viewActions {
+        display: none !important;
+      }
+      .content-scroll {
+        padding: 12px 12px calc(86px + var(--safe-bottom));
+      }
+      .wiki-card {
+        padding: 24px 20px;
+        border-radius: 26px;
+      }
+      .article-title {
+        font-size: 1.4rem;
+      }
+      .article-body {
+        font-size: 0.96rem;
+      }
+      .article-body h2 {
+        font-size: 1.18rem;
+      }
+      .article-body h3 {
+        font-size: 1.02rem;
+      }
+      .form-row-3 {
+        grid-template-columns: 1fr;
+      }
+      .search-input, .select-filter, .form-input, .form-select, .form-textarea {
+        font-size: 16px;
+      }
+      /* iOS 스타일 플로팅 알약(Pill) 하단 독 */
+      .mobile-bottom-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        position: fixed;
+        bottom: calc(12px + var(--safe-bottom));
+        left: 16px;
+        right: 16px;
+        max-width: 440px;
+        margin: 0 auto;
+        background: var(--glass-surface-strong);
+        backdrop-filter: blur(30px) saturate(210%);
+        -webkit-backdrop-filter: blur(30px) saturate(210%);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.14), var(--glass-specular);
+        border-radius: 999px;
+        padding: 7px 10px;
+        z-index: 40;
+      }
+      .mobile-bottom-bar button {
+        flex: 1;
+        padding: 9px 6px;
+        font-size: 0.81rem;
+        border-radius: 999px;
+        text-align: center;
+        border: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 좌측 사이드바 -->
+  <!-- 리퀴드 글라스 배경 오브 -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- 모바일 사이드바 배경 오버레이 -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- 좌측 플로팅 글라스 사이드바 -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="brand-row">
@@ -511,13 +849,12 @@
         <button class="icon-btn" id="themeToggle" title="다크모드 전환">🌓 테마</button>
       </div>
 
-      <!-- GitHub 로그인 상태 표시 바 -->
       <div class="auth-bar">
-        <div>
+        <div class="auth-info">
           <span class="status-dot" id="authDot"></span>
           <span id="authStatusText">읽기 전용 (미연동)</span>
         </div>
-        <button class="icon-btn" id="openAuthModalBtn">🔑 GitHub 설정</button>
+        <button class="icon-btn" id="openAuthModalBtn">🔑 연결</button>
       </div>
 
       <button class="btn-primary" id="newDocBtn">+ 새 정리 문서 작성</button>
@@ -549,8 +886,8 @@
     <div class="doc-list" id="docList"></div>
 
     <div class="sidebar-footer">
-      <button class="btn-accent-outline" id="mergeBtn" title="기존 문서를 유지하고 새 JSON 문서를 이어 붙입니다">➕ JSON 추가(병합)</button>
-      <button class="btn-secondary" id="syncPullBtn" title="GitHub 저장소에서 최신 데이터를 다시 불러옵니다">🔄 GitHub 새로고침</button>
+      <button class="btn-accent-outline" id="mergeBtn" title="기존 문서를 유지하고 새 JSON 문서를 이어 붙입니다">➕ JSON 병합</button>
+      <button class="btn-secondary" id="syncPullBtn" title="GitHub 저장소에서 최신 데이터를 다시 불러옵니다">🔄 새로고침</button>
       <button class="btn-secondary" id="importBtn" title="기존 문서를 지우고 백업 파일로 덮어씁니다">📂 전체 복원</button>
       <button class="btn-secondary" id="exportBtn" title="현재 위키 전체를 JSON 파일로 백업">💾 백업 저장</button>
       <input type="file" id="mergeFileInput" accept=".json" style="display:none" />
@@ -561,15 +898,15 @@
   <!-- 우측 메인 화면 -->
   <main class="main-container">
     <header class="topbar">
-      <div style="display:flex; align-items:center;">
+      <div class="topbar-left">
         <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">☰ 목록</button>
         <span class="breadcrumb" id="breadcrumb">문서 보기</span>
       </div>
       <div class="action-group">
         <span class="sync-badge" id="syncBadge">로컬 모드</span>
         <div id="viewActions" style="display:flex; gap:6px;">
-          <button class="btn-secondary" id="splitDocBtn" title="이 문서를 복제해 세부 주제로 분할 작성합니다">📑 복제(세분화)</button>
-          <button class="btn-secondary" id="editDocBtn">✏️ 수정</button>
+          <button class="btn-secondary" id="splitDocBtn" title="이 문서를 복제해 세부 주제로 분할 작성합니다">📑 복제</button>
+          <button class="btn-accent-outline" id="editDocBtn">✏️ 수정</button>
           <button class="btn-danger" id="deleteDocBtn">🗑️ 삭제</button>
         </div>
       </div>
@@ -623,7 +960,7 @@
             <button type="button" class="tool-btn" data-insert="> [정리] ">정리 박스</button>
             <button type="button" class="tool-btn" data-insert="$f(x) = x^2$">인라인 수식 $</button>
             <button type="button" class="tool-btn" data-insert="&#10;$$&#10;\lim_{n \to \infty} a_n = L&#10;$$&#10;">블록 수식 $$</button>
-            <button type="button" class="tool-btn" id="uploadImgBtn">🖼️ 이미지 첨부</button>
+            <button type="button" class="tool-btn" id="uploadImgBtn">🖼️ 이미지</button>
             <button type="button" class="tool-btn" id="togglePreviewBtn">👁️ 미리보기</button>
             <input type="file" id="imgInput" accept="image/*" multiple style="display:none" />
           </div>
@@ -635,40 +972,48 @@
 
         <div style="display:flex; gap:10px; justify-content:flex-end;">
           <button type="button" class="btn-secondary" id="cancelEditBtn">취소</button>
-          <button type="button" class="btn-primary" id="saveDocBtn" style="width:auto; padding:9px 24px;">저장 및 GitHub 동기화</button>
+          <button type="button" class="btn-primary" id="saveDocBtn" style="width:auto; padding:10px 24px;">저장 및 동기화</button>
         </div>
       </section>
     </div>
+
+    <!-- 아이폰 스타일 하단 플로팅 알약 독 -->
+    <nav class="mobile-bottom-bar" id="mobileBottomBar">
+      <button type="button" class="btn-secondary" id="mobMenuBtn">☰ 목록</button>
+      <button type="button" class="btn-secondary" id="mobSplitBtn">📑 복제</button>
+      <button type="button" class="btn-accent-outline" id="mobEditBtn">✏️ 수정</button>
+      <button type="button" class="btn-danger" id="mobDeleteBtn">🗑️ 삭제</button>
+    </nav>
   </main>
 
   <!-- GitHub 로그인/연동 모달 -->
   <div class="modal" id="authModal">
     <div class="modal-card">
-      <h3 style="margin-bottom:8px; font-size:1.15rem;">🔑 GitHub 저장소 로그인 연동</h3>
+      <h3 style="margin-bottom:8px; font-size:1.15rem; font-weight:700;">🔑 GitHub 저장소 연결</h3>
       <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:16px;">
         Fine-grained Personal Access Token을 입력하면 문서 작성·수정·세분화 시 저장소의 <strong>wiki_data.json</strong>에 자동으로 커밋됩니다.
       </p>
       <div class="form-group">
         <label class="form-label">GitHub 사용자명 (Owner)</label>
-        <input type="text" class="form-input" id="ghOwner" placeholder="예: sonihwan" />
+        <input type="text" class="form-input" id="ghOwner" placeholder="예: sonihwan2-rgb" />
       </div>
       <div class="form-group">
         <label class="form-label">저장소 이름 (Repository)</label>
-        <input type="text" class="form-input" id="ghRepo" placeholder="예: math-imyong-wiki" />
+        <input type="text" class="form-input" id="ghRepo" placeholder="예: test" />
       </div>
       <div class="form-group">
         <label class="form-label">데이터 파일 경로 (기본값: wiki_data.json)</label>
         <input type="text" class="form-input" id="ghPath" value="wiki_data.json" />
       </div>
       <div class="form-group">
-        <label class="form-label">Personal Access Token (Contents: Read & Write 권한)</label>
+        <label class="form-label">Personal Access Token (Contents: Read & Write)</label>
         <input type="password" class="form-input" id="ghToken" placeholder="github_pat_..." />
       </div>
-      <div style="display:flex; justify-content:space-between; margin-top:18px;">
-        <button type="button" class="btn-danger" id="ghLogoutBtn">연동 해제(로그아웃)</button>
+      <div style="display:flex; justify-content:space-between; gap:8px; margin-top:20px;">
+        <button type="button" class="btn-danger" id="ghLogoutBtn">연동 해제</button>
         <div style="display:flex; gap:8px;">
           <button type="button" class="btn-secondary" id="closeAuthModalBtn">닫기</button>
-          <button type="button" class="btn-primary" id="ghSaveConfigBtn" style="width:auto; padding:8px 18px;">로그인 및 연결</button>
+          <button type="button" class="btn-primary" id="ghSaveConfigBtn" style="width:auto; padding:9px 18px;">연결하기</button>
         </div>
       </div>
     </div>
@@ -687,8 +1032,10 @@
     let currentDocId = null;
     let editingDocId = null;
     let tempImages = [];
-    let ghConfig = null; // { owner, repo, path, token }
+    let ghConfig = null;
 
+    const sidebarEl = document.getElementById("sidebar");
+    const backdropEl = document.getElementById("sidebarBackdrop");
     const docListEl = document.getElementById("docList");
     const searchInputEl = document.getElementById("searchInput");
     const categoryFilterEl = document.getElementById("categoryFilter");
@@ -696,10 +1043,22 @@
     const viewContainerEl = document.getElementById("viewContainer");
     const editContainerEl = document.getElementById("editContainer");
     const viewActionsEl = document.getElementById("viewActions");
+    const mobileBottomBarEl = document.getElementById("mobileBottomBar");
     const breadcrumbEl = document.getElementById("breadcrumb");
     const syncBadgeEl = document.getElementById("syncBadge");
 
-    // UTF-8 안전 Base64 변환
+    function openSidebar() {
+      sidebarEl.classList.add("open");
+      backdropEl.classList.add("show");
+    }
+
+    function closeSidebar() {
+      sidebarEl.classList.remove("open");
+      backdropEl.classList.remove("show");
+    }
+
+    backdropEl.onclick = closeSidebar;
+
     function utf8ToBase64(str) {
       const bytes = new TextEncoder().encode(str);
       let bin = "";
@@ -726,8 +1085,8 @@
       const statusText = document.getElementById("authStatusText");
       if (ghConfig && ghConfig.token) {
         dot.classList.add("online");
-        statusText.textContent = `${ghConfig.owner}/${ghConfig.repo} 연동됨`;
-        syncBadgeEl.textContent = "GitHub 동기화 활성";
+        statusText.textContent = `${ghConfig.owner}/${ghConfig.repo}`;
+        syncBadgeEl.textContent = "GitHub 동기화";
       } else {
         dot.classList.remove("online");
         statusText.textContent = "읽기 전용 (미연동)";
@@ -735,12 +1094,10 @@
       }
     }
 
-    // GitHub에서 최신 wiki_data.json 불러오기
-    async function loadFromGitHub(silent = false) {
+    async function loadFromGitHub() {
       try {
         syncBadgeEl.textContent = "불러오는 중...";
         if (ghConfig && ghConfig.token) {
-          // API로 조회 (CDN 캐시 없이 즉시 최신 커밋 반영 + Private 저장소 지원)
           const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${ghConfig.path}`;
           const res = await fetch(url, {
             headers: {
@@ -755,22 +1112,21 @@
             if (Array.isArray(parsed)) {
               docs = parsed;
               saveToLocalStorage();
-              syncBadgeEl.textContent = "GitHub 최신 동기화 완료";
+              syncBadgeEl.textContent = "✓ 최신 동기화";
               return true;
             }
           } else if (res.status === 404) {
-            syncBadgeEl.textContent = "저장소 파일 신규 생성 대기";
+            syncBadgeEl.textContent = "파일 신규 대기";
             return false;
           }
         } else {
-          // 미로그인(방문자) 상태: 같은 경로의 정적 wiki_data.json 조회
           const res = await fetch(`./wiki_data.json?t=${Date.now()}`);
           if (res.ok) {
             const parsed = await res.json();
             if (Array.isArray(parsed) && parsed.length > 0) {
               docs = parsed;
               saveToLocalStorage();
-              syncBadgeEl.textContent = "웹 데이터 로드됨 (읽기전용)";
+              syncBadgeEl.textContent = "웹 데이터(읽기)";
               return true;
             }
           }
@@ -782,11 +1138,10 @@
       return false;
     }
 
-    // GitHub 저장소에 wiki_data.json 자동 커밋
     async function pushToGitHub(commitMsg = "Update wiki_data.json via Web Wiki") {
       if (!ghConfig || !ghConfig.token) return;
       try {
-        syncBadgeEl.textContent = "GitHub 저장 중...";
+        syncBadgeEl.textContent = "저장 중...";
         const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${ghConfig.path}`;
         const headers = {
           "Authorization": `Bearer ${ghConfig.token}`,
@@ -794,7 +1149,6 @@
           "Content-Type": "application/json"
         };
 
-        // 최신 파일 SHA 조회
         let sha = null;
         const getRes = await fetch(url, { headers, cache: "no-store" });
         if (getRes.ok) {
@@ -815,15 +1169,15 @@
         });
 
         if (putRes.ok) {
-          syncBadgeEl.textContent = "✓ GitHub 저장 완료";
+          syncBadgeEl.textContent = "✓ GitHub 저장됨";
         } else {
           const errData = await putRes.json();
           alert(`GitHub 저장 실패: ${errData.message}`);
-          syncBadgeEl.textContent = "⚠️ GitHub 저장 오류";
+          syncBadgeEl.textContent = "⚠️ 저장 오류";
         }
       } catch (e) {
         alert("네트워크 오류로 GitHub 동기화에 실패했습니다. 로컬에는 저장되었습니다.");
-        syncBadgeEl.textContent = "⚠️ 오프라인(로컬저장됨)";
+        syncBadgeEl.textContent = "⚠️ 로컬저장됨";
       }
     }
 
@@ -839,8 +1193,7 @@
         try { docs = JSON.parse(savedDocs); } catch (e) { docs = []; }
       }
 
-      // 원격(GitHub)에서 최신 데이터 확인
-      await loadFromGitHub(true);
+      await loadFromGitHub();
 
       if (localStorage.getItem("wiki_theme") === "dark") {
         document.body.classList.add("dark");
@@ -935,7 +1288,6 @@
       }
     }
 
-    // 세부 단원(중분류) 드롭다운 동적 갱신
     function refreshSubCategoryOptions() {
       const selectedCat = categoryFilterEl.value;
       const prevSub = subCategoryFilterEl.value;
@@ -1006,7 +1358,8 @@
           switchToView();
           renderSidebar();
           renderView();
-          document.getElementById("sidebar").classList.remove("open");
+          document.getElementById("contentScroll").scrollTop = 0;
+          closeSidebar();
         };
         docListEl.appendChild(item);
       });
@@ -1020,7 +1373,7 @@
         viewContainerEl.innerHTML = `
           <div class="empty-state">
             <h3>등록된 문서가 없습니다</h3>
-            <p style="margin-top:8px;">좌측 하단의 <strong>[➕ JSON 추가(병합)]</strong>으로 정리 파일을 올리거나 <strong>[+ 새 정리 문서 작성]</strong>을 눌러보세요.</p>
+            <p style="margin-top:8px;">좌측 메뉴의 <strong>[+ 새 정리 문서 작성]</strong> 또는 <strong>[➕ JSON 병합]</strong>을 눌러보세요.</p>
           </div>
         `;
         return;
@@ -1028,7 +1381,7 @@
 
       viewActionsEl.style.display = "flex";
       const subCat = getSubCategory(doc);
-      breadcrumbEl.textContent = `${doc.category} > ${subCat} > ${doc.title}`;
+      breadcrumbEl.textContent = `${doc.category} · ${subCat}`;
 
       const tagsHtml = (doc.tags || [])
         .map((t) => `<span class="tag-chip">#${escapeHtml(t)}</span>`)
@@ -1053,7 +1406,7 @@
         </div>
         <h1 class="article-title">${escapeHtml(doc.title)}</h1>
         <div class="article-meta">
-          <span>최종 수정: ${escapeHtml(doc.updatedAt || "")}</span>
+          <span>수정: ${escapeHtml(doc.updatedAt || "")}</span>
           ${tagsHtml}
         </div>
         <div class="article-body" id="renderedBody">${formatContent(doc.content)}</div>
@@ -1066,17 +1419,19 @@
     function switchToView() {
       editContainerEl.style.display = "none";
       viewContainerEl.style.display = "block";
+      if (window.innerWidth <= 820) mobileBottomBarEl.style.display = "flex";
     }
 
     function switchToEdit(doc = null, isDuplicate = false) {
       viewContainerEl.style.display = "none";
       viewActionsEl.style.display = "none";
+      mobileBottomBarEl.style.display = "none";
       editContainerEl.style.display = "block";
       document.getElementById("livePreview").style.display = "none";
 
       if (doc && !isDuplicate) {
         editingDocId = doc.id;
-        breadcrumbEl.textContent = `수정 중: ${doc.title}`;
+        breadcrumbEl.textContent = `수정 중`;
         document.getElementById("editTitle").value = doc.title;
         document.getElementById("editCategory").value = doc.category;
         document.getElementById("editSubCategory").value = getSubCategory(doc);
@@ -1085,7 +1440,7 @@
         tempImages = doc.images ? [...doc.images] : [];
       } else if (doc && isDuplicate) {
         editingDocId = null;
-        breadcrumbEl.textContent = `세부 문서 분할 작성`;
+        breadcrumbEl.textContent = `세부 문서 분할`;
         document.getElementById("editTitle").value = doc.title + " (세부 정리)";
         document.getElementById("editCategory").value = doc.category;
         document.getElementById("editSubCategory").value = getSubCategory(doc);
@@ -1094,7 +1449,7 @@
         tempImages = doc.images ? [...doc.images] : [];
       } else {
         editingDocId = null;
-        breadcrumbEl.textContent = "새 정리 문서 작성";
+        breadcrumbEl.textContent = "새 문서 작성";
         document.getElementById("editTitle").value = "";
         document.getElementById("editCategory").value = categoryFilterEl.value !== "ALL" ? categoryFilterEl.value : "해석학";
         document.getElementById("editSubCategory").value = "";
@@ -1103,6 +1458,7 @@
         tempImages = [];
       }
       renderEditImages();
+      document.getElementById("contentScroll").scrollTop = 0;
     }
 
     function renderEditImages() {
@@ -1113,7 +1469,7 @@
           <img src="${img.data}" alt="미리보기" />
           <div class="attached-img-caption">
             <span>${escapeHtml(img.name)}</span>
-            <button type="button" class="btn-danger" style="padding:2px 6px; font-size:0.72rem;" onclick="removeTempImage(${idx})">삭제</button>
+            <button type="button" class="btn-danger" style="padding:2px 8px; font-size:0.72rem;" onclick="removeTempImage(${idx})">삭제</button>
           </div>
         </div>
       `).join("");
@@ -1132,23 +1488,17 @@
       return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
     }
 
-    // 버튼 이벤트
-    document.getElementById("newDocBtn").onclick = () => {
-      switchToEdit(null);
-      document.getElementById("sidebar").classList.remove("open");
-    };
-
-    document.getElementById("editDocBtn").onclick = () => {
+    function handleEditCurrent() {
       const doc = docs.find((d) => d.id === currentDocId);
       if (doc) switchToEdit(doc, false);
-    };
+    }
 
-    document.getElementById("splitDocBtn").onclick = () => {
+    function handleSplitCurrent() {
       const doc = docs.find((d) => d.id === currentDocId);
       if (doc) switchToEdit(doc, true);
-    };
+    }
 
-    document.getElementById("deleteDocBtn").onclick = async () => {
+    async function handleDeleteCurrent() {
       const doc = docs.find((d) => d.id === currentDocId);
       if (!doc) return;
       if (confirm(`'${doc.title}' 문서를 정말 삭제하시겠습니까?`)) {
@@ -1160,7 +1510,17 @@
         renderView();
         await pushToGitHub(`Delete doc: ${doc.title}`);
       }
-    };
+    }
+
+    document.getElementById("newDocBtn").onclick = () => { switchToEdit(null); closeSidebar(); };
+    document.getElementById("editDocBtn").onclick = handleEditCurrent;
+    document.getElementById("splitDocBtn").onclick = handleSplitCurrent;
+    document.getElementById("deleteDocBtn").onclick = handleDeleteCurrent;
+
+    document.getElementById("mobMenuBtn").onclick = openSidebar;
+    document.getElementById("mobEditBtn").onclick = handleEditCurrent;
+    document.getElementById("mobSplitBtn").onclick = handleSplitCurrent;
+    document.getElementById("mobDeleteBtn").onclick = handleDeleteCurrent;
 
     document.getElementById("cancelEditBtn").onclick = () => { switchToView(); renderView(); };
 
@@ -1200,7 +1560,6 @@
       await pushToGitHub(`Save doc: ${title}`);
     };
 
-    // GitHub 설정 모달 이벤트
     const authModal = document.getElementById("authModal");
     document.getElementById("openAuthModalBtn").onclick = () => {
       if (ghConfig) {
@@ -1216,7 +1575,7 @@
 
     document.getElementById("ghSaveConfigBtn").onclick = async () => {
       const owner = document.getElementById("ghOwner").value.trim();
-      const repo = document.getElementById("ghRepo").value.trim();
+      const repo = document.getElementById("ghRepo").value.trim().replace(/^https?:\/\/github\.com\/[^/]+\//i, "").replace(/\/+$/, "");
       const path = document.getElementById("ghPath").value.trim() || "wiki_data.json";
       const token = document.getElementById("ghToken").value.trim();
 
@@ -1232,7 +1591,6 @@
 
       const loaded = await loadFromGitHub();
       if (!loaded && docs.length > 0) {
-        // 원격에 파일이 아직 없으면 현재 로컬 문서를 원격에 최초 업로드
         await pushToGitHub("Initialize wiki_data.json");
       }
       if (docs.length > 0) currentDocId = docs[0].id;
@@ -1257,12 +1615,12 @@
         refreshSubCategoryOptions();
         renderSidebar();
         renderView();
+        closeSidebar();
       } else {
         alert("GitHub에서 불러올 wiki_data.json을 찾지 못했습니다.");
       }
     };
 
-    // 툴바 및 이미지 첨부
     document.querySelectorAll(".tool-btn[data-insert]").forEach((btn) => {
       btn.onclick = () => {
         const textarea = document.getElementById("editBody");
@@ -1310,7 +1668,6 @@
       e.target.value = "";
     };
 
-    // 필터 및 검색
     searchInputEl.oninput = renderSidebar;
     categoryFilterEl.onchange = () => { refreshSubCategoryOptions(); renderSidebar(); };
     subCategoryFilterEl.onchange = renderSidebar;
@@ -1320,11 +1677,8 @@
       localStorage.setItem("wiki_theme", document.body.classList.contains("dark") ? "dark" : "light");
     };
 
-    document.getElementById("mobileMenuBtn").onclick = () => {
-      document.getElementById("sidebar").classList.toggle("open");
-    };
+    document.getElementById("mobileMenuBtn").onclick = openSidebar;
 
-    // JSON 백업 / 병합 / 복원 (병합·복원 시에도 GitHub 자동 커밋)
     document.getElementById("exportBtn").onclick = () => {
       const blob = new Blob([JSON.stringify(docs, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -1357,6 +1711,7 @@
           refreshSubCategoryOptions();
           renderSidebar();
           renderView();
+          closeSidebar();
           await pushToGitHub(`Merge ${added} added, ${updated} updated docs`);
           alert(`병합 완료! (신규 추가: ${added}개, 기존 갱신: ${updated}개)`);
         } catch (err) { alert("올바른 위키 JSON 파일이 아닙니다."); }
@@ -1382,6 +1737,7 @@
             refreshSubCategoryOptions();
             renderSidebar();
             renderView();
+            closeSidebar();
             await pushToGitHub(`Restore full backup (${docs.length} docs)`);
           }
         } catch (err) { alert("올바른 위키 백업 JSON 파일이 아닙니다."); }
