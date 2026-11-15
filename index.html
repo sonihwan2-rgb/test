@@ -15,7 +15,7 @@
     :root {
       --bg-canvas: #eef2f9;
       --glass-surface: rgba(255, 255, 255, 0.64);
-      --glass-surface-strong: rgba(255, 255, 255, 0.80);
+      --glass-surface-strong: rgba(255, 255, 255, 0.82);
       --glass-elevated: rgba(255, 255, 255, 0.54);
       --glass-hover: rgba(255, 255, 255, 0.88);
       --glass-active: rgba(0, 122, 255, 0.13);
@@ -32,6 +32,8 @@
       --accent-hover: #0062cc;
       --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
       --success: #34c759;
+      --purple: #af52de;
+      --cyan: #32ade6;
       --danger: #ff3b30;
 
       --callout-bg: rgba(0, 122, 255, 0.07);
@@ -49,7 +51,7 @@
     body.dark {
       --bg-canvas: #070b14;
       --glass-surface: rgba(28, 32, 46, 0.64);
-      --glass-surface-strong: rgba(34, 39, 56, 0.82);
+      --glass-surface-strong: rgba(34, 39, 56, 0.84);
       --glass-elevated: rgba(255, 255, 255, 0.06);
       --glass-hover: rgba(255, 255, 255, 0.12);
       --glass-active: rgba(10, 132, 255, 0.22);
@@ -66,6 +68,8 @@
       --accent-hover: #409cff;
       --accent-gradient: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
       --success: #30d158;
+      --purple: #bf5af2;
+      --cyan: #64d2ff;
       --danger: #ff453a;
 
       --callout-bg: rgba(10, 132, 255, 0.14);
@@ -178,7 +182,7 @@
 
     .sidebar-top-collapsible {
       overflow: hidden;
-      max-height: 360px;
+      max-height: 390px;
       opacity: 1;
       transform: translateY(0);
       will-change: max-height, opacity, transform;
@@ -302,19 +306,39 @@
     }
     .icon-btn:hover { background: var(--glass-hover); }
 
+    .sidebar-cta-row {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 7px;
+    }
+
     .btn-primary {
       width: 100%;
       background: var(--accent-gradient);
       color: #ffffff;
       border: none;
       border-radius: 14px;
-      padding: 10px 14px;
-      font-size: 0.88rem;
+      padding: 10px 12px;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(0, 122, 255, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
     .btn-primary:hover { opacity: 0.94; }
+
+    .btn-3d-launch {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(52, 199, 89, 0.16), rgba(10, 132, 255, 0.18));
+      color: var(--accent);
+      border: 1px solid rgba(10, 132, 255, 0.28);
+      border-radius: 14px;
+      padding: 10px 10px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+    .btn-3d-launch:hover { background: var(--accent); color: #fff; }
 
     .search-box {
       padding: 10px 16px 12px;
@@ -602,6 +626,42 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
     }
 
+    /* 문서 하단 개념 연결 카드 (상위·하위·상호연관) */
+    .concept-relations-box {
+      margin-top: 28px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: var(--glass-elevated);
+      border: 1px solid var(--glass-border-subtle);
+    }
+    .concept-relations-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .concept-relations-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .rel-group { margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .rel-label { font-size: 0.74rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+    .rel-label.parent { background: rgba(175, 82, 222, 0.14); color: var(--purple); }
+    .rel-label.child { background: rgba(50, 173, 230, 0.14); color: var(--cyan); }
+    .rel-label.mutual { background: rgba(52, 199, 89, 0.14); color: var(--success); }
+    .rel-chip {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--glass-surface-strong);
+      border: 1px solid var(--glass-border-subtle);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+    .rel-chip:hover { border-color: var(--accent); color: var(--accent); }
+
     .attached-images {
       margin-top: 24px;
       padding-top: 18px;
@@ -628,6 +688,7 @@
     .form-group { margin-bottom: 16px; }
     .form-label { display: block; font-size: 0.83rem; font-weight: 600; margin-bottom: 6px; color: var(--text-secondary); }
     .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .form-input, .form-select, .form-textarea {
       width: 100%;
       padding: 10px 14px;
@@ -662,7 +723,7 @@
     .tool-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     .form-textarea {
-      min-height: 320px; resize: vertical; line-height: 1.6;
+      min-height: 300px; resize: vertical; line-height: 1.6;
       font-family: "SF Mono", "Consolas", "Pretendard", monospace;
     }
 
@@ -674,6 +735,155 @@
     .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 
     .mobile-bottom-bar { display: none; }
+
+    /* =========================================================================
+       3D 개념 마인드맵 풀스크린 리퀴드 글라스 뷰
+       ========================================================================= */
+    .mindmap-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      background: var(--bg-canvas);
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s var(--ios-spring);
+    }
+    .mindmap-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    #mindmapCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: grab;
+    }
+    #mindmapCanvas:active { cursor: grabbing; }
+
+    .mm-top-hud {
+      position: relative;
+      z-index: 10;
+      padding: calc(12px + var(--safe-top)) 16px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      pointer-events: none;
+    }
+
+    .mm-hud-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      pointer-events: auto;
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-specular);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .mm-select {
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      outline: none;
+      padding: 3px 6px;
+      cursor: pointer;
+    }
+
+    .mm-legend-bar {
+      position: relative;
+      z-index: 10;
+      margin: 2px 16px 0;
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--glass-surface);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    .legend-item { display: inline-flex; align-items: center; gap: 5px; }
+    .legend-line-hier {
+      display: inline-block; width: 18px; height: 2.5px;
+      background: linear-gradient(90deg, #af52de, #0a84ff);
+      border-radius: 2px;
+    }
+    .legend-line-rel {
+      display: inline-block; width: 18px; height: 0;
+      border-top: 2px dashed #34c759;
+    }
+
+    /* 3D 마인드맵 하단 노드 상세 인스펙터 카드 */
+    .mm-inspector {
+      position: fixed;
+      bottom: calc(16px + var(--safe-bottom));
+      left: 16px;
+      right: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+      z-index: 15;
+      background: var(--glass-surface-strong);
+      backdrop-filter: blur(34px) saturate(210%);
+      -webkit-backdrop-filter: blur(34px) saturate(210%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18), var(--glass-specular);
+      border-radius: 26px;
+      padding: 18px 20px;
+      transform: translateY(130%);
+      opacity: 0;
+      transition: transform 0.36s var(--ios-spring), opacity 0.25s ease;
+    }
+    .mm-inspector.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mm-ins-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .mm-ins-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      line-height: 1.35;
+      word-break: keep-all;
+    }
+    .mm-ins-scroll {
+      max-height: 145px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      padding-right: 4px;
+    }
+    .mm-ins-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
 
     /* 글라스 모달 */
     .modal {
@@ -740,19 +950,19 @@
       .article-body { font-size: 0.96rem; }
       .article-body h2 { font-size: 1.18rem; }
       .article-body h3 { font-size: 1.02rem; }
-      .form-row-3 { grid-template-columns: 1fr; }
-      .search-input, .select-filter, .form-input, .form-select, .form-textarea { font-size: 16px; }
+      .form-row-3, .form-row-2 { grid-template-columns: 1fr; }
+      .search-input, .select-filter, .form-input, .form-select, .form-textarea, .mm-select { font-size: 16px; }
 
       .mobile-bottom-bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         position: fixed;
         bottom: calc(12px + var(--safe-bottom));
-        left: 16px;
-        right: 16px;
-        max-width: 380px;
+        left: 14px;
+        right: 14px;
+        max-width: 420px;
         height: 52px;
         margin: 0 auto;
         background: var(--glass-surface-strong);
@@ -761,7 +971,7 @@
         border: 1px solid var(--glass-border);
         box-shadow: 0 10px 30px rgba(15, 23, 42, 0.14), var(--glass-specular);
         border-radius: 999px;
-        padding: 6px 10px;
+        padding: 6px 8px;
         z-index: 40;
         overflow: hidden;
         cursor: pointer;
@@ -777,8 +987,8 @@
 
       .mobile-bottom-bar button {
         flex: 1;
-        padding: 9px 8px;
-        font-size: 0.83rem;
+        padding: 9px 5px;
+        font-size: 0.8rem;
         border-radius: 999px;
         text-align: center;
         border: none;
@@ -861,7 +1071,10 @@
           <button class="icon-btn" id="openAuthModalBtn">🔑 마스터 로그인</button>
         </div>
 
-        <button class="btn-primary" id="newDocBtn">+ 새 정리 문서 작성</button>
+        <div class="sidebar-cta-row">
+          <button class="btn-primary" id="newDocBtn">+ 새 문서 작성</button>
+          <button class="btn-3d-launch" id="openMindMapSidebarBtn">🌐 3D 마인드맵</button>
+        </div>
       </div>
 
       <div class="search-box">
@@ -869,18 +1082,32 @@
         <div class="filter-grid">
           <select class="select-filter" id="categoryFilter">
             <option value="ALL">전체 과목</option>
-            <option value="해석학">해석학</option>
-            <option value="다변수해석학">다변수해석학</option>
-            <option value="현대대수학">현대대수학</option>
-            <option value="선형대수학">선형대수학</option>
-            <option value="위상수학">위상수학</option>
-            <option value="미분기하학">미분기하학</option>
-            <option value="정수론">정수론</option>
-            <option value="이산수학">이산수학</option>
-            <option value="확률및통계">확률 및 통계</option>
-            <option value="복소해석학">복소해석학</option>
-            <option value="수학교육론">수학교육론</option>
-            <option value="기출분석">기출문제 분석</option>
+            <optgroup label="전공수학">
+              <option value="해석학">해석학</option>
+              <option value="다변수해석학">다변수해석학</option>
+              <option value="현대대수학">현대대수학</option>
+              <option value="선형대수학">선형대수학</option>
+              <option value="위상수학">위상수학</option>
+              <option value="미분기하학">미분기하학</option>
+              <option value="정수론">정수론</option>
+              <option value="이산수학">이산수학</option>
+              <option value="확률및통계">확률 및 통계</option>
+              <option value="복소해석학">복소해석학</option>
+            </optgroup>
+            <optgroup label="수학교육">
+              <option value="수학교육론">수학교육론</option>
+              <option value="수학교재연구">수학교재연구</option>
+            </optgroup>
+            <optgroup label="교육학">
+              <option value="교육과정">교육과정</option>
+              <option value="교육심리">교육심리</option>
+              <option value="교육행정">교육행정</option>
+              <option value="교육평가">교육평가</option>
+              <option value="교육공학">교육공학</option>
+            </optgroup>
+            <optgroup label="기타">
+              <option value="기출분석">기출문제 분석</option>
+            </optgroup>
           </select>
           <select class="select-filter" id="subCategoryFilter">
             <option value="ALL">전체 세부단원</option>
@@ -916,35 +1143,69 @@
       <section class="wiki-card" id="editContainer" style="display:none;">
         <div class="form-group">
           <label class="form-label">문서 제목</label>
-          <input type="text" class="form-input" id="editTitle" placeholder="예: [다변수해석학] 극좌표 변환과 이중적분 계산" />
+          <input type="text" class="form-input" id="editTitle" placeholder="예: [선형대수학] 실수 대칭행렬의 직교대각화" />
         </div>
 
         <div class="form-row-3 form-group">
           <div>
             <label class="form-label">과목 (대분류)</label>
             <select class="form-select" id="editCategory">
-              <option value="해석학">해석학</option>
-              <option value="다변수해석학">다변수해석학</option>
-              <option value="현대대수학">현대대수학</option>
-              <option value="선형대수학">선형대수학</option>
-              <option value="위상수학">위상수학</option>
-              <option value="미분기하학">미분기하학</option>
-              <option value="정수론">정수론</option>
-              <option value="이산수학">이산수학</option>
-              <option value="확률및통계">확률 및 통계</option>
-              <option value="복소해석학">복소해석학</option>
-              <option value="수학교육론">수학교육론</option>
-              <option value="기출분석">기출문제 분석</option>
+              <optgroup label="전공수학">
+                <option value="해석학">해석학</option>
+                <option value="다변수해석학">다변수해석학</option>
+                <option value="현대대수학">현대대수학</option>
+                <option value="선형대수학">선형대수학</option>
+                <option value="위상수학">위상수학</option>
+                <option value="미분기하학">미분기하학</option>
+                <option value="정수론">정수론</option>
+                <option value="이산수학">이산수학</option>
+                <option value="확률및통계">확률 및 통계</option>
+                <option value="복소해석학">복소해석학</option>
+              </optgroup>
+              <optgroup label="수학교육">
+                <option value="수학교육론">수학교육론</option>
+                <option value="수학교재연구">수학교재연구</option>
+              </optgroup>
+              <optgroup label="교육학">
+                <option value="교육과정">교육과정</option>
+                <option value="교육심리">교육심리</option>
+                <option value="교육행정">교육행정</option>
+                <option value="교육평가">교육평가</option>
+                <option value="교육공학">교육공학</option>
+              </optgroup>
+              <optgroup label="기타">
+                <option value="기출분석">기출문제 분석</option>
+              </optgroup>
             </select>
           </div>
           <div>
-            <label class="form-label">세부 단원 (중분류 · 세분화용)</label>
-            <input type="text" class="form-input" id="editSubCategory" list="subCatSuggestions" placeholder="예: 이중적분과 극좌표 변환 / 그린 정리" />
+            <label class="form-label">세부 단원 (중분류 · 상위 계층)</label>
+            <input type="text" class="form-input" id="editSubCategory" list="subCatSuggestions" placeholder="예: 직교대각화와 이차형식" />
             <datalist id="subCatSuggestions"></datalist>
           </div>
           <div>
             <label class="form-label">태그 (쉼표로 구분)</label>
-            <input type="text" class="form-input" id="editTags" placeholder="예: 1순위, 그린정리, 2026기출" />
+            <input type="text" class="form-input" id="editTags" placeholder="예: 1순위, 직교행렬, 2026기출" />
+          </div>
+        </div>
+
+        <!-- 3D 마인드맵 개념 관계 설정 -->
+        <div class="form-row-2 form-group">
+          <div>
+            <label class="form-label">⬆️ 상위 개념 문서 (선택 시 3D 맵에서 하위 개념으로 연결)</label>
+            <select class="form-select" id="editParentDoc">
+              <option value="">(없음 — 세부 단원 아래 기본 배치)</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">↔️ 상호 연관 개념 문서 추가</label>
+            <div style="display:flex; gap:6px;">
+              <select class="form-select" id="editRelatedPicker">
+                <option value="">연관 개념 문서 선택...</option>
+              </select>
+              <button type="button" class="btn-accent-outline" id="addRelatedChipBtn" style="flex-shrink:0;">+ 추가</button>
+            </div>
+            <div id="editRelatedChips" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;"></div>
           </div>
         </div>
 
@@ -977,10 +1238,97 @@
     <!-- 아이폰 스타일 하단 플로팅 독 -->
     <nav class="mobile-bottom-bar" id="mobileBottomBar">
       <button type="button" class="btn-secondary" id="mobMenuBtn">☰ 목록</button>
+      <button type="button" class="btn-accent-outline" id="mobMindMapBtn">🌐 3D맵</button>
       <button type="button" class="btn-accent-outline" id="mobEditBtn">✏️ 수정</button>
       <button type="button" class="btn-danger" id="mobDeleteBtn">🗑️ 삭제</button>
     </nav>
   </main>
+
+  <!-- =========================================================================
+       3D 개념 마인드맵 풀스크린 오버레이
+       ========================================================================= -->
+  <section class="mindmap-overlay" id="mindmapOverlay">
+    <canvas id="mindmapCanvas"></canvas>
+
+    <!-- 상단 플로팅 컨트롤 HUD -->
+    <div class="mm-top-hud">
+      <div class="mm-hud-group">
+        <select class="mm-select" id="mmDomainFilter" title="영역/과목 필터">
+          <option value="ALL">🌐 전체 지식 공간</option>
+          <option value="DOMAIN:전공수학">📐 전공수학 전체</option>
+          <option value="DOMAIN:수학교육">🎓 수학교육 전체</option>
+          <option value="DOMAIN:교육학">📚 교육학 전체</option>
+        </select>
+        <select class="mm-select" id="mmEdgeFilter" title="관계 표시 필터">
+          <option value="ALL">전체 관계</option>
+          <option value="HIERARCHY">상·하위 계층만</option>
+          <option value="MUTUAL">상호 연관만</option>
+        </select>
+      </div>
+
+      <div class="mm-hud-group">
+        <button type="button" class="icon-btn" id="mmAutoRotateBtn">🔄 회전</button>
+        <button type="button" class="icon-btn" id="mmResetViewBtn">🎯 중앙</button>
+        <button type="button" class="btn-danger" id="closeMindMapBtn" style="border-radius:999px; padding:5px 12px;">✕ 닫기</button>
+      </div>
+    </div>
+
+    <!-- 범례 바 -->
+    <div class="mm-legend-bar">
+      <span class="legend-item"><span class="legend-line-hier"></span> 상위 → 하위 계층 (Y축)</span>
+      <span class="legend-item"><span class="legend-line-rel"></span> 상호 연관 개념 (↔)</span>
+      <span class="legend-item">👆 드래그 회전 · 핀치 줌 · 노드 탭</span>
+    </div>
+
+    <!-- 선택된 노드 관계 인스펙터 카드 -->
+    <div class="mm-inspector" id="mmInspector">
+      <div class="mm-ins-top">
+        <div>
+          <div style="display:flex; gap:6px; align-items:center; margin-bottom:4px;">
+            <span class="badge" id="mmInsTierBadge">개념 노드</span>
+            <span class="badge badge-sub" id="mmInsSubBadge">분류</span>
+          </div>
+          <div class="mm-ins-title" id="mmInsTitle">노드 제목</div>
+        </div>
+        <button type="button" class="icon-btn" id="mmInsCloseBtn">✕</button>
+      </div>
+
+      <div class="mm-ins-scroll" id="mmInsRelations"></div>
+
+      <div class="mm-ins-actions" id="mmInsActions"></div>
+    </div>
+  </section>
+
+  <!-- 3D 마인드맵 내에서 즉시 관계 연결 편집 모달 -->
+  <div class="modal" id="relEditModal">
+    <div class="modal-card">
+      <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:6px;">🔗 개념 관계 연결 편집</h3>
+      <p id="relModalTargetName" style="font-size:0.82rem; color:var(--accent); font-weight:700; margin-bottom:14px;"></p>
+
+      <div class="form-group">
+        <label class="form-label">⬆️ 상위 개념 문서 지정</label>
+        <select class="form-select" id="relModalParentSelect">
+          <option value="">(없음 — 세부 단원 아래 기본 배치)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">↔️ 상호 연관 개념 추가</label>
+        <div style="display:flex; gap:6px;">
+          <select class="form-select" id="relModalMutualPicker">
+            <option value="">연결할 개념 문서 선택...</option>
+          </select>
+          <button type="button" class="btn-accent-outline" id="relModalAddMutualBtn" style="flex-shrink:0;">+ 연결</button>
+        </div>
+        <div id="relModalMutualChips" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;"></div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:18px;">
+        <button type="button" class="btn-secondary" id="closeRelModalBtn">취소</button>
+        <button type="button" class="btn-primary" id="saveRelModalBtn" style="width:auto; padding:9px 18px;">저장 및 3D 반영</button>
+      </div>
+    </div>
+  </div>
 
   <!-- 마스터키 로그인 & 금고 생성 모달 -->
   <div class="modal" id="authModal">
@@ -1066,6 +1414,7 @@
     let currentDocId = null;
     let editingDocId = null;
     let tempImages = [];
+    let tempRelatedIds = [];
     let ghConfig = null;
     let syncStatusText = "읽기 모드";
 
@@ -1081,12 +1430,48 @@
     const viewContainerEl = document.getElementById("viewContainer");
     const editContainerEl = document.getElementById("editContainer");
 
+    const DOMAIN_MAP = {
+      "해석학": "전공수학",
+      "다변수해석학": "전공수학",
+      "현대대수학": "전공수학",
+      "선형대수학": "전공수학",
+      "위상수학": "전공수학",
+      "미분기하학": "전공수학",
+      "정수론": "전공수학",
+      "이산수학": "전공수학",
+      "확률및통계": "전공수학",
+      "복소해석학": "전공수학",
+      "수학교육론": "수학교육",
+      "수학교재연구": "수학교육",
+      "교육과정": "교육학",
+      "교육심리": "교육학",
+      "교육행정": "교육학",
+      "교육평가": "교육학",
+      "교육공학": "교육학",
+      "기출분석": "전공수학"
+    };
+
+    function getDomainOfCategory(cat) {
+      return DOMAIN_MAP[cat] || "전공수학";
+    }
+
+    function cleanShortTitle(title) {
+      return String(title || "")
+        .replace(/^\[[^\]]+\]\s*/g, "")
+        .replace(/^\[[^\]]+\]\s*/g, "")
+        .replace(/^(제\d+장\([^)]+\)|Ch\.\d+)\s*/i, "")
+        .trim();
+    }
+
     function setSyncStatus(text) {
       syncStatusText = text;
       const badgeEl = document.getElementById("desktopSyncBadge");
       if (badgeEl) badgeEl.textContent = text;
     }
 
+    /* =========================================================================
+       1. Web Crypto API AES-256-GCM 암호화 / 복호화
+       ========================================================================= */
     async function deriveAesKey(masterId, masterPw, saltBytes) {
       const enc = new TextEncoder();
       const rawMaterial = await crypto.subtle.importKey(
@@ -1097,12 +1482,7 @@
         ["deriveKey"]
       );
       return crypto.subtle.deriveKey(
-        {
-          name: "PBKDF2",
-          salt: saltBytes,
-          iterations: 150000,
-          hash: "SHA-256"
-        },
+        { name: "PBKDF2", salt: saltBytes, iterations: 150000, hash: "SHA-256" },
         rawMaterial,
         { name: "AES-GCM", length: 256 },
         false,
@@ -1150,6 +1530,9 @@
       return localStorage.getItem(LOCAL_VAULT_KEY) || "";
     }
 
+    /* =========================================================================
+       2. 스크롤 축소 컨트롤러 (기존 오버플로우 방식 유지)
+       ========================================================================= */
     function createScrollCollapseController(scrollEl, { onCollapse, onExpand, threshold = 28 }) {
       let lastTop = 0;
       let anchorTop = 0;
@@ -1206,18 +1589,15 @@
 
           const nearBottom = currentTop >= maxScroll - 24;
           const step = currentTop - lastTop;
-
           if (Math.abs(step) < 0.5) return;
 
           const currentDir = step > 0 ? 1 : -1;
-
           if (currentDir !== lastDir) {
             anchorTop = lastTop;
             lastDir = currentDir;
           }
 
           const cumulativeDelta = currentTop - anchorTop;
-
           if (currentDir === 1 && cumulativeDelta >= threshold) {
             setCollapsed(true);
             anchorTop = currentTop;
@@ -1271,12 +1651,8 @@
 
     const sidebarScrollCtrl = createScrollCollapseController(docListEl, {
       threshold: 28,
-      onCollapse: () => {
-        sidebarEl.classList.add("chrome-collapsed");
-      },
-      onExpand: () => {
-        sidebarEl.classList.remove("chrome-collapsed");
-      }
+      onCollapse: () => sidebarEl.classList.add("chrome-collapsed"),
+      onExpand: () => sidebarEl.classList.remove("chrome-collapsed")
     });
 
     document.getElementById("sidebarTopPill").onclick = () => {
@@ -1288,6 +1664,9 @@
       sidebarEl.classList.remove("chrome-collapsed");
     };
 
+    /* =========================================================================
+       3. 사이드바 열기/닫기 및 스와이프 제스처
+       ========================================================================= */
     function openSidebar() {
       sidebarScrollCtrl.reset();
       sidebarEl.classList.add("open");
@@ -1316,10 +1695,7 @@
       }
 
       mainContainerEl.addEventListener("touchstart", (e) => {
-        if (e.touches.length !== 1) {
-          ignoreSwipe = true;
-          return;
-        }
+        if (e.touches.length !== 1) { ignoreSwipe = true; return; }
         ignoreSwipe = isInsideHorizontalScrollable(e.target);
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
@@ -1336,9 +1712,7 @@
 
         if (elapsed < 700 && Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.6) {
           if (!sidebarEl.classList.contains("open")) {
-            if (dx < -55 || (touchStartX <= 36 && dx > 50)) {
-              openSidebar();
-            }
+            if (dx < -55 || (touchStartX <= 36 && dx > 50)) openSidebar();
           }
         }
       }, { passive: true });
@@ -1356,12 +1730,13 @@
         if (!sidebarEl.classList.contains("open") || !e.changedTouches) return;
         const dx = e.changedTouches[0].clientX - sbStartX;
         const dy = e.changedTouches[0].clientY - sbStartY;
-        if (dx < -48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-          closeSidebar();
-        }
+        if (dx < -48 && Math.abs(dx) > Math.abs(dy) * 1.4) closeSidebar();
       }, { passive: true });
     })();
 
+    /* =========================================================================
+       4. GitHub 동기화 및 데이터 유틸리티
+       ========================================================================= */
     function utf8ToBase64(str) {
       const bytes = new TextEncoder().encode(str);
       let bin = "";
@@ -1632,509 +2007,4 @@
       const cat = categoryFilterEl.value;
       const subCat = subCategoryFilterEl.value;
 
-      const filtered = docs.filter((doc) => {
-        const docSub = getSubCategory(doc);
-        const matchCat = cat === "ALL" || doc.category === cat;
-        const matchSub = subCat === "ALL" || docSub === subCat;
-        const matchKey =
-          !keyword ||
-          doc.title.toLowerCase().includes(keyword) ||
-          doc.content.toLowerCase().includes(keyword) ||
-          docSub.toLowerCase().includes(keyword) ||
-          (doc.tags && doc.tags.some((t) => t.toLowerCase().includes(keyword)));
-        return matchCat && matchSub && matchKey;
-      });
-
-      docListEl.innerHTML = "";
-      if (filtered.length === 0) {
-        docListEl.innerHTML = `<div style="padding:20px; text-align:center; color:var(--text-muted); font-size:0.84rem;">일치하는 문서가 없습니다.</div>`;
-        return;
-      }
-
-      filtered.forEach((doc) => {
-        const item = document.createElement("div");
-        item.className = "doc-item" + (doc.id === currentDocId ? " active" : "");
-        item.innerHTML = `
-          <div class="doc-item-cat">${escapeHtml(doc.category)} · ${escapeHtml(getSubCategory(doc))}</div>
-          <div class="doc-item-title">${escapeHtml(doc.title)}</div>
-          <div class="doc-item-meta">${escapeHtml(doc.updatedAt || "")}</div>
-        `;
-        item.onclick = () => {
-          currentDocId = doc.id;
-          switchToView();
-          renderSidebar();
-          renderView();
-          contentScrollEl.scrollTop = 0;
-          contentScrollCtrl.reset();
-          closeSidebar();
-        };
-        docListEl.appendChild(item);
-      });
-    }
-
-    function renderView() {
-      const doc = docs.find((d) => d.id === currentDocId);
-      const mobEditBtn = document.getElementById("mobEditBtn");
-      const mobDeleteBtn = document.getElementById("mobDeleteBtn");
-
-      if (!doc) {
-        if (mobEditBtn) mobEditBtn.style.display = "none";
-        if (mobDeleteBtn) mobDeleteBtn.style.display = "none";
-        viewContainerEl.innerHTML = `
-          <div class="empty-state">
-            <h3>등록된 문서가 없습니다</h3>
-            <p style="margin-top:8px;">화면을 왼쪽으로 스와이프하거나 하단의 <strong>[☰ 목록]</strong>을 눌러 문서를 추가해 보세요.</p>
-          </div>
-        `;
-        return;
-      }
-
-      if (mobEditBtn) mobEditBtn.style.display = "";
-      if (mobDeleteBtn) mobDeleteBtn.style.display = "";
-
-      const subCat = getSubCategory(doc);
-
-      const tagsHtml = (doc.tags || [])
-        .map((t) => `<span class="tag-chip">#${escapeHtml(t)}</span>`)
-        .join("");
-
-      let imagesHtml = "";
-      if (doc.images && doc.images.length > 0) {
-        imagesHtml = `<div class="attached-images">` +
-          doc.images.map((img, idx) => `
-            <div class="attached-img-box">
-              <img src="${img.data}" alt="${escapeHtml(img.name || '첨부이미지')}" onclick="openModal('${img.data}')" />
-              <div class="attached-img-caption"><span>${escapeHtml(img.name || '참고 이미지 ' + (idx + 1))}</span></div>
-            </div>
-          `).join("") +
-        `</div>`;
-      }
-
-      viewContainerEl.innerHTML = `
-        <div class="card-top-bar">
-          <div class="badge-row" style="margin-bottom:0;">
-            <span class="badge">${escapeHtml(doc.category)}</span>
-            <span class="badge badge-sub">${escapeHtml(subCat)}</span>
-          </div>
-          <div class="desktop-card-actions">
-            <span class="sync-badge" id="desktopSyncBadge">${escapeHtml(syncStatusText)}</span>
-            <button type="button" class="btn-accent-outline" onclick="handleEditCurrent()">✏️ 수정</button>
-            <button type="button" class="btn-danger" onclick="handleDeleteCurrent()">🗑️ 삭제</button>
-          </div>
-        </div>
-        <h1 class="article-title">${escapeHtml(doc.title)}</h1>
-        <div class="article-meta">
-          <span>수정: ${escapeHtml(doc.updatedAt || "")}</span>
-          ${tagsHtml}
-        </div>
-        <div class="article-body" id="renderedBody">${formatContent(doc.content)}</div>
-        ${imagesHtml}
-      `;
-
-      renderMath(document.getElementById("renderedBody"));
-    }
-
-    function switchToView() {
-      editContainerEl.style.display = "none";
-      viewContainerEl.style.display = "block";
-      if (window.innerWidth <= 820) {
-        mobileBottomBarEl.style.display = "flex";
-        contentScrollCtrl.reset();
-      }
-    }
-
-    function switchToEdit(doc = null) {
-      viewContainerEl.style.display = "none";
-      mobileBottomBarEl.style.display = "none";
-      editContainerEl.style.display = "block";
-      document.getElementById("livePreview").style.display = "none";
-
-      if (doc) {
-        editingDocId = doc.id;
-        document.getElementById("editTitle").value = doc.title;
-        document.getElementById("editCategory").value = doc.category;
-        document.getElementById("editSubCategory").value = getSubCategory(doc);
-        document.getElementById("editTags").value = (doc.tags || []).join(", ");
-        document.getElementById("editBody").value = doc.content;
-        tempImages = doc.images ? [...doc.images] : [];
-      } else {
-        editingDocId = null;
-        document.getElementById("editTitle").value = "";
-        document.getElementById("editCategory").value = categoryFilterEl.value !== "ALL" ? categoryFilterEl.value : "해석학";
-        document.getElementById("editSubCategory").value = "";
-        document.getElementById("editTags").value = "";
-        document.getElementById("editBody").value = "";
-        tempImages = [];
-      }
-      renderEditImages();
-      contentScrollEl.scrollTop = 0;
-    }
-
-    function renderEditImages() {
-      const container = document.getElementById("editImagesList");
-      if (tempImages.length === 0) { container.innerHTML = ""; return; }
-      container.innerHTML = tempImages.map((img, idx) => `
-        <div class="attached-img-box">
-          <img src="${img.data}" alt="미리보기" />
-          <div class="attached-img-caption">
-            <span>${escapeHtml(img.name)}</span>
-            <button type="button" class="btn-danger" style="padding:2px 8px; font-size:0.72rem;" onclick="removeTempImage(${idx})">삭제</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    window.removeTempImage = function(idx) { tempImages.splice(idx, 1); renderEditImages(); };
-    window.openModal = function(src) {
-      document.getElementById("modalImg").src = src;
-      document.getElementById("imgModal").style.display = "flex";
-    };
-    document.getElementById("imgModal").onclick = function() { this.style.display = "none"; };
-
-    function getNowString() {
-      const now = new Date();
-      const pad = (n) => String(n).padStart(2, "0");
-      return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
-    }
-
-    window.handleEditCurrent = function() {
-      const doc = docs.find((d) => d.id === currentDocId);
-      if (doc) switchToEdit(doc);
-    };
-
-    window.handleDeleteCurrent = async function() {
-      const doc = docs.find((d) => d.id === currentDocId);
-      if (!doc) return;
-      if (confirm(`'${doc.title}' 문서를 정말 삭제하시겠습니까?`)) {
-        docs = docs.filter((d) => d.id !== currentDocId);
-        saveToLocalStorage();
-        currentDocId = docs.length > 0 ? docs[0].id : null;
-        refreshSubCategoryOptions();
-        renderSidebar();
-        renderView();
-        await pushToGitHub(`Delete doc: ${doc.title}`);
-      }
-    };
-
-    document.getElementById("newDocBtn").onclick = () => { switchToEdit(null); closeSidebar(); };
-
-    document.getElementById("mobMenuBtn").onclick = (e) => {
-      if (mobileBottomBarEl.classList.contains("minimized")) return;
-      e.stopPropagation();
-      openSidebar();
-    };
-    document.getElementById("mobEditBtn").onclick = (e) => {
-      if (mobileBottomBarEl.classList.contains("minimized")) return;
-      e.stopPropagation();
-      window.handleEditCurrent();
-    };
-    document.getElementById("mobDeleteBtn").onclick = (e) => {
-      if (mobileBottomBarEl.classList.contains("minimized")) return;
-      e.stopPropagation();
-      window.handleDeleteCurrent();
-    };
-
-    document.getElementById("cancelEditBtn").onclick = () => { switchToView(); renderView(); };
-
-    document.getElementById("saveDocBtn").onclick = async () => {
-      const title = document.getElementById("editTitle").value.trim();
-      const category = document.getElementById("editCategory").value;
-      const subCategory = document.getElementById("editSubCategory").value.trim() || "기본 정리";
-      const tagsRaw = document.getElementById("editTags").value;
-      const content = document.getElementById("editBody").value;
-
-      if (!title) { alert("문서 제목을 입력해 주세요."); return; }
-
-      const tags = tagsRaw.split(",").map((t) => t.trim()).filter((t) => t.length > 0);
-
-      if (editingDocId) {
-        const idx = docs.findIndex((d) => d.id === editingDocId);
-        if (idx !== -1) {
-          docs[idx] = { ...docs[idx], title, category, subCategory, tags, content, images: tempImages, updatedAt: getNowString() };
-          currentDocId = editingDocId;
-        }
-      } else {
-        const newDoc = {
-          id: "doc-" + Date.now(),
-          title, category, subCategory, tags, content,
-          images: tempImages,
-          updatedAt: getNowString()
-        };
-        docs.unshift(newDoc);
-        currentDocId = newDoc.id;
-      }
-
-      saveToLocalStorage();
-      switchToView();
-      refreshSubCategoryOptions();
-      renderSidebar();
-      renderView();
-      await pushToGitHub(`Save doc: ${title}`);
-    };
-
-    const authModal = document.getElementById("authModal");
-    const loginSection = document.getElementById("masterLoginSection");
-    const setupSection = document.getElementById("masterSetupSection");
-    const toggleSetupBtn = document.getElementById("toggleSetupModeBtn");
-
-    function showLoginSection() {
-      loginSection.style.display = "block";
-      setupSection.style.display = "none";
-      toggleSetupBtn.textContent = "⚙️ 새 금고 만들기";
-      const vaultStr = getActiveVaultString();
-      const badge = document.getElementById("vaultStatusBadge");
-      if (vaultStr) {
-        badge.textContent = "🛡️ AES-256 암호화 금고 준비됨";
-        badge.style.color = "var(--success)";
-      } else {
-        badge.textContent = "⚠️ 등록된 금고 없음 (우측 '새 금고 만들기' 클릭)";
-        badge.style.color = "var(--danger)";
-      }
-    }
-
-    function showSetupSection() {
-      loginSection.style.display = "none";
-      setupSection.style.display = "block";
-      toggleSetupBtn.textContent = "← 로그인 화면";
-    }
-
-    document.getElementById("openAuthModalBtn").onclick = () => {
-      if (!getActiveVaultString()) {
-        showSetupSection();
-      } else {
-        showLoginSection();
-      }
-      authModal.style.display = "flex";
-    };
-
-    toggleSetupBtn.onclick = () => {
-      if (setupSection.style.display === "none") showSetupSection();
-      else showLoginSection();
-    };
-
-    document.getElementById("backToLoginBtn").onclick = showLoginSection;
-    document.getElementById("closeAuthModalBtn").onclick = () => { authModal.style.display = "none"; };
-
-    document.getElementById("unlockVaultBtn").onclick = async () => {
-      const mId = document.getElementById("loginMasterId").value.trim();
-      const mPw = document.getElementById("loginMasterPw").value;
-      const vaultStr = getActiveVaultString();
-
-      if (!vaultStr) {
-        alert("먼저 우측 상단 [⚙️ 새 금고 만들기]를 눌러 마스터키 금고를 생성해 주세요.");
-        return;
-      }
-      if (!mId || !mPw) {
-        alert("마스터 아이디와 비밀번호를 입력해 주세요.");
-        return;
-      }
-
-      try {
-        const decrypted = await decryptVaultPayload(mId, mPw, vaultStr);
-        if (!decrypted || !decrypted.token) throw new Error("Invalid payload");
-
-        ghConfig = decrypted;
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify(ghConfig));
-        document.getElementById("loginMasterPw").value = "";
-        updateAuthUI();
-        authModal.style.display = "none";
-
-        const loaded = await loadFromGitHub();
-        if (!loaded && docs.length > 0) {
-          await pushToGitHub("Initialize wiki_data.json");
-        }
-        if (docs.length > 0 && !currentDocId) currentDocId = docs[0].id;
-        refreshSubCategoryOptions();
-        renderSidebar();
-        renderView();
-        alert("마스터키 잠금 해제 완료! GitHub 동기화가 활성화되었습니다.");
-      } catch (err) {
-        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-      }
-    };
-
-    document.getElementById("generateVaultBtn").onclick = async () => {
-      const mId = document.getElementById("setupMasterId").value.trim();
-      const mPw = document.getElementById("setupMasterPw").value;
-      const owner = document.getElementById("ghOwner").value.trim();
-      const repo = document.getElementById("ghRepo").value.trim().replace(/^https?:\/\/github\.com\/[^/]+\//i, "").replace(/\/+$/, "");
-      const token = document.getElementById("ghToken").value.trim();
-
-      if (!mId || !mPw || !owner || !repo || !token) {
-        alert("새 마스터 아이디, 비밀번호, GitHub 저장소 정보, 토큰을 모두 입력해 주세요.");
-        return;
-      }
-
-      const payload = { owner, repo, path: "wiki_data.json", token };
-      const encryptedBase64 = await encryptVaultPayload(mId, mPw, payload);
-
-      localStorage.setItem(LOCAL_VAULT_KEY, encryptedBase64);
-
-      const outBox = document.getElementById("generatedVaultBox");
-      const outArea = document.getElementById("generatedVaultOutput");
-      outBox.style.display = "block";
-      outArea.value = encryptedBase64;
-      outArea.select();
-
-      ghConfig = payload;
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify(ghConfig));
-      updateAuthUI();
-
-      const loaded = await loadFromGitHub();
-      if (!loaded && docs.length > 0) {
-        await pushToGitHub("Initialize wiki_data.json");
-      }
-      refreshSubCategoryOptions();
-      renderSidebar();
-      renderView();
-      alert("AES-256 암호화 금고가 생성되어 로그인되었습니다!\n\n아이폰 등 다른 기기에서도 이 아이디/비밀번호로 로그인하려면 화면에 표시된 암호화 문자열을 복사해 index.html의 ENCRYPTED_MASTER_VAULT에 넣어주세요.");
-    };
-
-    document.getElementById("ghLogoutBtn").onclick = () => {
-      ghConfig = null;
-      sessionStorage.removeItem(SESSION_KEY);
-      updateAuthUI();
-      authModal.style.display = "none";
-      alert("위키가 잠금(읽기 전용) 상태로 전환되었습니다.");
-    };
-
-    document.getElementById("syncPullBtn").onclick = async () => {
-      const ok = await loadFromGitHub();
-      if (ok) {
-        if (docs.length > 0 && !docs.some(d => d.id === currentDocId)) currentDocId = docs[0].id;
-        refreshSubCategoryOptions();
-        renderSidebar();
-        renderView();
-        closeSidebar();
-      } else {
-        alert("GitHub에서 불러올 wiki_data.json을 찾지 못했습니다.");
-      }
-    };
-
-    document.querySelectorAll(".tool-btn[data-insert]").forEach((btn) => {
-      btn.onclick = () => {
-        const textarea = document.getElementById("editBody");
-        const insertText = btn.getAttribute("data-insert");
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        textarea.value = textarea.value.substring(0, start) + insertText + textarea.value.substring(end);
-        textarea.focus();
-        textarea.selectionStart = textarea.selectionEnd = start + insertText.length;
-      };
-    });
-
-    document.getElementById("togglePreviewBtn").onclick = () => {
-      const preview = document.getElementById("livePreview");
-      if (preview.style.display === "block") {
-        preview.style.display = "none";
-      } else {
-        preview.style.display = "block";
-        preview.innerHTML = formatContent(document.getElementById("editBody").value);
-        renderMath(preview);
-      }
-    };
-
-    document.getElementById("uploadImgBtn").onclick = () => document.getElementById("imgInput").click();
-
-    document.getElementById("imgInput").onchange = (e) => {
-      Array.from(e.target.files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const img = new Image();
-          img.onload = () => {
-            const canvas = document.createElement("canvas");
-            const maxW = 900;
-            let w = img.width, h = img.height;
-            if (w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
-            canvas.width = w; canvas.height = h;
-            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-            tempImages.push({ name: file.name, data: canvas.toDataURL("image/jpeg", 0.78) });
-            renderEditImages();
-          };
-          img.src = ev.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-      e.target.value = "";
-    };
-
-    searchInputEl.oninput = () => { renderSidebar(); sidebarScrollCtrl.reset(); };
-    categoryFilterEl.onchange = () => { refreshSubCategoryOptions(); renderSidebar(); sidebarScrollCtrl.reset(); };
-    subCategoryFilterEl.onchange = () => { renderSidebar(); sidebarScrollCtrl.reset(); };
-
-    document.getElementById("themeToggle").onclick = () => {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("wiki_theme", document.body.classList.contains("dark") ? "dark" : "light");
-    };
-
-    document.getElementById("exportBtn").onclick = () => {
-      const blob = new Blob([JSON.stringify(docs, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `수학임용위키_통합백업_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-    };
-
-    document.getElementById("mergeBtn").onclick = () => document.getElementById("mergeFileInput").click();
-    document.getElementById("mergeFileInput").onchange = (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        try {
-          const imported = JSON.parse(ev.target.result);
-          if (!Array.isArray(imported)) throw new Error();
-          let added = 0, updated = 0;
-          imported.forEach((newDoc) => {
-            if (!newDoc.id) newDoc.id = "doc-" + Date.now() + "-" + Math.random().toString(36).slice(2, 6);
-            const idx = docs.findIndex((d) => d.id === newDoc.id);
-            if (idx !== -1) { docs[idx] = newDoc; updated++; }
-            else { docs.push(newDoc); added++; }
-          });
-          saveToLocalStorage();
-          if (imported.length > 0) currentDocId = imported[0].id;
-          switchToView();
-          refreshSubCategoryOptions();
-          renderSidebar();
-          renderView();
-          closeSidebar();
-          await pushToGitHub(`Merge ${added} added, ${updated} updated docs`);
-          alert(`병합 완료! (신규 추가: ${added}개, 기존 갱신: ${updated}개)`);
-        } catch (err) { alert("올바른 위키 JSON 파일이 아닙니다."); }
-      };
-      reader.readAsText(file);
-      e.target.value = "";
-    };
-
-    document.getElementById("importBtn").onclick = () => document.getElementById("importFileInput").click();
-    document.getElementById("importFileInput").onchange = (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        try {
-          const imported = JSON.parse(ev.target.result);
-          if (!Array.isArray(imported)) throw new Error();
-          if (confirm(`총 ${imported.length}개 문서로 전체 덮어씁니다. 계속하시겠습니까?`)) {
-            docs = imported;
-            saveToLocalStorage();
-            currentDocId = docs.length > 0 ? docs[0].id : null;
-            switchToView();
-            refreshSubCategoryOptions();
-            renderSidebar();
-            renderView();
-            closeSidebar();
-            await pushToGitHub(`Restore full backup (${docs.length} docs)`);
-          }
-        } catch (err) { alert("올바른 위키 백업 JSON 파일이 아닙니다."); }
-      };
-      reader.readAsText(file);
-      e.target.value = "";
-    };
-
-    window.addEventListener("DOMContentLoaded", init);
-  </script>
-</body>
-</html>
+      const filtered = docs.filter((doc)
